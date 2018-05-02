@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Created by PhpStorm.
@@ -13,6 +14,16 @@ class UsersTableSeeder extends Seeder
 {
 
   public function run(){
+
+      DB::table('users')->insert([
+            'nickname' => 'admin',
+            'name' => 'fercho',
+            'last_name' => 'Administrador',
+            'birth_date' => '1988/08/07',
+            'email' => 'lujano14.93@gmail.com',
+            'password' => bcrypt('fer123'),
+            'role_id' => 0
+      ]);
 
   }
 }
