@@ -25,6 +25,50 @@
                             </div>
                         </div>
 
+
+                        <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+                            <label for="last_name" class="col-md-4 control-label">Last Name</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
+
+                                @if ($errors->has('last_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group{{ $errors->has('nickname') ? ' has-error' : '' }}">
+                            <label for="nickname" class="col-md-4 control-label">Nickname</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="nickname" value="{{ old('nickname') }}" required autofocus>
+
+                                @if ($errors->has('nickname'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('nickname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                         <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
+                            <label for="birth_date" class="col-md-4 control-label">Birhdate</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="date" class="form-control" name="birth_date" value="{{ old('birth_date') }}" required autofocus>
+
+                                @if ($errors->has('birth_date'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('birth_date') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 

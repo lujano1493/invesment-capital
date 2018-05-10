@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->date('birth_date')->nullable(true);
             $table->string('email',255)->unique();
             $table->string('password',255);
+            $table->smallInteger('status');
             $table->smallInteger('role_id');
             $table->rememberToken();
             $table->timestamps();
