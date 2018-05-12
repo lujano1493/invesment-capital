@@ -10,7 +10,7 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap-sass');
+    require('bootstrap');
 } catch (e) {}
 
 /**
@@ -36,6 +36,10 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+
+    require('startbootstrap-sb-admin/js/sb-admin');
+    //require('startbootstrap-sb-admin/js/s');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

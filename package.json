@@ -1,4 +1,4 @@
-                        {
+{
     "private": true,
     "scripts": {
         "dev": "npm run development",
@@ -11,7 +11,11 @@
     },
     "devDependencies": {
         "axios": "^0.17",
-        "bootstrap-sass": "^3.3.7",
+        "popper.js": "^1.14.3",
+        "ajv": "^6.0.0",
+        "bootstrap": "^4.0.0",
+        "font-awesome": "^4.7.0",
+        "startbootstrap-sb-admin": "^4.0.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",
         "laravel-mix": "^1.0",
