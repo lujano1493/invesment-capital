@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
             'birth_date' => '1988/08/07',
             'email' => 'lujano14.93@gmail.com',
             'password' => bcrypt('fer123'),
+            'status'=> 1,
             'role_id' => 0
       ]);
 
