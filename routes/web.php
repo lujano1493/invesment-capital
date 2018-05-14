@@ -25,7 +25,9 @@ Route::get('foo', function () {
 
 
 // Authentication Routes...
-$this->match(['post','get'],'login', 'Auth\LoginController@showLoginForm')->name('login');
+$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+$this->post('login', 'Auth\LoginController@login')->name('login');
+
 $this->match(['post','get'], 'logout', 'Auth\LoginController@logout')->name('logout');
 
 $this->match(['post','get'],'send_email_activation', 'Auth\LoginController@send_email_activation')->name('send_email_activation');
