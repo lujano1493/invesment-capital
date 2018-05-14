@@ -23,8 +23,26 @@ class UsersTableSeeder extends Seeder
             'email' => 'lujano14.93@gmail.com',
             'password' => bcrypt('fer123'),
             'status'=> 1,
-            'role_id' => 0
-      ]);
+            'role_id' => 0,
+            'keycode' =>  hash("sha512",random_bytes(5) .'admin')
+      ]
+      
+    );
+
+      DB::table('users')->insert(
+      [
+            'nickname' => 'manso1',
+            'name' => 'cosmo',
+            'last_name' => 'fulanito',
+            'birth_date' => '1965/11/21',
+            'email' => 'fulanocosmo@gmail.com',
+            'password' => bcrypt('cosmo'),
+            'status'=> 0,
+            'role_id' => 1,
+            'keycode' =>  hash("sha512",random_bytes(5) .'cosmo')
+      ]
+
+      );
 
   }
 }

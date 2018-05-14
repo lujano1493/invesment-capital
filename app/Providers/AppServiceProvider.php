@@ -15,13 +15,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        User::creating(function ($user){
-
-            $user->status=0;
-            $user->role_id =1;
-
-
-        });
     }
 
     /**

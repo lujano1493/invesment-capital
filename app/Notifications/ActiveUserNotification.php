@@ -7,28 +7,19 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ResetPasswordNotification extends Notification
+class ActiveUserNotification extends Notification
 {
     use Queueable;
-
-    /**
-     * The password reset token.
-     *
-     * @var string
-     */
-    public $token;
-
+    private $data=null;
     /**
      * Create a new notification instance.
      *
-     * @param  string  $token
      * @return void
      */
-    public function __construct($token)
+    public function __construct($data)
     {
-        $this->token = $token;
+        $this->data=$data;
     }
-
 
     /**
      * Get the notification's delivery channels.
@@ -48,15 +39,15 @@ class ResetPasswordNotification extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-        {
+    {
+
         return (new MailMessage)
-
-            
-            ->line('Hemos recibido una solicitud para el cambio de contraseña')
-            ->action('Restablecer contraseña', url(config('app.url').route('password.reset', $this->token, false)))
-            ->line('si no envio una solicitud de recuperacion de contraseña, no haga caso al correo.');
-        }
-
+            ->subject('Activación de Cuenta')
+            ->greeting("Bienvenido {$this->data['name']} {$this->data['last_name']},")
+            ->line(" Para poder ingresar al portal debe dar click en el siguiente boton")
+            ->action('Activar Cuenta', url(config('app.url') . route('active.user', $this->data['token'], false)))
+            ->salutation('');
+    }
     /**
      * Get the array representation of the notification.
      *

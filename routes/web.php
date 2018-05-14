@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+     return redirect('login');
 });
 
 
@@ -25,10 +25,19 @@ Route::get('foo', function () {
 
 
 // Authentication Routes...
-$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-$this->post('login', 'Auth\LoginController@login');
-$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+$this->match(['post','get'],'login', 'Auth\LoginController@showLoginForm')->name('login');
+$this->match(['post','get'], 'logout', 'Auth\LoginController@logout')->name('logout');
 
+$this->match(['post','get'],'send_email_activation', 'Auth\LoginController@send_email_activation')->name('send_email_activation');
+
+
+$this->match(['post','get'],'send_email_password', 'Auth\LoginController@send_email_password')->name('send_email_password');
+$this->match(['post','get'],'restore_password/{token}', 'Auth\LoginController@restore_password')->name('restore_password');
+
+
+
+
+$this->match(['get'],'active_user/{token}','Auth\LoginController@active_user') ->name('active.user');
 // Registration Routes...
 $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 $this->post('register', 'Auth\RegisterController@register');
@@ -41,10 +50,8 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::prefix('invesment')->group(function(){
 
-    Route::get('home', 'HomeController@index')->name('invesment.inicio');
+    Route::get('inicio', 'UserController@index')->name('invesment.inicio');
 });
-
-
 
 
 Route::prefix('admin')->group(function (){

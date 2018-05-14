@@ -8,6 +8,8 @@ use Illuminate\Validation\ValidationException;
 
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 
+use App\User;
+
 trait AuthUserLogin
 {
     use ThrottlesLogins;
@@ -32,6 +34,7 @@ trait AuthUserLogin
     {
         $this->validateLogin($request);
 
+
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -39,6 +42,10 @@ trait AuthUserLogin
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);
+        }
+
+        if( ! $this->checkStatusActive($request)  ){
+            return $this->sendFailedLoginResponse($request,'auth.failed_status');
         }
 
         if ($this->attemptLogin($request)) {
@@ -119,7 +126,7 @@ trait AuthUserLogin
 
             if( property_exists($this, 'redirectTo') ){
                 //si el usuario es el administrador
-                 if($user->role_id  === 0){
+                 if($user->role_id  == User::ROLE_ADMIN ){
                      $this->redirectTo = "/admin/inicio";
                  }
 
@@ -136,10 +143,10 @@ trait AuthUserLogin
      *
      * @throws ValidationException
      */
-    protected function sendFailedLoginResponse(Request $request)
+    protected function sendFailedLoginResponse(Request $request, $fieldError='auth.failed')
     {
         throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
+            $this->username() => [trans($fieldError)],
         ]);
     }
 
@@ -165,7 +172,22 @@ trait AuthUserLogin
 
         $request->session()->invalidate();
 
-        return redirect('/');
+        return redirect('login');
+    }
+
+
+    protected function checkStatusActive(Request $request){
+
+        $email = $request->get($this->username());
+        $user = User::where($this->username(),$email  )->first();
+
+        //if no user
+        if( $user === null ){
+            return true;
+        }
+
+        return $user->status === User::STATUS_ACTIVE;
+
     }
 
     /**

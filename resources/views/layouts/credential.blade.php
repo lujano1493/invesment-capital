@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> @yield('title') </title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -18,7 +18,22 @@
 <body class="bg-dark">
   <div class="container">
 
-      @yield('content')
+
+
+<div class="card card-login mx-auto mt-5">
+      <div class="card-header"> @yield('page-title')</div>
+      <div class="card-body">
+
+        @if (session('message-result'))
+            <div class="alert  {{ session('message-result.status') === 'ok' ? 'alert-success' : 'alert-danger' }} ">
+                {{ session('message-result.message') }}
+            </div>
+        @endif
+        @yield('content')
+      </div>
+    </div>
+
+   
     
   </div>
   

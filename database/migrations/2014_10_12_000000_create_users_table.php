@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password',255);
             $table->smallInteger('status');
             $table->smallInteger('role_id');
+            $table->string('keycode',128);
             $table->rememberToken();
             $table->timestamps();
         });
