@@ -44,6 +44,7 @@ class LoginController extends Controller
     }
 
 
+
     public function send_email_activation(Request $request ){
         if($request->isMethod('post')){
             $this->validate($request,[ 'email' =>'required|email'] , ['email'=>'ingresa correo']);
@@ -60,12 +61,8 @@ class LoginController extends Controller
                     'email' => ['El correo ya habia sido activado'],
                 ]);
             }
-
-
             $user->sendActiveUserNofication();
-            $status="ok";
-            $message="Se ha enviado un correo de activación.";
-            $request->session()->flash('message-result',compact('status','message'  ));
+            return  $this->alertSuccess("Se ha enviado un correo de activación.");
         }
         return view('auth.send_email_activation');
     }
@@ -92,9 +89,7 @@ class LoginController extends Controller
 
             $user->sendNotificationRestorePassword($data);
 
-            $status="ok";
-            $message="el correo de recuperación de contraseña fue enviado correctamente.";
-            $request->session()->flash('message-result',compact('status','message'  ));
+            return $this->alertSuccess("el correo de recuperación de contraseña fue enviado correctamente.");
         }
         return view('auth.send_email_password');
     }
@@ -133,13 +128,12 @@ class LoginController extends Controller
 
                 throw new NotFoundHttpException('no se encontro ningun usuario asociado al token');
             }
-
             $user->password = bcrypt($request->get('password'));
 
             $user->save();
             $ticket->delete();
 
-            return redirect('login')->with('message-result' , ['status' => 'ok' , 'message' => 'La contraseña fue restablecida correctamente.']);
+            return $this->alertSuccess("La contraseña fue restablecida correctamente.","login");
 
 
         }
@@ -164,17 +158,17 @@ class LoginController extends Controller
         $user->status= User::STATUS_ACTIVE;
         if ($user->save()){
             $ticket->delete();
-            $status= "ok";
-            $message = "La cuenta de usuario fue activada correctamente. ya puede ingresar al sistema.";
+           return $this->alertSuccess("La cuenta de usuario fue activada correctamente. ya puede ingresar al sistema.",'login');
+
         }
         else{
-            $status= "error";
-            $message = "No fue posible activar la cuenta, vuelva intentar nuevamente.";
+            return $this->alertError("No fue posible activar la cuenta, vuelva intentar nuevamente.");
 
         }
 
-        return redirect('login')->with('message-result',  compact(  'status',  'message' ));
     }
+
+
 
 
 }

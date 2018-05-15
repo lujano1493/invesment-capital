@@ -24,11 +24,8 @@
       <div class="card-header"> @yield('page-title')</div>
       <div class="card-body">
 
-        @if (session('message-result'))
-            <div class="alert  {{ session('message-result.status') === 'ok' ? 'alert-success' : 'alert-danger' }} ">
-                {{ session('message-result.message') }}
-            </div>
-        @endif
+        @include('elements.messages')
+        
         @yield('content')
       </div>
     </div>

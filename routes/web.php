@@ -44,6 +44,9 @@ $this->match(['get'],'active_user/{token}','Auth\LoginController@active_user') -
 $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 $this->post('register', 'Auth\RegisterController@register');
 
+
+$this->get('test', 'HomeController@test')->name('test');
+
 // Password Reset Routes...
 $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
