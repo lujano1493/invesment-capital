@@ -62,6 +62,7 @@ Route::prefix('invesment')->group(function(){
 Route::prefix('admin')->group(function (){
 
     Route::get('inicio','AdminController@index')->name('admin.inicio');
+    Route::match(['get','post'],'register_user','AdminController@register_user')->name('admin.register_user');
 
 });
 

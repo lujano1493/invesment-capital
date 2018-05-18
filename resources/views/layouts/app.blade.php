@@ -23,25 +23,19 @@
 
   <div class="content-wrapper">
     <div class="container-fluid">
-     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                      @yield('panel-title' ,'Titulo de Modulo')
-                    </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          @yield('panel-title' ,'Titulo de Modulo')
+        </div>
 
-                    <div class="panel-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        @yield('content')
-                    </div>
+        <div class="panel-body">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
                 </div>
-            </div>
+            @endif
+
+            @yield('content')
         </div>
     </div>
        

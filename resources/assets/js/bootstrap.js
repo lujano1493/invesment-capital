@@ -9,6 +9,7 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
+    require('jquery.easing');
 
     require('bootstrap');
 } catch (e) {}
@@ -39,6 +40,9 @@ if (token) {
 
 
     require('startbootstrap-sb-admin/js/sb-admin');
+
+    require('chart.js');
+    require('datatables.net')
     //require('startbootstrap-sb-admin/js/s');
 
 /**

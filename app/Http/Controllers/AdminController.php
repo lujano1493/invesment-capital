@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use app\User;
 
 class AdminController extends Controller
 {
@@ -12,8 +13,13 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
     public function index(){
+    	$users = User::paginate(25);
+        return  view('admin_home',compact('users'));
+    }
 
-        return  view('admin_home');
+    public function register_user(){
 
+
+    	return view('admin.register_user');
     }
 }
