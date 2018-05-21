@@ -8,20 +8,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="index.html">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Usuarios">
+          <a class="nav-link" href="{{route('admin.users')}}">
             <i class="fa fa-fw fa-user"></i>
             <span class="nav-link-text"> Usuarios</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-          <a class="nav-link" href="charts.html">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Invesment">
+          <a class="nav-link" href="{{route('admin.invesment')}}">
             <i class="fa fa-fw fa-money"></i>
             <span class="nav-link-text"> Invesment</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="tables.html">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Educación Financiera">
+          <a class="nav-link" href="{{route('admin.educacion')}}">
             <i class="fa fa-fw fa-book"></i>
             <span class="nav-link-text"> Educación </span>
           </a>

@@ -127,7 +127,7 @@ trait AuthUserLogin
             if( property_exists($this, 'redirectTo') ){
                 //si el usuario es el administrador
                  if($user->role_id  == User::ROLE_ADMIN ){
-                     $this->redirectTo = "/admin/inicio";
+                     $this->redirectTo = "/admin/users";
                  }
 
             }

@@ -25,15 +25,12 @@
     <div class="container-fluid">
       <div class="panel panel-default">
         <div class="panel-heading">
-          @yield('panel-title' ,'Titulo de Modulo')
+          <h4>   @yield('panel-title' ,'Titulo de Modulo') </h4>
+        
         </div>
 
         <div class="panel-body">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
+            @include('elements.messages')
 
             @yield('content')
         </div>

@@ -1,32 +1,41 @@
 @extends('layouts.app')
 
-@section('title', 'Inicio Admin Invesment Capital')
- @section('panel-title' ,'Administrar Usuario')
+@section('title', 'Administración de Usuarios')
+ @section('panel-title' ,'Administración de  Usuarios')
 
 @section('content')
-    Hola Bienvenido a Administrador
+    Hola Bienvenido <b>{{ Auth::user()->nickname }}</b> 
 
 
 
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fa fa-table"></i> Data Table Example</div>
+            <div class="row">
+                <div class="col-8">
+                     <i class="fa fa-table"></i> Usarios Registrados 
+                </div>
+                <div class="col-4">
+                    <a href="{{route('admin.users.register')}}" class="btn btn-primary btn-block ">
+                             <i class="fa fa-fw fa-user"></i> Nuevo Usuario</a>
+                </div>
+            </div>
+           
+
+        </div>
         <div class="card-body">
             <div class="table-responsive">
 
-                 {{ $users->links()}}  <a href="{{route('admin.register_user')}}" class="btn btn-primary ">
-                     <i class="fa fa-fw fa-user"></i> Registrar Nuevo Usuario</a>
+                 {{ $users->links()}}  
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 	<tr>
-                		<th>Id</th>
-	                 	<th>nombre</th>
-	                 	<th>Apellidos</th>
-	                 	<th>Fecha de Nacimiento</th>
-	                 	<th>Correo</th>
-	                 	<th>Nickname</th>
-	                 	<th>Estatus</th>
-	                 	<th>Fecha de Registro</th>
+                		<th width="5%">Id</th>
+	                 	<th width="15%">nombre</th>
+	                 	<th width="15%">Apellidos</th>
+	                 	<th width="10%">Fecha de Nacimiento</th>
+	                 	<th width="15%">Correo</th>
+	                 	<th width="15%">Nickname</th>
+	                 	<th width="5%">Estatus</th>
 	                 	<th>Acciones</th>
                  	</tr>
                 </thead>
@@ -40,7 +49,7 @@
                 			<td>{{ $user->email }}</td>
                 			<td>{{ $user->nickname }}</td>
                 			<td>{{ $user->estatus === 0? 'INACTIVO': 'ACTIVO' }}</td>
-                			<td>{{ $user->created_at!=null?  $user->created_at->format('d-m-Y') : ''  }}</td>
+                			<!--<td>{{ $user->created_at!=null?  $user->created_at->format('d-m-Y') : ''  }}</td> -->
                 			<td>
                 				<a class="btn btn-success" href="" > Modificar </a>
                 			 </td>

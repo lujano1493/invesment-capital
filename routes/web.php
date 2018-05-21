@@ -53,16 +53,23 @@ $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
-Route::prefix('invesment')->group(function(){
 
-    Route::get('inicio', 'UserController@index')->name('invesment.inicio');
+//funciones de usuario
+Route::prefix('capital')->group(function(){
+
+    Route::get('inicio', 'CapitalController@index')->name('capital.inicio');
+
 });
 
-
+//funciones de administrador
 Route::prefix('admin')->group(function (){
 
-    Route::get('inicio','AdminController@index')->name('admin.inicio');
-    Route::match(['get','post'],'register_user','AdminController@register_user')->name('admin.register_user');
+    Route::get('users','AdminUsersController@index')->name('admin.users');
+    Route::match(['get','post'],'users/register','AdminUsersController@register')->name('admin.users.register');
+
+    Route::get('invesment','AdminInvesmentController@inicio')->name('admin.invesment');
+
+    Route::get('educacion','AdminInvesmentController@inicio')->name('admin.educacion');
 
 });
 

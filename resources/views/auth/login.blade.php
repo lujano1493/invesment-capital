@@ -4,41 +4,45 @@
 @section('page-title', 'Iniciar Sesión')
 @section('content')
 
-    <form method="POST" action="{{ route('login') }}">
-                {{ csrf_field() }}
-      <div class="form-group ">
-            <label for="email" class="col-md-12 control-label">Correo Electrónico:</label>
-            <input id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="ingresa correo" value="{{ old('email') }}" required autofocus>
+   {{ Form::open(array('url' => 'login'  )) }}
+  
+        {{ Form::bsInput('email','email',[
+                'label' => ['text' => 'Correo Electrónico', 'class' =>'col-md-12 control-label'],
+                'value' =>  old('email'),
+                'attr' => [
+                        'placeholder' => 'Ingresa correo',
+                        'required' =>true
+                    ]
+                ]
+            )
+        }}
 
-                @if ($errors->has('email'))
-                    <span class="invalid-feedback">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
-        </div>
+         {{ Form::bsInput('password','password',[
+                'label' => ['text' => 'Contraseña', 'class' =>'col-md-12 control-label'],
+                'value' =>'',
+                'attr' => [
+                        'placeholder' => 'Ingresa contraseña',
+                        'required' =>true
+                    ]
+                ]
+            )
+        }}
 
-        <div class="form-group ">
-            <label for="password" class="col-md-12 control-label">Contraseña:</label>
-            <input id="password" type="password" class="form-control  {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="ingresa contraseña" required>
-                @if ($errors->has('password'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                @endif
-        </div>
+        {{ Form::bsChecable('remember','checkbox',[
+                'label' => ['text' => 'Recordar Contraseña'],
+                'value' =>'S',
+                'checked' => !!old('remember') ,
+                'attr' =>[
+                            'class' => 'form-check-input'
+                    ]
+                ]
+            )
+        }}
    
-        <div class="form-group">
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordar Contraseña
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-             <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
-        </div>
+        {{  Form::bsButton('Ingresar',   ['class' => 'btn btn-primary btn-block' , 'type' =>'submit' ] )  }}
+     
          
-    </form>
+     {{ Form::close() }}
     <div class="row">
         <div class="col-6">
             <div class="form-group">
@@ -52,7 +56,6 @@
             </div>
            
         </div>
-        <!--<a class="d-block small mt-3" href="{{ route('register') }}">Registrate</a>-->
     </div>
 
 @endsection
