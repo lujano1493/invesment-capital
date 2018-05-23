@@ -18,6 +18,10 @@
 			$attr= array_merge(['class' =>''], $options['attr']);
 			$invalid= $errors->has($name) ? 'is-invalid' :''  ;
 			$attr['class'] = $attr['class']. ' form-control '. $invalid;
+
+			if(!isset($options['value'] )){
+				$options['value' ] =null;
+			}
 	@endphp
 
   	@if ( $type ==='text'  )
@@ -29,7 +33,12 @@
 	@elseif ($type ==='date')
 		{{ Form::date($name,$options['value'], $attr  ) }}
 	@endif
+
+
+	@if ( isset( $options['value_current']) )   
+		{{ Form::hidden($name ,$options['value'] , [ 'id' => $name.'_current' ,  'name' => $name.'_current'   ]  ) }}
   	
+  	@endif
  	@if ($errors->has($name))
 	    <span class="invalid-feedback">
 	        <strong>{{ $errors->first($name) }}</strong>

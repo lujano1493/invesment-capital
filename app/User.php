@@ -8,10 +8,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\RestorePasswordUserNotification;
 use Illuminate\Support\Facades\Event;
+use Collective\Html\Eloquent\FormAccessible;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use FormAccessible;
 
     const STATUS_INACTIVE= 0;
     const STATUS_ACTIVE = 1;
@@ -42,6 +44,12 @@ class User extends Authenticatable
         'updated_at',
         'birth_date'
     ];
+
+
+    public function formBirthDateAttribute($value){
+
+        return $value->format('Y-m-d');
+    }
 
 
 

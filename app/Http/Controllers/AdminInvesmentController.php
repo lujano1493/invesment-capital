@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 class AdminInvesmentController extends Controller
 {
     public function inicio(){
-
+    	return view("admin.invesment");
     	
     }
+
+    
 }

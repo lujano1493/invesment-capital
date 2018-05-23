@@ -67,9 +67,15 @@ Route::prefix('admin')->group(function (){
     Route::get('users','AdminUsersController@index')->name('admin.users');
     Route::match(['get','post'],'users/register','AdminUsersController@register')->name('admin.users.register');
 
+    Route::get('users/{id}/edit', 'AdminUsersController@edit')->where('id','[0-9]+')->name('admin.users.edit');
+
+    Route::post('users/{id}/edit/profile', 'AdminUsersController@editProfile')->where('id','[0-9]+')->name('admin.users.edit.profile');
+
+    Route::post('users/{id}/edit/access', 'AdminUsersController@editAccess')->where('id','[0-9]+')->name('admin.users.edit.access');
+
     Route::get('invesment','AdminInvesmentController@inicio')->name('admin.invesment');
 
-    Route::get('educacion','AdminInvesmentController@inicio')->name('admin.educacion');
+    Route::get('educacion','AdminEducacionController@inicio')->name('admin.educacion');
 
 });
 
