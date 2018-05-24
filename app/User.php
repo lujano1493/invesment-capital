@@ -46,13 +46,22 @@ class User extends Authenticatable
     ];
 
 
+     private $passwordPlain;
+
+
     public function formBirthDateAttribute($value){
 
         return $value->format('Y-m-d');
     }
 
 
+    public function getPasswordPlain(){
+        return $this->passwordPlain;
+    }
 
+    public function setPasswordPlain($passwordPlan=''){
+        $this->passwordPlain =$passwordPlan;
+    }
 
 
     public function sendActiveUserNofication(){
@@ -60,8 +69,10 @@ class User extends Authenticatable
         $data=[
             'token' =>$token,
             'name' => $this->name,
+            'email' => $this->email,
             'last_name' =>$this->last_name,
-            'nickname' =>$this->nickname
+            'nickname' =>$this->nickname,
+            'password' =>$this->passwordPlain
         ];
 
         $this->notify(new ActiveUserNotification($data));
@@ -72,6 +83,27 @@ class User extends Authenticatable
 
     }
 
+    public function encryptPassword(){
+        $this->passwordPlain =$this ->password;
+        $this->password = bcrypt($this->password);
+    }
+
+
+    public static function generatePassword(){
+        return "12345678";
+    }
+    public  function updatePasswordSendActivation(){
+        $this->password=  User:: generatePassword();
+        $this->encryptPassword();
+        if ( ! $this->save()  ){
+            return false;
+        }
+        $this->sendActiveUserNofication();
+        return true;
+    }
+
+
+
 
     protected static function  boot(){
         parent::boot();
@@ -79,6 +111,8 @@ class User extends Authenticatable
         static::creating(function ($user){
             Event::fire("user.creating",$user);
         });
+
+
         static::created(function ($user)  {
            $user->sendActiveUserNofication();
         });

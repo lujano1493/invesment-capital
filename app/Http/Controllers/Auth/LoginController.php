@@ -61,7 +61,9 @@ class LoginController extends Controller
                     'email' => ['El correo ya habia sido activado'],
                 ]);
             }
-            $user->sendActiveUserNofication();
+            if ( !$user->updatePasswordSendActivation()){
+                return $this->alertError("No fue posible enviar correo de activación.");
+            }
             return  $this->alertSuccess("Se ha enviado un correo de activación.");
         }
         return view('auth.send_email_activation');

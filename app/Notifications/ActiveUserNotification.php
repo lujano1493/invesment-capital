@@ -42,8 +42,12 @@ class ActiveUserNotification extends Notification
     {
 
         return (new MailMessage)
+            ->from("invesmente.capital.notification@invesment.com.mx","Activación Invesment Capital")
             ->subject('Activación de Cuenta')
             ->greeting("Bienvenido {$this->data['name']} {$this->data['last_name']},")
+            ->line("Se creado una cuenta en el portal Invesment Capital con las siguiente información:")
+            ->line("Correo Electrónico :   {$this->data['email'] } ")
+            ->line("Contraseña: {$this->data['password']}")
             ->line(" Para poder ingresar al portal debe dar click en el siguiente boton")
             ->action('Activar Cuenta', url(config('app.url') . route('active.user', $this->data['token'], false)))
             ->salutation('');

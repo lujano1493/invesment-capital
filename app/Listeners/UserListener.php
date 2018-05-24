@@ -18,5 +18,6 @@ class UserListener
          $user->status=User::STATUS_INACTIVE;
          $user->role_id =User::ROLE_USER;
          $user ->keycode=  hash("sha512",random_bytes(5) . $user->nickname);
+         $user->encryptPassword();
      }
 }
