@@ -38,6 +38,13 @@
       
   </div>
 </div>
+
+<div class="form-group">
+    <div class="col-6 offset-6">
+        <a href="{{ route('admin.users') }}" class="btn btn-danger btn-block"> Regresar </a>  
+    </div>
+
+</div>
            
         
 @endsection

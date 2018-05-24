@@ -59,5 +59,3 @@
          
         {{ Form::close() }}
 
-
-        <!--  <a href="{{ route('admin.users') }}" class="btn btn-danger btn-block"> Cancelar </a>  -->
