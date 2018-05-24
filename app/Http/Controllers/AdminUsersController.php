@@ -17,14 +17,20 @@ class AdminUsersController extends Controller
         return  view('admin.users',compact('users'));
     }
 
-     public function validateFields(){
-        return [
+     public function validateFields($action = 'create'){
+        $fields=[
                     'name' =>'required',
                     'last_name' =>'required',
                     'nickname' =>'required',
                     'birth_date' =>'required|date',
-                    'email' =>'required|unique:users'
+                    'email' =>'required|unique:users',
+                    'password' =>'required'
                 ];
+
+        if( $action ==='edit'  ){
+            unset($fields['password']);
+        }
+        return $fields;
     }
 
     public function messages()
@@ -84,7 +90,7 @@ class AdminUsersController extends Controller
             $this->alertWarning('No fue posible encontrar usuario.');
         }
 
-        $validate= $this->validateFields();
+        $validate= $this->validateFields('edit');
 
         $emailCurrent = $request->get('email_current');
         $email = $request->get('email');
