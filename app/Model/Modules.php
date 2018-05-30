@@ -9,7 +9,22 @@
 namespace App\Model;
 
 
-class Modules
+use Illuminate\Database\Eloquent\Model;
+
+class Modules extends Model
 {
+
+
+
+
+    public $timestamps=false;
+
+
+
+    protected $fillable=[ "name" ];
+
+
+
+
 
 }

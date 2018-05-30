@@ -30,14 +30,7 @@
 </div>
            
 
-<div class="card">
-  <div class="card-header">
-        Editar Limite de Acceso
-  </div>
-  <div class="card-body">
-      
-  </div>
-</div>
+
 
 <div class="form-group">
     <div class="col-6 offset-6">

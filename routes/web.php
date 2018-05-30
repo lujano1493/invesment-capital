@@ -72,13 +72,10 @@ Route::prefix('admin')->group(function (){
     Route::post('users/{id}/edit/profile', 'AdminUsersController@editProfile')->where('id','[0-9]+')->name('admin.users.edit.profile');
 
     Route::post('users/{id}/edit/access', 'AdminUsersController@editAccess')->where('id','[0-9]+')->name('admin.users.edit.access');
+    Route::get('users/{idUser}-{id}/delete/access', 'AdminUsersController@deleteAccess')->where(['idUser'=>'[0-9]+','id'=>'[0-9]+'])->name('admin.users.delete.access');
 
     Route::get('invesment','AdminInvesmentController@inicio')->name('admin.invesment');
 
     Route::get('educacion','AdminEducacionController@inicio')->name('admin.educacion');
 
 });
-
-
-
-

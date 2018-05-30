@@ -1,13 +1,23 @@
-<div class="form-group">
+
+@if( $type !== "hidden" )
+	<div class="form-group">
+@endif
 	@php
 
 		extract($options);
 		$_defaultLabel = [ 'class' =>'' , 'text'=> $name ];
-		if(is_array($label)){
+		if( isset($options['label']) &&  is_array($options['label'])){
 		 	$label = array_merge(  $_defaultLabel,$label  );
-		}else{
+		}else if(  isset($options['label']) && $type !== "hidden"   ){
 			$label = array_merge( $_defaultLabel ,[ 'text' =>$label ]      );
 		}
+		else{
+			$label =[];
+		}
+		if( $type == 'select'){
+			$options['list'] = isset($options['list'])? $options['list'] :[]; 
+		}
+
 	@endphp
 	@if (  !empty($label)  )
     	{{ Form::label($name,   $label['text']    , ['class' =>  $label['class']   ]) }}
@@ -15,8 +25,13 @@
 
 
 	 @php
-			$attr= array_merge(['class' =>''], $options['attr']);
-			$invalid= $errors->has($name) ? 'is-invalid' :''  ;
+			$attr=  isset( $options['attr'] ) ?   array_merge(['class' =>''], $options['attr']) : [ 'class' =>''];
+			if(  isset($options['elementIndex'])) {
+				$ident=  "{$name}_{$elementIndex}";
+				$attr= array_merge($attr , [  'id' => $ident  , 'name' => $ident  ]  );
+			}
+
+			$invalid= $errors->has($name) && $type!== "hidden" ? 'is-invalid' :''  ;
 			$attr['class'] = $attr['class']. ' form-control '. $invalid;
 
 			if(!isset($options['value'] )){
@@ -32,16 +47,28 @@
 		{{ Form::email($name,$options['value'], $attr  ) }}
 	@elseif ($type ==='date')
 		{{ Form::date($name,$options['value'], $attr  ) }}
+	@elseif ($type ==='select')
+		{{ Form::select($name, $options['list']  ,$options['value'], $attr  ) }}
+	@elseif ($type ==='hidden')
+		{{ Form::hidden($name, $options['value'] , $attr  ) }}
 	@endif
 
 
 	@if ( isset( $options['value_current']) )   
-		{{ Form::hidden($name ,$options['value'] , [ 'id' => $name.'_current' ,  'name' => $name.'_current'   ]  ) }}
+		@php	
+			$identHidden=   (!isset($options['elementIndex']) ? $name : $ident).'_current' ;
+		@endphp
+
+
+		{{ Form::hidden($name ,$options['value'] , [ 'id' =>  $identHidden ,  'name' => $identHidden  ]  ) }}
   	
   	@endif
- 	@if ($errors->has($name))
+ 	@if ($errors->has($name) && $type !== "hidden" )
 	    <span class="invalid-feedback">
 	        <strong>{{ $errors->first($name) }}</strong>
 	    </span>
 	@endif
-</div>
+
+@if( $type !== "hidden" )
+	</div>
+@endif

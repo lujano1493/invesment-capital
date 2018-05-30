@@ -8,7 +8,7 @@ use Illuminate\Validation\ValidationException;
 
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 
-use App\User;
+use App\Model\User;
 
 trait AuthUserLogin
 {

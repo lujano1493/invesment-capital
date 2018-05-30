@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\User;
+use App\Model\User;
+use App\Model\Modules;
 
 class AdminUsersController extends Controller
 {
@@ -53,7 +54,7 @@ class AdminUsersController extends Controller
 
         if($request->isMethod('post')){
             $dataValidate= $request->validate(
-                $this->validateFields(), 
+                $this->validateFields(),
                 $this->messages()
             );
 
@@ -70,24 +71,24 @@ class AdminUsersController extends Controller
     }
 
 
-   
+
 
 
     public function edit($id){
 
         $user= User::find($id);
-
         if( $user == null ){
-            $this->alertWarning('No fue posible encontrar usuario.');
+            return $this->alertWarning('No fue posible encontrar usuario.');
         }
+        $catModules=  Modules::pluck("name","id")->all();
 
-        return view('admin.users_edit',compact('user'));
+        return view('admin.users_edit',compact('user','catModules'));
     }
 
     public function editProfile(Request $request, $id  ){
         $user= User::find($id);
         if( $user == null ){
-            $this->alertWarning('No fue posible encontrar usuario.');
+            return $this->alertWarning('No fue posible encontrar usuario.');
         }
 
         $validate= $this->validateFields('edit');
@@ -106,10 +107,56 @@ class AdminUsersController extends Controller
         return $this->alertSuccess('el perfil de usuario fue actulizado correctamente','admin/users');
     }
     public function editAccess(Request $request, $id){
+      $user= User::find($id);
+      if( $user == null ){
+          return $this->alertWarning('No fue posible encontrar usuario.');
+      }
+      if( !$request->has('index') ){
+          $id_module = $request->get('id_module');
+          $date_expired = $request->get("date_expired");
+
+            if( $user->modules()->wherePivot('id_module', $id_module)->get()->isNotEmpty() ){
+                return $this->alertError("Ya existe el acceso al modulo ingresa uno diferente.");
+            }
+
+          if( !$user->modules()->attach(  [$id_module => [ 'date_expired' => $date_expired ]]   ) ){
+            return $this->alertSuccess("El acceso fue registrado con éxito.");
+          }else{
+            return $this->alertError("No fue posible guardar el accesso, intente más tardes.");
+          }
+      } else{
+         $index =  $request->get('index');
+         $id = $request->get("id_$index");
+         $id_module_current = $request->get("id_module_{$index}_current");
+         $id_module = $request->get("id_module_{$index}");
+         $date_expired = $request->get("date_expired_$index");
+         if(     $id_module !== $id_module_current &&  $user->modules()->wherePivot('id_module', $id_module)->get()->isNotEmpty()   ){
+                return $this->alertError("Ya existe el acceso al modulo ingresa uno diferente.");
+            }
+
+         if($user->modules()->updateExistingPivot($id_module_current,  ["date_expired" => $date_expired , "id_module" => $id_module  ]   ) ){
+           return $this->alertSuccess("El acceso fue actualizado con éxito.");
+         }else{
+           return $this->alertError("No fue posible actualizar acceso, intente más tardes.");
+         }
 
 
-        dd( $request -> all() );
+      }
 
+
+    }
+
+    public function deleteAccess(Request $request , $idUser,$id){
+      $user= User::find($idUser);
+      if( $user == null ){
+            return $this->alertWarning('No fue posible encontrar usuario.');
+      }
+      if( $user->modules()->detach( $id) ){
+          return $this->alertSuccess("El acceso fue eliminado correctamente.");
+      }
+      else{
+        return $this->alertError("No fue posible eliminar acceso, intente más tarde.");
+      }
 
     }
 

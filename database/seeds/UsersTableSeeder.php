@@ -14,8 +14,9 @@ class UsersTableSeeder extends Seeder
 {
 
   public function run(){
+      DB::table('users')->truncate();
 
-      DB::table('users')->insert([
+      DB::table('users')->insert([[
             'nickname' => 'fernado14.93',
             'name' => 'fercho',
             'last_name' => 'Administrador',
@@ -23,26 +24,47 @@ class UsersTableSeeder extends Seeder
             'email' => 'lujano14.93@gmail.com',
             'password' => bcrypt('fer123'),
             'status'=> 1,
-            'role_id' => 0,
-            'keycode' =>  hash("sha512",random_bytes(5) .'admin')
-      ]
-      
-    );
-
-      DB::table('users')->insert(
-      [
-            'nickname' => 'manso1',
-            'name' => 'cosmo',
-            'last_name' => 'fulanito',
-            'birth_date' => '1965/11/21',
-            'email' => 'fulanocosmo@gmail.com',
-            'password' => bcrypt('cosmo'),
-            'status'=> 0,
             'role_id' => 1,
-            'keycode' =>  hash("sha512",random_bytes(5) .'cosmo')
-      ]
+            'keycode' =>  hash("sha512",random_bytes(5) .'admin')
+      ],
 
-      );
+          [
+              'nickname' => 'manso1',
+              'name' => 'cosmo',
+              'last_name' => 'fulanito',
+              'birth_date' => '1965/11/21',
+              'email' => 'fulanocosmo@gmail.com',
+              'password' => bcrypt('cosmo'),
+              'status'=> 0,
+              'role_id' => 2,
+              'keycode' =>  hash("sha512",random_bytes(5) .'cosmo')
+          ]
+
+          ]);
+
+
+      $faker = Faker\Factory::create();
+      foreach (range(1, 50) as $index) {
+
+          $dateCreated=$faker->dateTimeBetween('-5 years' , 'now');
+          DB::table('users')->insert([
+              'name' => $faker->name,
+              'email' => $faker->email,
+              'last_name' => $faker->lastName,
+              'birth_date' =>$faker->dateTimeBetween('-68 years' , ' -18 years'),
+              'nickname' =>$faker->userName,
+              'status' => 1,
+              'role_id' => 2,
+              'password' => bcrypt('secret'),
+              'keycode' => hash("sha512", random_bytes(5) . 'admin'),
+              'created_at' =>$dateCreated,
+              'updated_at' =>$dateCreated
+          ]);
+
+
+      }
+
+
 
   }
 }

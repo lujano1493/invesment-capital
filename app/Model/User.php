@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
-use App\Model\Tickets;
+
 use App\Notifications\ActiveUserNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,10 +17,9 @@ class User extends Authenticatable
 
     const STATUS_INACTIVE= 0;
     const STATUS_ACTIVE = 1;
-    const ROLE_ADMIN =0;
+    const ROLE_ADMIN =1;
+    const ROLE_USER=2;
 
-    const ROLE_USER=1;
-    
     /**
      * The attributes that are mass assignable.
      *
@@ -47,6 +46,20 @@ class User extends Authenticatable
 
 
      private $passwordPlain;
+
+
+
+     public function role(){
+            return $this->belongsTo("App\Model\Roles","role_id" );
+     }
+
+
+     public function modules(){
+        return $this->belongsToMany("App\Model\Modules", "access", "id_user","id_module")
+               ->as('access')->withPivot('date_expired','id') ;
+    //->using("App\Model\Access")
+     }
+
 
 
     public function formBirthDateAttribute($value){

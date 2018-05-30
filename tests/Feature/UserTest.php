@@ -2,7 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\User;
+use App\Model\Access;
+use App\Model\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,25 +19,21 @@ class UserTest extends TestCase
     {
         $this->assertTrue(true);
 
-        $userTest = User::where( 'email', 'puerfo@gmail.com' )->first();
 
-        if($userTest !=null){
-            $userTest->delete();
-        }
+       $modules= User::find(2)->modules;
 
-        $user=[
 
-            'nickname' => 'puerkito',
-            'name' => 'pueroko',
-            'last_name' => 'fulanito',
-            'birth_date' => '1985/01/11',
-            'email' => 'puerfo@gmail.com',
-            'password' => bcrypt('cosmo'),
-            'keycode' =>  hash("sha512",random_bytes(5) .'puerko')
 
-        ];
 
-        User::create($user);
-        dd($user);
+     //  $user= User::find(2);
+
+       //$user->modules()->attach([2 => ['date_expired'=> '2019-10-10']]);
+       //$user->modules()->attach(2, ['date_expired'=> '2018-08-10']);
+       //$user->modules()->detach(2);
+       $modules = User::find(52)->modules()->wherePivot('id_module',2)->get();
+       dd($modules);
+        foreach ($modules as $module)
+            var_dump($module->access->id);
+
     }
 }

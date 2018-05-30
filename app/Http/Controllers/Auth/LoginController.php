@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\Login\AuthUserLogin;
 
-use App\User;
+use App\Model\User;
 use App\Model\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;

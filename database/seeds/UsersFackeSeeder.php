@@ -12,6 +12,7 @@ class UsersFackeSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
+        DB::table('users')->truncate();
 
         foreach (range(1, 300) as $index) {
 
