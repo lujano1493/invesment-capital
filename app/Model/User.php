@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-
+use App\Model\Search\FullTextSearch;
 use App\Notifications\ActiveUserNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,15 +10,25 @@ use App\Notifications\RestorePasswordUserNotification;
 use Illuminate\Support\Facades\Event;
 use Collective\Html\Eloquent\FormAccessible;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
     use FormAccessible;
+    use FullTextSearch;
 
     const STATUS_INACTIVE= 0;
     const STATUS_ACTIVE = 1;
     const ROLE_ADMIN =1;
     const ROLE_USER=2;
+
+
+    protected $searchable = [
+          'nickname','name','last_name','last_second_name','email'
+      ];
+
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -116,13 +126,14 @@ class User extends Authenticatable
     }
 
 
-
-
     protected static function  boot(){
         parent::boot();
 
         static::creating(function ($user){
             Event::fire("user.creating",$user);
+        });
+
+        static::updating(function ( $user){
         });
 
 

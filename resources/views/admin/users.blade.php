@@ -24,8 +24,15 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-
-                 {{ $users->links()}}  
+                <div class="row">
+                    <div class="col-7">
+                        {{ $users->links()}}
+                    </div>
+                    <div class="col-5">
+                        @include("elements.search_form", [ 'route' => "admin.users"  ] )
+                    </div>
+                </div>
+              
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 	<tr>

@@ -13,8 +13,12 @@ class AdminUsersController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index(){
-    	$users = User::orderBy('id' ,'desc')->paginate(25);
+    public function index(Request $request )
+    {
+
+      $query = $request->get("query_search");
+    	$users = User::search($query)->orderBy('id' ,'desc')->paginate(5);
+      $request->flashOnly(["query_search"]);
         return  view('admin.users',compact('users'));
     }
 

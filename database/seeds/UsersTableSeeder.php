@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
 
 
       $faker = Faker\Factory::create();
-      foreach (range(1, 50) as $index) {
+      foreach (range(1, 5) as $index) {
 
           $dateCreated=$faker->dateTimeBetween('-5 years' , 'now');
           DB::table('users')->insert([

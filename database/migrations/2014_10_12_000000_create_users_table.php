@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE users ADD FULLTEXT Full_Text_Users (nickname, name,last_name,last_second_name,email)" );
     }
 
     /**
@@ -37,6 +39,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        DB::statement("ALTER TABLE users DROP INDEX Full_Text_Users" );
         Schema::dropIfExists('users');
     }
 }
