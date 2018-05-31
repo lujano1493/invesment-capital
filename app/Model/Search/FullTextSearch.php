@@ -14,9 +14,16 @@ trait FullTextSearch
    */
     function fullTextWildcards($term)
     {
+
+      //check  terminos is email
+      if(   false !== filter_var($term, FILTER_VALIDATE_EMAIL) ){
+        return  "\"" . $term . "\"";
+      }
+
+
       // removing symbols used by MySQL
-        $reservedSymbols = ['-', '+', '<', '>', '(', ')', '~'];
-        $term = str_replace($reservedSymbols, '', $term);
+        $reservedSymbols = ['-', '+', '<', '>', '@', '(', ')', '~'];
+        $term = str_replace($reservedSymbols, '_', $term);
 
         $words = explode(' ', $term);
 
@@ -31,7 +38,6 @@ trait FullTextSearch
         }
 
         $searchTerm = implode( ' ', $words);
-        
         return $searchTerm;
     }
 
