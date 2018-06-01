@@ -26,7 +26,7 @@
             <div class="table-responsive">
                 <div class="row">
                     <div class="col-7">
-                        {{ $users->links()}}
+                        {!! $users->appends(\Request::except('page'))->render() !!}
                     </div>
                     <div class="col-5">
                         @include("elements.search_form", [ 'route' => "admin.users"  ] )
@@ -36,12 +36,12 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 	<tr>
-                		<th width="5%">Id</th>
-	                 	<th width="15%">nombre</th>
-	                 	<th width="15%">Apellidos</th>
-	                 	<th width="15%">Correo</th>
-	                 	<th width="15%">Nickname</th>
-	                 	<th width="5%">Estatus</th>
+                		<th width="5%">   @sortablelink('id', 'Id') </th>
+	                 	<th width="15%">  @sortablelink('name', 'Nombre') </th>
+	                 	<th width="15%">  @sortablelink('last_name', 'Apellidos') </th>
+	                 	<th width="15%"> @sortablelink('email', 'Correo')  </th>
+	                 	<th width="15%"> @sortablelink('nickname', 'Nickname') </th>
+	                 	<th width="5%">  @sortablelink('status', 'Estatus') </th>
 	                 	<th>Acciones</th>
                  	</tr>
                 </thead>
@@ -56,8 +56,8 @@
                 			<td>{{ $user->nickname }}</td>
                 			<td>
                                 @php
-                                       $text= $user->status === 0? 'INACTIVO': 'ACTIVO' ;
-                                       $clazz= $user->status === 0? ' badge-warning': 'badge-success';
+                                    $text= $user->status === 0? 'INACTIVO':  ($user->status === -1 ? 'BLOQUEADO': 'ACTIVO') ;
+                                    $clazz= $user->status === 0? ' badge-warning': ($user->status === -1 ? 'badge-danger' : 'badge-success')  ;
                                     $estatus= "<span class='badge {$clazz}'> {$text}</span>";
                                 @endphp
                                 <?php echo $estatus;?>
@@ -71,8 +71,7 @@
                 	@endforeach
                 </tbody>
                 </table>
-
-                 {{ $users->links()}}
+                 {!! $users->appends(\Request::except('page'))->render() !!}
             </div>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>

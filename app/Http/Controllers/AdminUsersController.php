@@ -17,8 +17,10 @@ class AdminUsersController extends Controller
     {
 
       $query = $request->get("query_search");
-    	$users = User::search($query)->orderBy('id' ,'desc')->paginate(5);
+    	$users = User::search($query)->sortable()->paginate(5);
       $request->flashOnly(["query_search"]);
+
+
         return  view('admin.users',compact('users'));
     }
 
@@ -29,7 +31,8 @@ class AdminUsersController extends Controller
                     'nickname' =>'required',
                     'birth_date' =>'required|date',
                     'email' =>'required|unique:users',
-                    'password' =>'required'
+                    'password' =>'required',
+                    'status' =>'required'
                 ];
 
         if( $action ==='edit'  ){
@@ -49,7 +52,8 @@ class AdminUsersController extends Controller
             'email.required' =>'Ingresa correo electrónico',
             'email.unique' =>'ya existe en el sistema el correo a registrar',
             'password.required'=>'Ingresa contraseña',
-            'password.confirmed' =>'La confirmación de contraseña no coinciden'
+            'password.confirmed' =>'La confirmación de contraseña no coinciden',
+            'status.required' =>'Seleccione un estatus'
         ];
 
     }
@@ -84,9 +88,16 @@ class AdminUsersController extends Controller
         if( $user == null ){
             return $this->alertWarning('No fue posible encontrar usuario.');
         }
+        $catEstatus= [
+            -1 => "Bloqueada",
+            0 => "Inactiva",
+            1 => "Activa"
+        ];
         $catModules=  Modules::pluck("name","id")->all();
 
-        return view('admin.users_edit',compact('user','catModules'));
+
+
+        return view('admin.users_edit',compact('user','catEstatus','catModules'));
     }
 
     public function editProfile(Request $request, $id  ){

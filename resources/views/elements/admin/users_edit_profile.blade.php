@@ -52,6 +52,18 @@
             }}
 
 
+                {{ Form::bsInput('status','select',[
+                    'label' => ['text' => 'Estatus de Cuenta', 'class' =>'col-12 control-label'],
+                    'list' =>$catEstatus,
+                    'attr' => [
+                            'required' =>true
+                        ],
+                    'value_current' => true
+                    ]
+                )
+            }}
+
+
              
                 <div class="form-group text-center">
                     {{ Form::Button('Modificar' , ['class' => 'btn btn-primary col-6' , 'type' =>'submit' ]  ) }}

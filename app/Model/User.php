@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\RestorePasswordUserNotification;
 use Illuminate\Support\Facades\Event;
 use Collective\Html\Eloquent\FormAccessible;
+use Kyslik\ColumnSortable\Sortable;
 
 
 class User extends Authenticatable
@@ -16,7 +17,9 @@ class User extends Authenticatable
     use Notifiable;
     use FormAccessible;
     use FullTextSearch;
+    use Sortable;
 
+    const STATUS_BLOCKED = -1;
     const STATUS_INACTIVE= 0;
     const STATUS_ACTIVE = 1;
     const ROLE_ADMIN =1;
@@ -28,7 +31,9 @@ class User extends Authenticatable
       ];
 
 
-
+      public $sortable = [
+        'id',  'nickname','name','last_name','last_second_name','email', 'status','birth_date'
+      ];
 
     /**
      * The attributes that are mass assignable.
@@ -36,7 +41,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','nickname','last_name','last_second_name','birth_date' ,'email', 'password',
+        'name','nickname','last_name','last_second_name','birth_date' ,'email', 'password','status'
     ];
 
     /**
