@@ -8,7 +8,7 @@
 
 namespace App\Listeners;
 
-use App\User;
+use App\Model\User;
 
 
 class UserListener
