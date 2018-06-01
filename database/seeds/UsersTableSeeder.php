@@ -17,12 +17,25 @@ class UsersTableSeeder extends Seeder
       DB::table('users')->truncate();
 
       DB::table('users')->insert([[
-            'nickname' => 'fernado14.93',
+            'nickname' => 'fernando14.93',
             'name' => 'fercho',
             'last_name' => 'Administrador',
             'birth_date' => '1988/08/07',
-            'email' => 'lujano14.93@gmail.com',
+            'email' => 'fercho@invesment.capital.com',
             'password' => bcrypt('fer123'),
+            'status'=> 1,
+            'role_id' => 1,
+            'keycode' =>  hash("sha512",random_bytes(5) .'admin')
+      ],
+
+
+      [
+            'nickname' => 'JorgeOperacion',
+            'name' => 'Jorge Ernesto',
+            'last_name' => 'García Salgado',
+            'birth_date' => '1991/05/01',
+            'email' => 'jorge@invesment.capital.com',
+            'password' => bcrypt('jorge123'),
             'status'=> 1,
             'role_id' => 1,
             'keycode' =>  hash("sha512",random_bytes(5) .'admin')
@@ -44,7 +57,7 @@ class UsersTableSeeder extends Seeder
 
 
       $faker = Faker\Factory::create();
-      foreach (range(1, 5) as $index) {
+      foreach (range(1, 20) as $index) {
 
           $dateCreated=$faker->dateTimeBetween('-5 years' , 'now');
           DB::table('users')->insert([
