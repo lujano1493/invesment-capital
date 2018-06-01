@@ -35,6 +35,10 @@ class AdminUsersController extends Controller
                     'status' =>'required'
                 ];
 
+
+        if( $action ==='create'  ){
+            unset($fields['status']);
+        }
         if( $action ==='edit'  ){
             unset($fields['password']);
         }
