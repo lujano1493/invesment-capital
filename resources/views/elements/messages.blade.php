@@ -1,5 +1,5 @@
-@if (session('alert'))
 
+@if (session('alert'))
 
     <div class="alert  {{ session('alert.status') === 'ok' ? 'alert-success' :  
     		(   session('alert.status')==='warning' ? 'alert-warning'   :'alert-danger')   }}  alert-dismissible fade show" role="alert" >

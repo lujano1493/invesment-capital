@@ -13,7 +13,7 @@ class CapitalController extends Controller
      */
     public function __construct()
     {
-       // $this->middleware('auth');
+      $this->middleware('auth');
     }
 
     /**
@@ -23,19 +23,20 @@ class CapitalController extends Controller
      */
     public function index()
     {
+
+
         return view('capital.inicio');
     }
 
     public function test(Request $request){
-        
+
         if( $request->exists('opc') ){
 
-           // $request->session()->flash('prueba','mensaje');
-          //   $request->session()->flash('message-result',[  'status' =>  'error' ,'message' =>'prueba' ]);
-            return  $this->alertWarning('prueba','test');
+
+            return  $this->alertError('prueba','capital/inicio');
         }
 
 
-        return view('test');
+        return "madres";
     }
 }

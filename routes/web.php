@@ -58,7 +58,7 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::prefix('capital')->group(function(){
 
     Route::get('inicio', 'CapitalController@index')->name('capital.inicio');
-
+    Route::get('prueba', 'CapitalController@test')->name('capital.prueba');
 });
 
 //funciones de administrador
