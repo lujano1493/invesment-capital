@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-admin')
 
 @section('title', 'Administración Educación Financiera')
  @section('panel-title' ,'Administración Educación Financiera')

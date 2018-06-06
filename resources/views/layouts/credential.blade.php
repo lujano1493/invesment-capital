@@ -12,7 +12,7 @@
     <title> @yield('title') </title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app-admin.css') }}" rel="stylesheet">
 </head>
 
 <body class="bg-dark">
@@ -35,7 +35,7 @@
   </div>
   
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app-admin.js') }}"></script>
 </body>
 
 </html>

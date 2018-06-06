@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "bootstrap": "^4.0.0",
+        "bootstrap-sass": "^3.3.7",
         "browser-sync": "^2.24.4",
         "browser-sync-webpack-plugin": "^2.2.2",
         "chart.js": "2.7.1",
@@ -23,7 +24,16 @@
         "lodash": "^4.17.4",
         "popper.js": "^1.14.3",
         "startbootstrap-sb-admin": "^4.0.0",
-        "vue": "^2.5.7"
+        "vue": "^2.5.7",
+        "drmonty-datatables-plugins": "1.10.12",
+        "flot": "0.8.0-alpha",
+        "holderjs": "2.9.4",
+        "metismenu": "2.7.7",
+        "morris.js06": "0.6.2",
+        "datatables-responsive": "1.0.7",
+        "bootstrap-social": "5.1.1",
+        "jquery.flot.tooltip": "0.9.0",
+        "startbootstrap-sb-admin-2": "3.3.7"
     },
     "dependencies": {
         "npm": "^6.0.1",
