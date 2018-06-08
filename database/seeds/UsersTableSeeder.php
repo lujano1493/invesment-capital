@@ -48,7 +48,7 @@ class UsersTableSeeder extends Seeder
               'birth_date' => '1965/11/21',
               'email' => 'fulanocosmo@gmail.com',
               'password' => bcrypt('cosmo'),
-              'status'=> 0,
+              'status'=> 1,
               'role_id' => 2,
               'keycode' =>  hash("sha512",random_bytes(5) .'cosmo')
           ]

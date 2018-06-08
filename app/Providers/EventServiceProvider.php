@@ -19,7 +19,10 @@ class EventServiceProvider extends ServiceProvider
         'user.creating' =>[
             'App\Listeners\UserListener@creating'
 
-        ]
+        ],
+        'Illuminate\Auth\Events\Login' => [
+             'App\Listeners\LogSuccessfulLogin',
+         ]
     ];
 
     /**

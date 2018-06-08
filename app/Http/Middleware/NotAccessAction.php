@@ -32,6 +32,8 @@ class NotAccessAction
       if(   $now >  $date_expired   ){
          return  MsgStatusFacade::redirectError("capital.inicio","El acceso al módulo expiro. por favor pongase en contacto con el administrador"  );
       }
+
+      $request->session()->flash( 'module' ,$module );
       return $next($request);
     }
 

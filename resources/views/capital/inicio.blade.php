@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Perfil')
+@section('title', 'Inicio')
+
+@php
+		$user = Auth::user();	
+@endphp
 
 @section('content')
-    Hola Bienvenido a usuario X
+   Hola   {{ $user->name . ' ' . $user->last_name  }}
+
+
 @endsection

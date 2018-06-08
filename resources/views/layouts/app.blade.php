@@ -31,7 +31,21 @@
         @include("elements/user/menu");
 
         <div id="page-wrapper">
+
+
             <div class="row">
+                <div class="col-lg-12 text-right">
+                       @if( Session::has('module')  )
+                            @php
+                                $module =   Session::get('module');
+                                $date_expired= \Carbon\Carbon::parse( $module->access->date_expired) ;
+                            @endphp
+                                <a class="nav-link" href="#">  <b> {{ $module->name}}</b> tienes acceso hasta el:  {{ $date_expired->format(' d-m-Y')  }}    </a>  
+                           
+
+                        @endif
+                </div>  
+
                 <div class="col-lg-12">
                     <h1 class="page-header"> @yield('title','Invesment Capital') </h1>
                 </div>

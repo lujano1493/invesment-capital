@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->smallInteger('role_id');
             $table->string('keycode',128);
             $table->rememberToken();
+            $table->timestamp('last_login')->nullable();
             $table->timestamps();
         });
 
