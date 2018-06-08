@@ -17,7 +17,7 @@ class CreateAccessTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_user');
             $table->unsignedInteger('id_module');
-            $table->dateTime('date_expired');
+            $table->dateTime('date_expired')->nullable();
         });
     }
 

@@ -43,9 +43,13 @@ trait AuthUserLogin
 
             return $this->sendLockoutResponse($request);
         }
+        if (!$this->checkExistsUser($request)){
+            return $this->sendFailedLoginResponse($request,'auth.user_not_found');
 
-        if( ! $this->checkStatusActive($request)  ){
-            return $this->sendFailedLoginResponse($request,'auth.failed_status');
+        }
+        $status_msg= $this->checkStatus($request);
+        if(   $status_msg !== 'auth.ok_status'){
+            return $this->sendFailedLoginResponse($request,$status_msg);
         }
 
         if ($this->attemptLogin($request)) {
@@ -57,7 +61,7 @@ trait AuthUserLogin
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
 
-        return $this->sendFailedLoginResponse($request);
+        return $this->sendFailedLoginResponse($request,'auth.failed' ,'password');
     }
 
     /**
@@ -131,7 +135,7 @@ trait AuthUserLogin
                  }
 
             }
-        
+
 
     }
 
@@ -143,10 +147,14 @@ trait AuthUserLogin
      *
      * @throws ValidationException
      */
-    protected function sendFailedLoginResponse(Request $request, $fieldError='auth.failed')
+    protected function sendFailedLoginResponse(Request $request, $fieldError='auth.failed' ,$field =  null)
     {
+        if(  $field ===null ){
+            $field = $this->username();
+        }
+
         throw ValidationException::withMessages([
-            $this->username() => [trans($fieldError)],
+            $field => [trans($fieldError)],
         ]);
     }
 
@@ -176,19 +184,41 @@ trait AuthUserLogin
     }
 
 
-    protected function checkStatusActive(Request $request){
+    protected function checkStatus(Request $request){
+        $status = $this->_checkStatus($request);
+        switch($status){
+            CASE  User::STATUS_ACTIVE:
+            return "auth.ok_status";
+            CASE User::STATUS_INACTIVE:
+            return "auth.inactive_status";
+            CASE USER::STATUS_BLOCKED:
+            return "auth.blocked_status";
+            DEFAUL:
+              return null;
 
+        }
+    }
+
+
+    private function _checkStatus(Request $request  ){
         $email = $request->get($this->username());
         $user = User::where($this->username(),$email  )->first();
-
-        //if no user
         if( $user === null ){
-            return true;
+            return null;
         }
-
-        return $user->status === User::STATUS_ACTIVE;
-
+        return $user->status;
     }
+
+
+    protected function checkExistsUser(Request $request){
+        $email = $request->get($this->username());
+        $user = User::where($this->username(),$email  )->first();
+        return $user !== null;
+    }
+
+
+
+
 
     /**
      * Get the guard to be used during authentication.

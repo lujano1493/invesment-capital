@@ -28,6 +28,7 @@ class RedirectIfNotAdmin
       }
       else
       {
+          //TODO HACER FACADE PARA MSG
           $status = "error";
           $message = "Acceso Restringido.";
 

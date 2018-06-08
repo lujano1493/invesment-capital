@@ -34,7 +34,8 @@ mix.sass('resources/assets/sass/app.scss', 'public/css/app-invesment.css')
 			'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
 			'node_modules/startbootstrap-sb-admin-2/vendor/raphael/raphael.js',
 			'node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.js',
-			'node_modules/startbootstrap-sb-admin-2/vendor/morrisjs/morris.js'
+			'node_modules/startbootstrap-sb-admin-2/vendor/morrisjs/morris.js',
+			'node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.js'
 
 		], 'public/js/app-invesment.js');
 

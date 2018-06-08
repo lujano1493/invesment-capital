@@ -28,15 +28,23 @@ class CapitalController extends Controller
         return view('capital.inicio');
     }
 
-    public function test(Request $request){
 
-        if( $request->exists('opc') ){
-
-
-            return  $this->alertError('prueba','capital/inicio');
-        }
-
-
-        return "madres";
+    public function invesment()
+    {
+        return view('capital.inicio');
     }
+
+
+     public function educacion()
+    {
+        return view('capital.inicio');
+    }
+
+
+      public function profile()
+    {
+        return view('capital.inicio');
+    }
+
+   
 }

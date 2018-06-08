@@ -58,8 +58,23 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::prefix('capital')->group(function(){
 
     Route::get('inicio', 'CapitalController@index')->name('capital.inicio');
-    Route::get('prueba', 'CapitalController@test')->name('capital.prueba');
+    Route::get('profile', 'CapitalController@profile')->name('capital.profile');
 });
+
+
+Route::group(['prefix' => 'invesment' , 'middleware' => 'auth.access:invesment' ],function  (){
+    Route::get('/', 'CapitalController@invesment')->name('capital.invesment');
+});
+
+
+Route::group(['prefix' => 'educacion' , 'middleware' => 'auth.access:educacion' ],function  (){
+    Route::get('/', 'CapitalController@educacion')->name('capital.educacion');
+});
+
+
+
+
+
 
 //funciones de administrador
 Route::prefix('admin')->group(function (){

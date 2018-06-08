@@ -19,8 +19,13 @@ class UserTest extends TestCase
     {
         $this->assertTrue(true);
 
+        $modules = User::find(3) -> modules()->wherePivot('id_module', 1)->get() ;
+        //dd($modules);
 
-       $modules= User::find(2)->modules;
+        $modules = User::find(3)->modules()->where("ident","educacsion")->firs();
+        dd($modules);
+    //  $modules = User::find(3);
+    //   $modules= User::find(3)->modules;
 
 
 
@@ -30,10 +35,12 @@ class UserTest extends TestCase
        //$user->modules()->attach([2 => ['date_expired'=> '2019-10-10']]);
        //$user->modules()->attach(2, ['date_expired'=> '2018-08-10']);
        //$user->modules()->detach(2);
-       $modules = User::find(52)->modules()->wherePivot('id_module',2)->get();
-       dd($modules);
-        foreach ($modules as $module)
-            var_dump($module->access->id);
+      // $modules = User::find(3)->modules()->wherePivot('id_module',2)->get();
+
+
+      // dd($modules);
+    ///    foreach ($modules as $module)
+      //      var_dump($module->access->id);
 
     }
 }

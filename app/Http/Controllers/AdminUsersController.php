@@ -72,9 +72,9 @@ class AdminUsersController extends Controller
             );
 
             if ( User::create( $dataValidate ) ){
-                return $this->alertSuccess("Un nuevo usuario fue creado correctamente.",'admin/users');
+                return $this->alertSuccess("Un nuevo usuario fue creado correctamente.",'admin.users');
             } else{
-                return $this->alertError("No fue posible crear el usuario intenlo más tarde.",'admin/users');
+                return $this->alertError("No fue posible crear el usuario intenlo más tarde.",'admin.users');
             }
 
         }
@@ -122,9 +122,9 @@ class AdminUsersController extends Controller
 
         $dataValidate= $request->validate( $validate, $this->messages());
         if(!$user->update(  $dataValidate )){
-            return $this->alertError('No fue posible actualizar perfil de usuario','admin/users');
+            return $this->alertError('No fue posible actualizar perfil de usuario','admin.users');
         }
-        return $this->alertSuccess('el perfil de usuario fue actulizado correctamente','admin/users');
+        return $this->alertSuccess('el perfil de usuario fue actulizado correctamente','admin.users');
     }
     public function editAccess(Request $request, $id){
       $user= User::find($id);
