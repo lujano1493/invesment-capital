@@ -31,19 +31,24 @@ class CapitalController extends Controller
 
     public function invesment()
     {
-        return view('capital.inicio');
+        return view('capital.invesment_index');
     }
 
 
      public function educacion()
     {
-        return view('capital.inicio');
+        return view('capital.educacion_index');
     }
 
 
       public function profile()
     {
-        return view('capital.inicio');
+        $catEstatus= [
+            -1 => "Bloqueada",
+            0 => "Inactiva",
+            1 => "Activa"
+        ];
+        return view('capital.perfil_index',compact('catEstatus'));
     }
 
    

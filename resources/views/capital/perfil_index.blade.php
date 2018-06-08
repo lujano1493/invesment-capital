@@ -1,19 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Inicio')
+@section('title', 'Perfil de Usuario')
 
 @php
 		$user = Auth::user();	
 @endphp
 
 @section('content')
-
 	<div class="row">
-		
-		 Hola   <b>{{ $user->name . ' ' . $user->last_name  }}</b>
+		Perfil de usuario
 	</div>
-  
 
-
-
+	@include("elements/user/perfil/edit" )
 @endsection

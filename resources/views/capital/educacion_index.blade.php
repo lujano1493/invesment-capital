@@ -1,19 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Inicio')
+@section('title', 'Educación Financiera')
 
 @php
 		$user = Auth::user();	
 @endphp
 
 @section('content')
-
 	<div class="row">
-		
-		 Hola   <b>{{ $user->name . ' ' . $user->last_name  }}</b>
+		Educacion financiera
 	</div>
-  
-
-
-
 @endsection
