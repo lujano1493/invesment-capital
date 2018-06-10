@@ -25,7 +25,7 @@ class CapitalController extends Controller
     {
 
 
-        return view('capital.inicio');
+        return view('capital.index');
     }
 
 

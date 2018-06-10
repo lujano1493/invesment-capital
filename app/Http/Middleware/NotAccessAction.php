@@ -27,8 +27,8 @@ class NotAccessAction
       if(!$module){
         return MsgStatusFacade::redirectError("capital.inicio","No tiene permisos para acceder al módulo solicitado.");
       }
-       $date_expired= \Carbon\Carbon::parse( $module->access->date_expired) ;
-       $now = \Carbon\Carbon::now();
+       $date_expired= $module->access->date_expired;
+       $now = \Carbon\Carbon::today();
       if(   $now >  $date_expired   ){
          return  MsgStatusFacade::redirectError("capital.inicio","El acceso al módulo expiro. por favor pongase en contacto con el administrador"  );
       }

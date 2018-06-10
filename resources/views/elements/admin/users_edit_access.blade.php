@@ -1,10 +1,5 @@
 @php
 	$modules = $user->modules;
-
-
-
-	$date_expired_default =\Carbon\Carbon::now()->addDay(30);
-
 @endphp
 
 @foreach( $modules as   $module)
@@ -28,15 +23,10 @@
 					]   
 
 			]) }}
-
-
-		@php
-				   $date_expired= \Carbon\Carbon::parse( $module->access->date_expired) ;
-		@endphp
+		
 		{{ Form::bsInput('date_expired', 'date',[
 				'label' =>'Fecha Limite',
 				'elementIndex' => $loop->index,
-				'value' =>$date_expired,
 	            'attr' => [
 	                            'placeholder' => 'Ingresa fecha limite',
 	                            'required' =>true
@@ -55,7 +45,6 @@
 	{{ Form::close() }}
 @endforeach
 
-
 {{ Form::open(['route' => ['admin.users.edit.access' , $user ] ]) }}
 
 	{{ Form::bsInput('id_module' ,'select' , [ 
@@ -68,6 +57,10 @@
 
 		]) }}
 
+@php
+	$date_expired_default =\Carbon\Carbon::today()->addDay(30);   // fecha de caducidad por defecto
+@endphp
+
 	{{ Form::bsInput('date_expired', 'date',[
 			'label' =>'Fecha Limite',
 			'value' =>  old('date_expired') ? : $date_expired_default,
@@ -76,7 +69,6 @@
                             'required' =>true
                         ]
 		]) }}
-
 
 	<div class="form-group text-center">
 	    {{ Form::Button('Agregar' , ['class' => 'btn btn-primary col-6' , 'type' =>'submit' ]  ) }}

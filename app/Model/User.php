@@ -75,9 +75,8 @@ class User extends Authenticatable
 
 
      public function modules(){
-        return $this->belongsToMany("App\Model\Modules", "access", "id_user","id_module")
-               ->as('access')->withPivot('date_expired','id') ;
-    //->using("App\Model\Access")
+        return $this->belongsToMany("App\Model\Modules", "access", "id_user","id_module")->using("App\Model\Access")
+               ->as('access')->withPivot('date_expired','id')->orderBy("id_module","asc");
      }
 
 
