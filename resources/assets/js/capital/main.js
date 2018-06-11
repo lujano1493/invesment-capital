@@ -160,7 +160,7 @@ $("#modal-cambio-password").on("show.bs.modal",function (){
 
 
 
-$(document).on("keypress", ":input:not(textarea)", function(event) {
+$(document).on("keypress", "#password", function(event) {
     if (event.keyCode == 13) {
         event.preventDefault();
     }
