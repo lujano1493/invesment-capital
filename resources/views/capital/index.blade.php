@@ -18,13 +18,14 @@
 		</div>
 		
 	</div>
-	@foreach ( $modules as $module  )
+	@forelse ( $modules as $module  )
 		@if( $module->access->date_expired >=  $now  )
 			@include( $view_session[$module->ident ]  , ["module" => $module])
 		@endif
-	@endforeach
-	@empty ( $modules)
+
+		@empty 
 	    	@include("elements/user/inicio/sin_acceso_modulos")
-	@endempty 
+	@endforelse
+	 
 
 @endsection

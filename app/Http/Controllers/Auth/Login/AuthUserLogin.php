@@ -127,7 +127,7 @@ trait AuthUserLogin
      */
     protected function authenticated(Request $request, $user)
     {
-            
+
             if( property_exists($this, 'redirectTo') ){
                 //si el usuario es el administrador
                  if($user->role_id  == User::ROLE_ADMIN ){
@@ -152,7 +152,7 @@ trait AuthUserLogin
         if(  $field ===null ){
             $field = $this->username();
         }
-
+          
         throw ValidationException::withMessages([
             $field => [trans($fieldError)],
         ]);

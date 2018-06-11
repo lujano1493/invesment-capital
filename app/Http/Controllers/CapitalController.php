@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\User\UserProfileController;
+
 class CapitalController extends Controller
 {
+
+    use UserProfileController;
     /**
      * Create a new controller instance.
      *
@@ -40,16 +44,6 @@ class CapitalController extends Controller
         return view('capital.educacion_index');
     }
 
-
-      public function profile()
-    {
-        $catEstatus= [
-            -1 => "Bloqueada",
-            0 => "Inactiva",
-            1 => "Activa"
-        ];
-        return view('capital.perfil_index',compact('catEstatus'));
-    }
 
    
 }

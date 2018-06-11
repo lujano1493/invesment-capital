@@ -23,7 +23,17 @@ class Controller extends BaseController
         return MsgStatusFacade::redirectWarning($redirectTo,$message);
     }
 
+    protected function alertJsonSuccess($message, $results=null){
+        return MsgStatusFacade::responseJsonSuccess($message,$results);
+    }
 
-   
+    protected function alertJsonError($message, $validationFields=null){
+        return MsgStatusFacade::responseJsonError($message,$validationFields);
+    }
+
+      protected function alertJsonWarning($message,$validationFields=null,$results=null){
+        return MsgStatusFacade::responseJsonWarning($message,$validationFields,$results);
+    }
+
 
 }

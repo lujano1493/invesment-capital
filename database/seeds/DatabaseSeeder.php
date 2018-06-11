@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
            UsersTableSeeder::class,
            ModulesTableSeeder::class,
            RolesTableSeeder::class,
-           AccessTableSeeder::class
+           AccessTableSeeder::class,
+           StatusUserTableSeeder::class
 
 
            ] );

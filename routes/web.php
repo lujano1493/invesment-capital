@@ -59,6 +59,8 @@ Route::prefix('capital')->group(function(){
 
     Route::get('inicio', 'CapitalController@index')->name('capital.inicio');
     Route::get('profile', 'CapitalController@profile')->name('capital.profile');
+    Route::match( ['post'] ,'profile/edit/{field}', 'CapitalController@editProfile')
+        ->where("field", "[a-zA-Z0-9]+")->name('capital.profile.edit');
 });
 
 

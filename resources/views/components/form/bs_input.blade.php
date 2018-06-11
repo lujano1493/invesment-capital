@@ -1,7 +1,26 @@
+@php
+	
+		$user = Auth::user();
+			 /** checamos que boostrap ocupamos
+					isAdmin  : -  Boostrap4
+					isNotAdmin : - Boostrap3
+	
+			 */
+		$isAdmin = $user && $user->isAdmin();
+		if( !$user ){
+			$isAdmin = true; 
+		}
+		
+		$ClassFormGroup =  !$isAdmin && $errors->has($name)?  "has-error":"";
+
+@endphp
+
 
 @if( $type !== "hidden" )
-	<div class="form-group">
+	<div class="form-group {{$ClassFormGroup}} " >
 @endif
+
+
 	@php
 
 		extract($options);
@@ -31,7 +50,7 @@
 				$attr= array_merge($attr , [  'id' => $ident  , 'name' => $ident  ]  );
 			}
 
-			$invalid= $errors->has($name) && $type!== "hidden" ? 'is-invalid' :''  ;
+			$invalid= $isAdmin &&  $errors->has($name) && $type!== "hidden" ? 'is-invalid' :''  ;
 			$attr['class'] = $attr['class']. ' form-control '. $invalid;
 
 			if(!isset($options['value'] )){
