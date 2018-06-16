@@ -2,7 +2,7 @@
 @if (session('alert'))
 
 	@php
-		$attr_clss =   Auth::user()->isAdmin()  ? "alert-dismissible fade show" : ""; 	
+		$attr_clss =  !Auth::user() || Auth::user()->isAdmin() ? "alert-dismissible fade show" : ""; 	
 		$attr_clss_status  = session('alert.status') === 'ok' ? 'alert-success' :  
     		(   session('alert.status')==='warning' ? 'alert-warning'   :'alert-danger') ;
 	@endphp
