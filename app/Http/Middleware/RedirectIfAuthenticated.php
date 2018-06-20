@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             $user=  Auth::user();
-            $redirectTo =  User::ROLE_ADMIN == $user->role_id ? '/admin/users' : 'capital/inicio';
+            $redirectTo =  User::ROLE_ADMIN == $user->id_role ? '/admin/users' : 'capital/inicio';
             return redirect($redirectTo);
         }
 

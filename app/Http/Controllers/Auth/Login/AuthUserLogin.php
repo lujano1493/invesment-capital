@@ -21,7 +21,7 @@ trait AuthUserLogin
      */
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('home.login');
     }
 
     /**
@@ -130,7 +130,7 @@ trait AuthUserLogin
 
             if( property_exists($this, 'redirectTo') ){
                 //si el usuario es el administrador
-                 if($user->role_id  == User::ROLE_ADMIN ){
+                 if($user->id_role  == User::ROLE_ADMIN ){
                      $this->redirectTo = "/admin/users";
                  }
 

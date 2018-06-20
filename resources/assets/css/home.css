@@ -1,0 +1,70 @@
+
+
+.nav-capital-home{
+	 float: none;
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
+
+}
+
+.margin-home-bottom{
+	margin-bottom: 2%;
+}
+
+.margin-home-top{
+	margin-top: 2%;
+}
+
+.main-home{
+	height: 600px;
+}
+
+.line-home-bottom{
+	width: 100%;
+	height: 3px;
+	margin-top: 10px;
+	background-color: #337ab7;
+}
+
+.img-logo-home{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2%;
+}
+
+
+.who-we-container{
+	background-color: black;
+	color: white;
+	width: 100%;
+}
+
+
+.title-who-we{
+	margin-bottom: 4%;
+	margin-top: 4%;
+}
+.heading-who-we{
+	margin-top: 3%;
+    margin-bottom: 5%;
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.body-who-we{
+	font-size: 18px;
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-bottom: 12%;
+}
+
+
+
+.login-container-home{
+	width: 50%;
+	margin-top: 2%;
+	margin-left: auto;
+	margin-right: auto;
+	
+}

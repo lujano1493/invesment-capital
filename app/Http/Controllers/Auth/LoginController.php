@@ -66,7 +66,7 @@ class LoginController extends Controller
             }
             return  $this->alertSuccess("Se ha enviado un correo de activación.");
         }
-        return view('auth.send_email_activation');
+        return view('home.send_email_activation');
     }
 
 
@@ -93,7 +93,7 @@ class LoginController extends Controller
 
             return $this->alertSuccess("el correo de recuperación de contraseña fue enviado correctamente.");
         }
-        return view('auth.send_email_password');
+        return view('home.send_email_password');
     }
 
     public function restore_password(Request $request, $token){
@@ -108,7 +108,7 @@ class LoginController extends Controller
         }
 
         if( $request->isMethod('get') ){
-            return view('auth.restore_password' ,compact('token'));
+            return view('home.restore_password' ,compact('token'));
         }
         else{
 

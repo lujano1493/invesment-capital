@@ -11,16 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-     return redirect('login');
-});
 
 
 
-
-Route::get('foo', function () {
-    return 'Hello World';
-});
 
 
 
@@ -52,6 +45,13 @@ $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+
+
+$this->get('/' ,'HomeController@index')->name('home');
+$this->get('/quienes_somos' ,'HomeController@whoWe')->name('quienes_somos');
+$this->get('/serivicios' ,'HomeController@services')->name('servicios');
+$this->match(['get','post'],'/contacto' ,'HomeController@contact')->name('contacto');
+
 
 
 //funciones de usuario

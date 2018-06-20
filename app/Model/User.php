@@ -66,11 +66,11 @@ class User extends Authenticatable
 
 
      public function isAdmin(){
-       return $this->role_id ===  User::ROLE_ADMIN;
+       return $this->id_role ===  User::ROLE_ADMIN;
 
      }
      public function role(){
-            return $this->belongsTo("App\Model\Roles","role_id" );
+            return $this->belongsTo("App\Model\Roles","id_role" );
      }
 
 

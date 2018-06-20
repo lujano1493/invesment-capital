@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'fercho@invesment.capital.com',
             'password' => bcrypt('fer123'),
             'status'=> 1,
-            'role_id' => 1,
+            'id_role' => 1,
             'keycode' =>  hash("sha512",random_bytes(5) .'admin')
       ],
 
@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'jorge@invesment.capital.com',
             'password' => bcrypt('jorge123'),
             'status'=> 1,
-            'role_id' => 1,
+            'id_role' => 1,
             'keycode' =>  hash("sha512",random_bytes(5) .'admin')
       ],
 
@@ -49,7 +49,7 @@ class UsersTableSeeder extends Seeder
               'email' => 'fulanocosmo@gmail.com',
               'password' => bcrypt('cosmo'),
               'status'=> 1,
-              'role_id' => 2,
+              'id_role' => 2,
               'keycode' =>  hash("sha512",random_bytes(5) .'cosmo')
           ]
 
@@ -67,7 +67,7 @@ class UsersTableSeeder extends Seeder
               'birth_date' =>$faker->dateTimeBetween('-68 years' , ' -18 years'),
               'nickname' =>$faker->userName,
               'status' => 1,
-              'role_id' => 2,
+              'id_role' => 2,
               'password' => bcrypt('secret'),
               'keycode' => hash("sha512", random_bytes(5) . 'admin'),
               'created_at' =>$dateCreated,

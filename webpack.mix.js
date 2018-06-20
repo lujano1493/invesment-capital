@@ -28,6 +28,7 @@ mix.sass('resources/assets/sass/app.scss', 'public/css/app-invesment.css')
 	'node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.css',
 	'node_modules/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css',
 	'node_modules/startbootstrap-sb-admin-2/vendor/morrisjs/morris.css',
+	'resources/assets/css/home.css'
 
 	] ,'public/css/app-invesment.css')
 	.scripts(

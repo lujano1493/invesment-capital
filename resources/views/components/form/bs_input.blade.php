@@ -2,16 +2,16 @@
 	
 		$user = Auth::user();
 			 /** checamos que boostrap ocupamos
-					isAdmin  : -  Boostrap4
-					isNotAdmin : - Boostrap3
+					$isBoos4   true : -  Boostrap4
+					$isBoos4 false : - Boostrap3
 	
 			 */
-		$isAdmin = $user && $user->isAdmin();
-		if( !$user ){
-			$isAdmin = true; 
-		}
+		$isBoos4 = $user && $user->isAdmin();
+	//	if( !$user ){
+	//		$isBoos4 = true; 
+	//	}
 		
-		$ClassFormGroup =  !$isAdmin && $errors->has($name)?  "has-error":"";
+		$ClassFormGroup =  !$isBoos4 && $errors->has($name)?  "has-error":"";
 
 @endphp
 
@@ -50,7 +50,7 @@
 				$attr= array_merge($attr , [  'id' => $ident  , 'name' => $ident  ]  );
 			}
 
-			$invalid= $isAdmin &&  $errors->has($name) && $type!== "hidden" ? 'is-invalid' :''  ;
+			$invalid= $isBoos4 &&  $errors->has($name) && $type!== "hidden" ? 'is-invalid' :''  ;
 			$attr['class'] = $attr['class']. ' form-control '. $invalid;
 
 			if(!isset($options['value'] )){
@@ -60,6 +60,8 @@
 
   	@if ( $type ==='text'  )
 		{{ Form::text($name, $options['value'], $attr  ) }}
+	@elseif ( $type ==='textarea'  )
+		{{ Form::textarea($name, $options['value'], $attr  ) }}
 	@elseif ($type ==='password')
 		{{ Form::password($name, $attr  ) }}
 	@elseif ($type ==='email')
@@ -82,10 +84,23 @@
 		{{ Form::hidden($name ,$options['value'] , [ 'id' =>  $identHidden ,  'name' => $identHidden  ]  ) }}
   	
   	@endif
- 	@if ($errors->has($name) && $type !== "hidden" )
+
+
+ 	@if (  $isBoos4&&$errors->has($name) && $type !== "hidden" )
+ 		@foreach(  $errors->get($name) as  $error   )
 	    <span class="invalid-feedback">
-	        <strong>{{ $errors->first($name) }}</strong>
+	        <strong>{{ $error }}</strong>
 	    </span>
+	    @endforeach
+	@endif
+
+
+ 	@if (  !$isBoos4&&$errors->has($name) && $type !== "hidden" )
+ 		@foreach(  $errors->get($name) as  $error   )
+	    <label class="control-label">
+	        {{ $error }}
+	    </label>
+	    @endforeach
 	@endif
 
 @if( $type !== "hidden" )

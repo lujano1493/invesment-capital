@@ -16,7 +16,7 @@ class UserListener
      public function creating($user){
          //Agregamos Valores por defecto
          $user->status=User::STATUS_INACTIVE;
-         $user->role_id =User::ROLE_USER;
+         $user->id_role =User::ROLE_USER;
          $user ->keycode=  hash("sha512",random_bytes(5) . $user->nickname);
          $user->encryptPassword();
      }
