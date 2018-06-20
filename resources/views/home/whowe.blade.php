@@ -10,7 +10,7 @@
 	<div class="container-fluid who-we-container margin-home-top">
 		<div class="heading-who-we">
 			<div class="line-home-bottom"></div>
-			<h2  class="title-who-we"> ¿Que es Capital 444?</h2>
+			<h3  class="title-who-we"> ¿Que es Capital 444?</h3>
 			<div class="line-home-bottom"></div>
 		</div>
 		

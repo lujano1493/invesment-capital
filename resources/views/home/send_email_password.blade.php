@@ -4,7 +4,10 @@
 
 @section('content')
 
-<div class="login-container-home well">
+
+<div class="row margin-home-top">
+
+    <div class="col-md-4 col-md-offset-4 well">
 
   <form method="POST" action="{{ route('send_email_password') }}">
           {{ csrf_field() }}
@@ -36,6 +39,8 @@
         </div>
     </div>
   
+</div>
+
 </div>
 
   
