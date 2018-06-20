@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
       DB::table('users')->truncate();
 
       DB::table('users')->insert([[
+            'id' => 1,
             'nickname' => 'fernando14.93',
             'name' => 'fercho',
             'last_name' => 'Administrador',
@@ -30,6 +31,7 @@ class UsersTableSeeder extends Seeder
 
 
       [
+            'id' => 2,
             'nickname' => 'JorgeOperacion',
             'name' => 'Jorge Ernesto',
             'last_name' => 'García Salgado',
@@ -42,6 +44,7 @@ class UsersTableSeeder extends Seeder
       ],
 
           [
+              'id' => 3,
               'nickname' => 'manso1',
               'name' => 'cosmo',
               'last_name' => 'fulanito',
@@ -57,7 +60,7 @@ class UsersTableSeeder extends Seeder
 
 
       $faker = Faker\Factory::create();
-      foreach (range(1, 20) as $index) {
+      foreach (range(1, 1) as $index) {
 
           $dateCreated=$faker->dateTimeBetween('-5 years' , 'now');
           DB::table('users')->insert([

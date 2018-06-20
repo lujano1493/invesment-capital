@@ -69,6 +69,10 @@ class User extends Authenticatable
        return $this->id_role ===  User::ROLE_ADMIN;
 
      }
+
+     public function contract(){
+       return $this->hasOne("App\Model\Contract", "id_user");
+     }
      public function role(){
             return $this->belongsTo("App\Model\Roles","id_role" );
      }

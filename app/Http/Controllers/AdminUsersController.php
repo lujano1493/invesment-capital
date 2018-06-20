@@ -18,7 +18,9 @@ class AdminUsersController extends Controller
     {
 
       $query = $request->get("query_search");
-    	$users = User::search($query)->sortable()->where( "id_role" ,"!=", 1 ) ->paginate(10);
+
+    	$users = User::search($query)->sortable()->where( "id_role" ,"!=",User::ROLE_ADMIN  ) ->paginate(10);
+
       $request->flashOnly(["query_search"]);
 
 

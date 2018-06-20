@@ -13,7 +13,7 @@ class ModulesTableSeeder extends Seeder
     {
         DB::table('modules')->truncate();
         DB::table('modules')->insert([
-            [ 'name'=>'Invesment' ,'route' => 'capital.invesment','icon' =>'fa fa-bar-chart-o fa-fw','ident' =>'invesment' ],
-            [ 'name'=>'Educación Financiera', 'route' =>'capital.educacion' ,'icon' => 'fa fa-edit fa-fw' ,'ident' =>'educacion'  ]  ]);
+            [ 'id' =>1, 'name'=>'Invesment' ,'route' => 'capital.invesment','icon' =>'fa fa-bar-chart-o fa-fw','ident' =>'invesment' ],
+            [ 'id' =>2, 'name'=>'Educación Financiera', 'route' =>'capital.educacion' ,'icon' => 'fa fa-edit fa-fw' ,'ident' =>'educacion'  ]  ]);
     }
 }

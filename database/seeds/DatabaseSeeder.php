@@ -17,9 +17,18 @@ class DatabaseSeeder extends Seeder
            ModulesTableSeeder::class,
            RolesTableSeeder::class,
            AccessTableSeeder::class,
-           StatusUserTableSeeder::class
+           StatusUserTableSeeder::class,
+           BanksTableSeeder::class,
+           ClasifCountBankSeeder::class,
+           OriginTransactionSeeder::class,
+           ProfileInvesmentSeeder::class,
+           TypeDocumentSeeder::class,
+           ExtensionDocumentSeeder::class,
+           TypeTransactionSeeder::class,
+           HorizonInvesmentSeeder::class,
+           TypeObjectiveSeeder::class,
 
-
+           ContractSeeder::class
            ] );
       //  $this->call(UsersFackeSeeder::class);
     }
