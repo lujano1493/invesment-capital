@@ -17,7 +17,7 @@
 			
 		</div>
 		<div class="col-xs-12  col-sm-4 col-md-4  col-lg-4 ">
-			<img  class="img-responsive" src="/img/logo_for_negro_min.png">
+			<img  id="logo-home-capital" class="img-responsive " src="/img/logo_for_negro_min.png">
 		</div>
 	</div>
 

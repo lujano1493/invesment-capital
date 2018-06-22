@@ -8,10 +8,15 @@ body{
 
 }
 
+#logo-home-capital{
+	margin-left: auto;
+    margin-right: auto;
+}
+
 
 #home {
 	position: absolute;
-	
+	top: 5%;
 	width: 100%;
 }
 
@@ -31,6 +36,11 @@ body{
 .margin-home-top{
 	margin-top: 2%;
 }
+
+.margin-form-home-top{
+	margin-top: 3%;
+}
+
 
 .main-home{
 	height: 600px;
@@ -98,8 +108,16 @@ body{
     font-size: 16px;
 }
 
+.icon-home-location{
+	    width: 60px;
+	    margin-left: auto;
+   		margin-right: auto;
+}
+.text-home-location{
+	   font-size: 15px;
+    color: white;
 
-
+}
 
 
 

@@ -7,15 +7,10 @@
 @endphp
 
 @section('content')
-	<div class="row margin-home-top">
+	<div class="row ">
 
 		<div class="col-xs-8 col-sm-4 col-md-4  col-lg-4 col-xs-offset-2 col-sm-offset-4 col-md-offset-4 col-lg-offset-4  well">
-				<div class="heading-who-we text-center">
-					<div class="line-home-bottom"></div>
-					<h2 class="title-who-we"> Contactanos</h2>
-					<div class="line-home-bottom"></div>
-				</div>
-			
+				
 			     {{ Form::open(array('url' => 'contacto'   )) }}
 
 			    <div class="row text-left">
@@ -74,8 +69,14 @@
 			         
 			     {{ Form::close() }}
 		</div>
-		
-			
 	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<img src="/img/mapa.png"  class="img-responsive icon-home-location" >
+		</div>
+		<div class="col-xs-12 text-home-location text-center"> Dr Erazo 85 Int 703, Del Cuauhtémoc CP: 06720, CDMX.</div>
+	</div>
+
 
 @endsection

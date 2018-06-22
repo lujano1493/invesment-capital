@@ -8,7 +8,7 @@
 
 @section('content')
 
-	<div class="row text-center " style="margin-top: 11%">
+	<div class="row text-center margin-form-home-top" style="margin-top: 11%">
 		
 			<a class="btn btn-primary " href="{{ route("login") }}"> Ingresar</a>
 	</div>
