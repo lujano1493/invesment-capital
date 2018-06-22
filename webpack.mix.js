@@ -38,6 +38,7 @@ mix.sass('resources/assets/sass/app.scss', 'public/css/app-invesment.css')
 			'node_modules/datatables.net/js/jquery.dataTables.js',
 			'ode_modules/startbootstrap-sb-admin-2/vendor/datatables-plugins/dataTables.bootstrap.js', // para obtener la version 3.7
 			'node_modules/datatables-responsive/js/dataTables.responsive.js',
+			'node_modules/particles.js/particles.js',
 			'node_modules/startbootstrap-sb-admin-2/vendor/raphael/raphael.js',
 			'node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.js',
 			'node_modules/morris.js06/morris.js',

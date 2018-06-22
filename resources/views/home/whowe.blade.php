@@ -8,15 +8,11 @@
 
 @section('content')
 	<div class="container-fluid who-we-container margin-home-top">
-		<div class="heading-who-we">
-			<div class="line-home-bottom"></div>
-			<h3  class="title-who-we"> ¿Que es Capital 444?</h3>
-			<div class="line-home-bottom"></div>
-		</div>
+		
 		
 
 		<p class="body-who-we">
-			Nace como una sociedad sin fines de lucro y con el fin de apoyar a la Escuela de donde egresamos. Nace enfocado a compañeros de generación, a compañeros egresados y a compañeros de las siguientes generaciones e incluso a docentes de la comunidad de la ESE.
+			Somos una sociedad dedicada a ofrecer soluciones de inversión en diferentes mercados financieros globales de acuerdo a las necesidades del cliente. 
 		</p>
 		
 	</div>

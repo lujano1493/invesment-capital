@@ -1,3 +1,19 @@
+body{
+	background-color: black; 
+}
+#container-home{
+	 position: relative;
+  	width: 100%;
+  	height: 100%;
+
+}
+
+
+#home {
+	position: absolute;
+	
+	width: 100%;
+}
 
 
 .nav-capital-home{
@@ -35,7 +51,6 @@
 
 
 .who-we-container{
-	background-color: black;
 	color: white;
 	width: 100%;
 }
@@ -53,10 +68,13 @@
     margin-right: auto;
 }
 .body-who-we{
-	font-size: 14px;
-	padding-left: 10%;
-	padding-right: 10%;
-	padding-bottom: 12%;
+	padding-top: 15px;
+    font-size: 17px;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: #337ab7;
+    padding-bottom: 12%;
+    border-radius: 10px;
 }
 
 
@@ -68,3 +86,20 @@
 	margin-right: auto;
 	
 }
+
+.navbar-logo {
+  background: url('/img/logo_for_negro_min.png') center  no-repeat;
+  width: 300px;
+  height: 100px;
+}
+
+.nav-capital-home a{
+    color: white;
+    font-size: 16px;
+}
+
+
+
+
+
+

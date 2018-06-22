@@ -7,14 +7,14 @@
 @endphp
 
 @section('content')
-	<div class=" margin-home-top ">
-		<div class="heading-who-we text-center">
-			<div class="line-home-bottom"></div>
-			<h2 class="title-who-we"> Contactanos</h2>
-			<div class="line-home-bottom"></div>
-		</div>
-			
-		<div class="body-who-we well">
+	<div class="row margin-home-top">
+
+		<div class="col-xs-8 col-sm-4 col-md-4  col-lg-4 col-xs-offset-2 col-sm-offset-4 col-md-offset-4 col-lg-offset-4  well">
+				<div class="heading-who-we text-center">
+					<div class="line-home-bottom"></div>
+					<h2 class="title-who-we"> Contactanos</h2>
+					<div class="line-home-bottom"></div>
+				</div>
 			
 			     {{ Form::open(array('url' => 'contacto'   )) }}
 

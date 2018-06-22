@@ -158,6 +158,10 @@ $("#modal-cambio-password").on("show.bs.modal",function (){
 	});
 });
 
+particlesJS.load('container-home', 'assets/particlesjs-config.json', function() {
+	  console.log('callback - particles.js config loaded');
+	});
+
 
 
 $(document).on("keypress", "#password", function(event) {

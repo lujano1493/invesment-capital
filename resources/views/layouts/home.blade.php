@@ -20,16 +20,21 @@
         <![endif]-->
 
     </head>
+º
+    <body  >
 
-    <body>
 
-
-        <div class="wrapper">
+        <div class="wrapper" id="home-capital">
             <div class="container-fluid">
-                <div class="margin-home-top main-home">
+                <div class="main-home">
                      @include("elements/home/menu")
                     @include('elements.messages')
-                    @yield('content')
+                    <div  id="container-home">
+                         <div  id="home">
+                             @yield('content')
+                         </div>
+                    </div>
+                   
                 </div>
             </div>
             

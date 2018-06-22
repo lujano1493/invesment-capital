@@ -7,7 +7,7 @@
 
 <div class="row margin-home-top">
 
-    <div class="col-md-4 col-md-offset-4 well">
+    <div class="col-xs-8 col-sm-4 col-md-4  col-lg-4 col-xs-offset-2 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 well">
 
   <form method="POST" action="{{ route('send_email_password') }}">
           {{ csrf_field() }}
