@@ -24,8 +24,8 @@
 
         <div class="container-fluid">
                 @include("elements/home/menu")
-                @include('elements.messages')
                 <div  id="container-home">
+                        @include('elements.messages', [ 'floatMsg' => true ])
                          @yield('content')
                 </div>
         </div>

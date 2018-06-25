@@ -114,6 +114,9 @@ body{
 		.logo-derecha{
 			display: none
 		}
+		.menu-home{
+			margin-top: 0%;
+		}
 	}
 
 @media screen and (min-width: $screen-xs-max){
@@ -122,6 +125,9 @@ body{
 		}
 		.logo-derecha{
 			display: block
+		}
+		.menu-home{
+			margin-top: 2%;
 		}
 	}
 
