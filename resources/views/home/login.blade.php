@@ -4,9 +4,8 @@
 
 @section('content')
 
-<div class="row margin-form-home-top">
-
-    <div class="col-xs-8 col-sm-4 col-md-4  col-lg-4 col-xs-offset-2 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 well">
+<div id="home-form">
+    <div class="col-xs-12 col-sm-4 col-md-4  col-lg-4 col-xs-offset-0 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 well">
           {{ Form::open(array('url' => 'login'   )) }}
 
         <div class="row text-left">
@@ -80,9 +79,8 @@
         
     </div>
 
-   
-    
 </div>
+
    
 
 @endsection

@@ -1,4 +1,18 @@
 let mix = require('laravel-mix');
+const del = require('del');
+/** Elominamos archivos temporale*/
+del(['public/css/*']).then( 
+	(paths) => {
+   	console.log('\nElimando estilos :\n', paths.join('\n'));
+	}
+);
+
+del(['public/js/*']).then( 
+	(paths) => {
+   	console.log('\nEliminando archivos javascripts :\n', paths.join('\n'));
+	}
+);
+
 
 /*
  |--------------------------------------------------------------------------
@@ -20,15 +34,15 @@ mix.sass('resources/assets/sass/app-admin.scss', 'public/css/app-admin.css')
 
 /*.Estilos y script para  Usuarios normale */
 
-mix.sass('resources/assets/sass/app.scss', 'public/css/app-invesment.css')
+mix.sass(
+		'resources/assets/sass/app.scss', 'public/css/app-invesment.css')
 	.styles([
 	'public/css/app-invesment.css',
 	'node_modules/startbootstrap-sb-admin-2/vendor/datatables-plugins/dataTables.bootstrap.css',
 	'node_modules/startbootstrap-sb-admin-2/vendor/datatables-responsive/dataTables.responsive.css',
 	'node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.css',
 	'node_modules/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css',
-	'node_modules/startbootstrap-sb-admin-2/vendor/morrisjs/morris.css',
-	'resources/assets/css/home.css'
+	'node_modules/startbootstrap-sb-admin-2/vendor/morrisjs/morris.css'
 
 	] ,'public/css/app-invesment.css')
 	.scripts(
@@ -46,7 +60,6 @@ mix.sass('resources/assets/sass/app.scss', 'public/css/app-invesment.css')
 			'resources/assets/js/capital/main.js'
 
 		], 'public/js/app-invesment.js');
-
 
 
 mix.browserSync('invesment.capital');

@@ -20,26 +20,16 @@
         <![endif]-->
 
     </head>
-º
     <body  >
 
-
-        <div class="wrapper" id="home-capital">
-            <div class="container-fluid">
-                <div class="main-home">
-                     @include("elements/home/menu")
-                    @include('elements.messages')
-                    <div  id="container-home">
-                         <div  id="home">
-                             @yield('content')
-                         </div>
-                    </div>
-                   
+        <div class="container-fluid">
+                @include("elements/home/menu")
+                @include('elements.messages')
+                <div  id="container-home">
+                         @yield('content')
                 </div>
-            </div>
-            
         </div>
-       
+      
          <script src="{{ asset('js/app-invesment.js') }}"></script>
        
     </body>

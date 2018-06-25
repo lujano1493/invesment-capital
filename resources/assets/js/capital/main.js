@@ -159,7 +159,9 @@ $("#modal-cambio-password").on("show.bs.modal",function (){
 });
 
 particlesJS.load('container-home', 'assets/particlesjs-config.json', function() {
-	  console.log('callback - particles.js config loaded');
+	  console.log('hola perros');
+	  console.log("as");
+
 	});
 
 

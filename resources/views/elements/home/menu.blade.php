@@ -1,6 +1,6 @@
 <div class="row">
 
-		<div class="margin-home-top col-xs-12 col-sm-6 col-md-6 col-lg-6  col-xs-offset-0 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+		<div class="margin-home-top col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
 			<ul class="nav nav-pills nav-capital-home"> 
 			 	@foreach ( [ 
 			 			['route' =>'home' ,'title' =>'Inicio' ] ,
