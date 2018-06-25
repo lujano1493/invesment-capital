@@ -1,4 +1,7 @@
 <div class="row">
+		<div class="logo-izquierda col-xs-12">
+			<img  id="logo-home" class="img-responsive " src="/img/logo_for_negro_min.png">
+		</div>
 
 		<div class="margin-home-top col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
 			<ul class="nav nav-pills nav-capital-home"> 
@@ -16,8 +19,8 @@
 			</ul> 
 			
 		</div>
-		<div class="col-xs-12  col-sm-4 col-md-4  col-lg-4 ">
-			<img  id="logo-home-capital" class="img-responsive " src="/img/logo_for_negro_min.png">
+		<div class="logo-derecha col-xs-12  col-sm-4 col-md-4  col-lg-4 ">
+			<img  id="logo-home" class="img-responsive " src="/img/logo_for_negro_min.png">
 		</div>
 	</div>
 

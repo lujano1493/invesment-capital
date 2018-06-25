@@ -1,6 +1,6 @@
 body{
 	background-color: black !important; 
- 	#logo-home-capital{
+ 	#logo-home{
 		margin-left: auto;
 	    margin-right: auto;
 	}
@@ -10,12 +10,7 @@ body{
 	  height: 100px;
 	}
 
-	.img-logo-home{
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 2%;
-	}
-
+	
 	#container-home{
 		position: relative;
 	  	width: 100%;
@@ -86,9 +81,6 @@ body{
 	}
 
 
-
-
-
 	.nav-capital-home a{
 	    color: white;
 	    font-size: 16px;
@@ -113,3 +105,24 @@ body{
 	}
 
 }
+
+
+@media screen and (max-width: $screen-xs-max){
+		.logo-izquierda{
+			display: block;
+		}
+		.logo-derecha{
+			display: none
+		}
+	}
+
+@media screen and (min-width: $screen-xs-max){
+		.logo-izquierda{
+			display: none;
+		}
+		.logo-derecha{
+			display: block
+		}
+	}
+
+
