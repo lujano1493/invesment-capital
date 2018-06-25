@@ -93,6 +93,9 @@ Route::prefix('admin')->group(function (){
 
     Route::get('invesment','AdminInvesmentController@inicio')->name('admin.invesment');
 
+     Route::get('invesment/{id}/edit', 'AdminInvesmentController@edit')->where('id','[0-9]+')->name('admin.invesment.edit');
+
+
     Route::get('educacion','AdminEducacionController@inicio')->name('admin.educacion');
 
 });

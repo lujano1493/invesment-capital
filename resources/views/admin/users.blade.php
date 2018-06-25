@@ -33,16 +33,16 @@
                     </div>
                 </div>
               
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table"  cellspacing="0">
                 <thead>
                 	<tr>
-                		<th width="5%">   @sortablelink('id', 'Id') </th>
-	                 	<th width="15%">  @sortablelink('name', 'Nombre') </th>
-	                 	<th width="15%">  @sortablelink('last_name', 'Apellidos') </th>
-	                 	<th width="15%"> @sortablelink('email', 'Correo')  </th>
-	                 	<th width="15%"> @sortablelink('nickname', 'Nickname') </th>
-	                 	<th width="5%">  @sortablelink('status', 'Estatus') </th>
-	                 	<th>Acciones</th>
+                		<th scope="col">   @sortablelink('id', 'Id') </th>
+	                 	<th scope="col">  @sortablelink('name', 'Nombre') </th>
+	                 	<th scope="col">  @sortablelink('last_name', 'Apellidos') </th>
+	                 	<th scope="col"> @sortablelink('email', 'Correo')  </th>
+	                 	<th scope="col"> @sortablelink('nickname', 'Nickname') </th>
+	                 	<th scope="col" >  @sortablelink('status', 'Estatus') </th>
+	                 	<th scope="col" >Acciones</th>
                  	</tr>
                 </thead>
                 <tbody>

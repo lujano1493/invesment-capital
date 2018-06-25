@@ -20,7 +20,11 @@
         <![endif]-->
 
     </head>
-    <body  >
+
+    @php
+         $idBody = Auth::user() ? 'user-capital' : 'home-capital'   ;
+    @endphp
+    <body  id="{{ $idBody }}">
 
         <div class="container-fluid">
                 @include("elements/home/menu")

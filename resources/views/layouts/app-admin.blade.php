@@ -9,7 +9,7 @@
   <meta name="author" content="">
       <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>    @yield('title','Invesment Capital') </title>
+  <title>    @yield('title','Capital 444 Admin') </title>
     <!-- Styles -->
     <link href="{{ asset('css/app-admin.css') }}" rel="stylesheet">
   
@@ -42,7 +42,7 @@
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Invesment Capital 2018</small>
+          <small> Capital 444 2018</small>
         </div>
       </div>
     </footer>
