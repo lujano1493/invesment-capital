@@ -10,7 +10,7 @@ use App\Notifications\RestorePasswordUserNotification;
 use Illuminate\Support\Facades\Event;
 use Collective\Html\Eloquent\FormAccessible;
 use Kyslik\ColumnSortable\Sortable;
-
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -125,9 +125,10 @@ class User extends Authenticatable
     }
 
 
-    public static function generatePassword(){
-        return "12345678";
+    public static function generatePassword( $length =10){
+        return str_random($length);
     }
+
     public  function updatePasswordSendActivation(){
         $this->password=  User:: generatePassword();
         $this->encryptPassword();

@@ -20,23 +20,12 @@
 </div>
 
 
-<div class="card">
-  <div class="card-header">
-        Editar Accesos a Módulos
-  </div>
-  <div class="card-body">
-        @include("elements.admin.users_edit_access" )
-  </div>
-</div>
-           
+
+@include("elements.admin.users_edit_access" )
 
 
-
-<div class="form-group">
-    <div class="col-6 offset-6">
-        <a href="{{ route('admin.users') }}" class="btn btn-danger btn-block"> Regresar </a>  
-    </div>
-
+<div class="form-group text-center">
+        <a href="{{ route('admin.users') }}" class="btn btn-danger" style="margin-top: 30px;"> Regresar </a>  
 </div>
            
         

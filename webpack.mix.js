@@ -29,8 +29,14 @@ del(['public/js/*']).then(
 
 mix.sass('resources/assets/sass/app-admin.scss', 'public/css/app-admin.css')
 	.js('resources/assets/js/app-admin.js', 'public/js')
-	.styles(['public/css/app-admin.css','node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css'], 'public/css/app-admin.css');
+	.styles([
+			'public/css/app-admin.css',
+			'node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css'], 'public/css/app-admin.css')
+	.scripts([
+			'resources/assets/js/plugins/calc-rfc.js',
+			'resources/assets/js/admin/main.js'
 
+		],'public/js/main-admin.js');
 
 /*.Estilos y script para  Usuarios normale */
 
@@ -48,9 +54,10 @@ mix.sass(
 	.scripts(
 		[
 			'node_modules/startbootstrap-sb-admin/vendor/jquery/jquery.js',
+			'node_modules/dot/doT.js',
 			'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
 			'node_modules/datatables.net/js/jquery.dataTables.js',
-			'ode_modules/startbootstrap-sb-admin-2/vendor/datatables-plugins/dataTables.bootstrap.js', // para obtener la version 3.7
+			'node_modules/startbootstrap-sb-admin-2/vendor/datatables-plugins/dataTables.bootstrap.js', // para obtener la version 3.7
 			'node_modules/datatables-responsive/js/dataTables.responsive.js',
 			'node_modules/particles.js/particles.js',
 			'node_modules/startbootstrap-sb-admin-2/vendor/raphael/raphael.js',

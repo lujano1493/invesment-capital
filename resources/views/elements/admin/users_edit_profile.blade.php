@@ -2,6 +2,7 @@
             {{ Form::bsInput('name','text',[
                     'label' => ['text' => 'Nombre(s)', 'class' =>'col-12 control-label'],
                     'attr' => [
+                           'class' =>'nombre-rfc',
                             'placeholder' => 'Ingresa nombre',
                             'required' =>true
                         ]
@@ -9,31 +10,47 @@
                 )
             }}
             {{ Form::bsInput('last_name','text',[
-                    'label' => ['text' => 'Apellidos', 'class' =>'col-12 control-label'],
+                    'label' => ['text' => 'Apellido Paterno', 'class' =>'col-12  control-label'],
                     'value' =>  old('last_name'),
                     'attr' => [
-                            'placeholder' => 'Ingresa apellidos',
-                            'required' =>true
-                        ]
-                    ]
-                )
-            }}
-           
-            {{ Form::bsInput('nickname','text',[
-                    'label' => ['text' => 'Nombre de Usuario', 'class' =>'col-12 control-label'],
-                    'value' =>  old('nickname'),
-                    'attr' => [
-                            'placeholder' => 'Ingrese nombre de usuario',
+                            'placeholder' => 'Ingresa apellido paterno',
+                            'class' =>'apellido-pat-rfc',
                             'required' =>true
                         ]
                     ]
                 )
             }}
 
+             {{ Form::bsInput('last_second_name','text',[
+                    'label' => ['text' => 'Apellido Materno', 'class' =>'col-12 control-label'],
+                    'value' =>  old('last_second_name'),
+                    'attr' => [
+                            'placeholder' => 'Ingresa apellido materno',
+                            'class' =>'apellido-mat-rfc',
+                            'required' =>true
+                        ]
+                    ]
+                )
+            }}
+           
+
             {{ Form::bsInput('birth_date','date',[
                     'label' => ['text' => 'Fecha de Nacimiento', 'class' =>'col-12 control-label'],
                     'attr' => [
                             'placeholder' => 'Ingrese fecha de nacimiento',
+                            'class' =>'fecha-nac-rfc',
+                            'required' =>true
+                        ]
+                    ]
+                )
+            }}
+
+            {{ Form::bsInput('nickname','text',[
+                    'label' => ['text' => 'Nombre de Usuario', 'class' =>'col-12 control-label'],
+                    'value' =>  old('nickname'),
+                    'attr' => [
+                            'placeholder' => 'Ingrese nombre de usuario',
+                            'class' =>'nickname',
                             'required' =>true
                         ]
                     ]
@@ -66,7 +83,7 @@
 
              
                 <div class="form-group text-center">
-                    {{ Form::Button('Modificar' , ['class' => 'btn btn-primary col-6' , 'type' =>'submit' ]  ) }}
+                    {{ Form::Button('Modificar' , ['class' => 'btn btn-primary' , 'type' =>'submit' ]  ) }}
                 </div>
          
         {{ Form::close() }}

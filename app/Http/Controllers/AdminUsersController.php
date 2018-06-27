@@ -52,7 +52,7 @@ class AdminUsersController extends Controller
     {
         return [
             'name.required' => 'Ingresa nombre',
-            'last_name.required'  => 'Ingresa apellido',
+            'last_name.required'  => 'Ingresa apellido paterno',
             'nickname.required' =>'Ingresa un nombre de usuario',
             'birth_date.required' =>'Ingresa fecha de nacimiento',
             'birth_date.date' =>'Ingresa una fecha de nacimiento valida',
@@ -72,8 +72,7 @@ class AdminUsersController extends Controller
                 $this->validateFields(),
                 $this->messages()
             );
-
-            if ( User::create( $dataValidate ) ){
+            if ( User::create(  $request->all() ) ){
                 return $this->alertSuccess("Un nuevo usuario fue creado correctamente.",'admin.users');
             } else{
                 return $this->alertError("No fue posible crear el usuario intenlo más tarde.",'admin.users');
@@ -123,7 +122,7 @@ class AdminUsersController extends Controller
         }
 
         $dataValidate= $request->validate( $validate, $this->messages());
-        if(!$user->update(  $dataValidate )){
+        if(!$user->update(  $request->all() )){
             return $this->alertError('No fue posible actualizar perfil de usuario','admin.users');
         }
         return $this->alertSuccess('el perfil de usuario fue actulizado correctamente','admin.users');

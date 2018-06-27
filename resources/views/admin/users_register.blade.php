@@ -17,17 +17,42 @@
                     'value' =>  old('name'),
                     'attr' => [
                             'placeholder' => 'Ingresa nombre',
-                            'required' =>true
+                            'required' =>true,
+                            'class' =>'nombre-rfc'
                         ]
                     ]
                 )
             }}
 
             {{ Form::bsInput('last_name','text',[
-                    'label' => ['text' => 'Apellidos', 'class' =>'col-12 control-label'],
+                    'label' => ['text' => 'Apellido Paterno', 'class' =>'col-12 control-label'],
                     'value' =>  old('last_name'),
                     'attr' => [
-                            'placeholder' => 'Ingresa apellidos',
+                            'placeholder' => 'Ingresa apellido paterno',
+                            'required' =>true,
+                            'class' =>'apellido-pat-rfc'
+                        ]
+                    ]
+                )
+            }}
+
+                {{ Form::bsInput('last_second_name','text',[
+                    'label' => ['text' => 'Apellido Materno', 'class' =>'col-12 control-label'],
+                    'value' =>  old('last_second_name'),
+                    'attr' => [
+                            'placeholder' => 'Ingresa apellido materno',
+                            'class' =>'apellido-mat-rfc',
+                            'required' =>true
+                        ]
+                    ]
+                )
+            }}
+            {{ Form::bsInput('birth_date','date',[
+                    'label' => ['text' => 'Fecha de Nacimiento', 'class' =>'col-12 control-label'],
+                    'value' =>  old('birth_date'),
+                    'attr' => [
+                            'placeholder' => 'Ingrese fecha de nacimiento',
+                            'class' =>'fecha-nac-rfc',
                             'required' =>true
                         ]
                     ]
@@ -39,23 +64,14 @@
                     'value' =>  old('nickname'),
                     'attr' => [
                             'placeholder' => 'Ingrese nombre de usuario',
+                            'class' =>'nickname',
                             'required' =>true
                         ]
                     ]
                 )
             }}
 
-            {{ Form::bsInput('birth_date','date',[
-                    'label' => ['text' => 'Fecha de Nacimiento', 'class' =>'col-12 control-label'],
-                    'value' =>  old('birth_date'),
-                    'attr' => [
-                            'placeholder' => 'Ingrese fecha de nacimiento',
-                            'required' =>true
-                        ]
-                    ]
-                )
-            }}
-
+         
 
              {{ Form::bsInput('email','email',[
                     'label' => ['text' => 'Correo Electrónico', 'class' =>'col-12 control-label'],
@@ -68,28 +84,30 @@
                 )
             }}
 
-              {{ Form::bsInput('password','password',[
+            <div class="row">
+                <div class="col-6">
+                    
+                       {{ Form::bsInput('password','text',[
                     'label' => ['text' => 'Contraseña', 'class' =>'col-12 control-label'],
                     'value' => '',
                     'attr' => [
                             'placeholder' => 'Ingrese contraseña',
+                            'class' =>'input-password',
                             'required' =>true
                         ]
                     ]
                 )
                 }}
+                </div>
+                <div class="col-6 text-center" style="margin-top:30px">
+                         {{ Form::Button('Generar Clave' , ['class' => 'btn generate-password btn-warning' , 'type' =>'button' ]  ) }}
+                </div>   
+            </div>
+
+           
           
           
-              {{ Form::bsInput('password_confirmation','password',[
-                    'label' => ['text' => 'Confirme Contraseña', 'class' =>'col-12 control-label'],
-                    'value' => '',
-                    'attr' => [
-                            'placeholder' => 'Ingrese confirmación',
-                            'required' =>true
-                        ]
-                    ]
-                )
-                }}
+            
                 <div class="form-group">
                     <div class="row">
                         <div class="col-6">

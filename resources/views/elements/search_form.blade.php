@@ -1,4 +1,4 @@
-<form class="form-inline" action = "{{ route($route) }}" >
+<form class="" action = "{{ route($route) }}" >
   <div class="input-group">
     <input class="form-control" name="query_search"  id="query_search" type="text" value= "{{ old('query_search') }}" placeholder="Buscar...">
     <span class="input-group-append">

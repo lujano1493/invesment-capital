@@ -11,12 +11,13 @@
     <div class="card mb-3">
         <div class="card-header">
             <div class="row">
-                <div class="col-8">
+                <div class="col-12 col-sm-8">
                      <i class="fa fa-table"></i> Usarios Registrados 
                 </div>
-                <div class="col-4">
-                    <a href="{{route('admin.users.register')}}" class="btn btn-primary btn-block ">
+                <div class="col-12 col-sm-4">
+                        <a href="{{route('admin.users.register')}}" class="btn btn-primary ">
                              <i class="fa fa-fw fa-user"></i> Nuevo Usuario</a>
+                 
                 </div>
             </div>
            
@@ -25,10 +26,10 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div class="row">
-                    <div class="col-7">
+                    <div class="col-12 col-sm-7">
                         {!! $users->appends(\Request::except('page'))->render() !!}
                     </div>
-                    <div class="col-5">
+                    <div class="col-12 col-sm-5">
                         @include("elements.search_form", [ 'route' => "admin.users"  ] )
                     </div>
                 </div>
