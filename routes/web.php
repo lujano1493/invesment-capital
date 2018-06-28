@@ -91,9 +91,11 @@ Route::prefix('admin')->group(function (){
     Route::post('users/{id}/edit/access', 'AdminUsersController@editAccess')->where('id','[0-9]+')->name('admin.users.edit.access');
     Route::get('users/{idUser}-{id}/delete/access', 'AdminUsersController@deleteAccess')->where(['idUser'=>'[0-9]+','id'=>'[0-9]+'])->name('admin.users.delete.access');
 
-    Route::get('invesment','AdminInvesmentController@inicio')->name('admin.invesment');
 
-     Route::get('invesment/{id}/edit', 'AdminInvesmentController@edit')->where('id','[0-9]+')->name('admin.invesment.edit');
+
+    Route::get('invesment','AdminInvesmentController@inicio')->name('admin.invesment');
+    Route::get('invesment/{id}/edit', 'AdminInvesmentController@edit')->where('id','[0-9]+')->name('admin.invesment.edit');
+    Route::post('invesment/{id}/edit/contract', 'AdminInvesmentController@editContract')->where('id','[0-9]+')->name('admin.users.edit.contract');
 
 
     Route::get('educacion','AdminEducacionController@inicio')->name('admin.educacion');

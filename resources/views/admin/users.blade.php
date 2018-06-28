@@ -14,8 +14,8 @@
                 <div class="col-12 col-sm-8">
                      <i class="fa fa-table"></i> Usarios Registrados 
                 </div>
-                <div class="col-12 col-sm-4">
-                        <a href="{{route('admin.users.register')}}" class="btn btn-primary ">
+                <div class="col-12 col-sm-4 text-center">
+                        <a href="{{route('admin.users.register')}}" class="my-3 btn btn-primary ">
                              <i class="fa fa-fw fa-user"></i> Nuevo Usuario</a>
                  
                 </div>

@@ -35,6 +35,14 @@
 		}
 		if( $type == 'select'){
 			$options['list'] = isset($options['list'])? $options['list'] :[]; 
+			if(isset($options['empty_option'])){
+				$options['list']= array_merge(   
+					is_array($options['empty_option']) ?  $options['empty_option'] :  
+					[ "" => $options['empty_option']],
+					$options['list'] 
+				);
+
+			}
 		}
 
 	@endphp

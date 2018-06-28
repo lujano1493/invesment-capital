@@ -20,6 +20,7 @@ class CreateRepresentantsTable extends Migration
           $table->string("name",150);
           $table->string("last_name",150);
           $table->string("last_second_name",150) ->nullable(true);
+          $table->date('birth_date')->nullable(true);
           $table->string("rfc",20);
         });
     }

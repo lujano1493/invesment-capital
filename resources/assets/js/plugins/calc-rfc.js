@@ -28,10 +28,10 @@ function calculaRFC( selectRFC, scope) {
 		else
 			return false;
 	}
-	nombre = $(".nombre-rfc").val().toUpperCase();
-	apellidoPaterno = $(".apellido-pat-rfc").val().toUpperCase();
-	apellidoMaterno = $(".apellido-mat-rfc").val().toUpperCase();
-	fecha = $(".fecha-nac-rfc").val();
+	nombre = $(scope).find(".nombre-rfc").val().toUpperCase();
+	apellidoPaterno = $(scope).find(".apellido-pat-rfc").val().toUpperCase();
+	apellidoMaterno = $(scope).find(".apellido-mat-rfc").val().toUpperCase();
+	fecha = $(scope).find(".fecha-nac-rfc").val();
 
 	var rfc = "";
 	apellidoPaterno = quitaArticulos(apellidoPaterno);

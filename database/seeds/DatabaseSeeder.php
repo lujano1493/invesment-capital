@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
            TypeTransactionSeeder::class,
            HorizonInvesmentSeeder::class,
            TypeObjectiveSeeder::class,
+           TypeRepresentantSeeder::class,
 
            ContractSeeder::class
            ] );

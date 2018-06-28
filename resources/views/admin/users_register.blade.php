@@ -41,8 +41,7 @@
                     'value' =>  old('last_second_name'),
                     'attr' => [
                             'placeholder' => 'Ingresa apellido materno',
-                            'class' =>'apellido-mat-rfc',
-                            'required' =>true
+                            'class' =>'apellido-mat-rfc'
                         ]
                     ]
                 )
@@ -64,7 +63,7 @@
                     'value' =>  old('nickname'),
                     'attr' => [
                             'placeholder' => 'Ingrese nombre de usuario',
-                            'class' =>'nickname',
+                            'class' =>'rfc',
                             'required' =>true
                         ]
                     ]

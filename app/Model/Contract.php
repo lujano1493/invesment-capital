@@ -9,6 +9,11 @@ class Contract extends Model
     public $table ='contracts';
 
 
+    protected $fillable = [
+        'id_profile_invesment','id_horizon_invesment','id_type_objective'
+    ];
+
+
     public function user(){
       return $this->belongsTo("App\Model\User","id_user" );
     }
