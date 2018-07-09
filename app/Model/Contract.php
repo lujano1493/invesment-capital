@@ -21,4 +21,8 @@ class Contract extends Model
     public function representants(){
       return $this->hasMany("App\Model\Representant","id_contract");
     }
+
+    public function documents(){
+      return $this->hasMany("App\Model\DocumentContract","id_contract");
+    }
 }

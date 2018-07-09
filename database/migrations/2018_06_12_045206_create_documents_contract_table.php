@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -17,11 +18,13 @@ class CreateDocumentsContractTable extends Migration
             $table->increments('id');
             $table->unsignedInteger("id_contract");
             $table->string("name");
-            $table->binary('content');
+          //  $table->binary('content');
             $table->smallInteger('id_type_document');
             $table->smallInteger("id_extension");
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE documents_contract ADD content MEDIUMBLOB");
     }
 
     /**

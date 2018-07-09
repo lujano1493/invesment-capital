@@ -97,6 +97,19 @@ Route::prefix('admin')->group(function (){
     Route::get('invesment/{id}/edit', 'AdminInvesmentController@edit')->where('id','[0-9]+')->name('admin.invesment.edit');
     Route::post('invesment/{id}/edit/contract', 'AdminInvesmentController@editContract')->where('id','[0-9]+')->name('admin.users.edit.contract');
 
+    Route::post('invesment/{id}/edit/representant', 'AdminInvesmentController@editRepresentant')->where('id','[0-9]+')->name('admin.users.edit.representant');
+    Route::get('invesment/delete/representant', 'AdminInvesmentController@deleteRepresentant')->name('admin.users.delete.representant');
+
+
+    Route::post('invesment/{id}/edit/count-bank', 'AdminInvesmentController@editCountBank')->where('id','[0-9]+')->name('admin.users.edit.count.bank');
+    Route::get('invesment/delete/count-bank', 'AdminInvesmentController@deleteCountBank')->name('admin.users.delete.count.bank');
+
+
+    Route::post('invesment/{id}/edit/document', 'AdminInvesmentController@editDocument')->where('id','[0-9]+')->name('admin.users.edit.document');
+    Route::get('invesment/delete/document', 'AdminInvesmentController@deleteDocument')->name('admin.users.delete.document');
+
+    Route::get('invesment/view/{id}-document', 'AdminInvesmentController@viewDocument')->where('id','[0-9]+')->name('admin.users.view.document');
+    Route::get('invesment/download/{id}-document', 'AdminInvesmentController@downloadDocument')->where('id','[0-9]+')->name('admin.users.download.document');
 
     Route::get('educacion','AdminEducacionController@inicio')->name('admin.educacion');
 

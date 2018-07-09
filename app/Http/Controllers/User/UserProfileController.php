@@ -40,8 +40,8 @@ trait UserProfileController{
 
 			if(!Hash::check($password, $user->password)) {
 			       	return $this->alertJsonError("Credenciales no validas, vuelva intentar.");
-			 } 
-			
+			 }
+
 			if( $field === "nickname") {
 				$validator = Validator::make( $request->all(), [
 		            'nickname' => 'required|confirmed'
@@ -96,7 +96,7 @@ trait UserProfileController{
 				}
 				$user->email = $request->get("email");
 				if( $user->save()  ){
-					return $this->alertJsonSuccess("Se guardo el corre electrónico correctamente." , ["email" => $user->email]);
+					return $this->alertJsonSuccess("Se guardo el correo electrónico correctamente." , ["email" => $user->email]);
 				}
 				else{
 					return $this->alertJsonError("No fue posible guardar el cambio, intente más tarde.");
@@ -106,9 +106,9 @@ trait UserProfileController{
 
 
 
-    	
-    	}	
-    	
+
+    	}
+
 
 
 }

@@ -1,10 +1,14 @@
 <?php
+
 namespace App\Util;
+
+
+use Illuminate\Support\Facades\Request;
 
 class MsgStatusFacade{
 
- 	 static function  redirectSuccess($route,$message){
-      return    self::redirectMsg($route,"ok",$message);
+ 	 static function  redirectSuccess($route,$message,$results=null){
+       return  self::redirectMsg($route,"ok",$message);
     }
     static function  redirectWarning($route,$message){
       return  self::redirectMsg($route,"warning",$message);
@@ -26,24 +30,46 @@ class MsgStatusFacade{
     }
 
 
-    static function responseJsonMsg($status,$message ,$validationFields=null  ,$results=null){
+    static function responseJsonMsg($status,$message ,$validationFields=null  ,$results=[]){
       $msg =compact("status","message");
-
       if( isset($validationFields) && !empty($validationFields) ){
         $msg["validationFields"] =$validationFields;
       }
-      if( isset($results)  ){
-        $msg["results"] =$results;
+      if(  $results !=null  ){
+        $msg['results'] = $results;
       }
       return response()->json( $msg );
     }
 
     static function   redirectMsg($route=null,$status,$message){
     	$msg= compact('status','message');
-    	if( $route ===null ){
-    		return redirect()->back()->with("alert", $msg);
-    	}
-      return  redirect()->route($route)->with("alert",$msg);
+      $isAjax = is_array( $message) && isset($message['isAjax']) ? $message['isAjax']  : false;
+      if ( !Request::ajax() && !$isAjax ){
+        if( is_array($message) ){
+          $msg['message'] = $message['title'];
+        }
+        if( $route ===null ){
+          return redirect()->back()->with("alert", $msg);
+        }
+        return  redirect()->route($route)->with("alert",$msg);
+      }
+      else{
+          if( is_string($message) ){
+              $message = ["title" =>$message   ];
+          }
+          if(!isset($message['validationFields'])){
+              $message['validationFields'] = null;
+          }
+          if(!isset($message['results'])){
+              $message['results'] = null;
+          }
+          if( $route !==null){
+              // Agregar campo de redireccionado
+          }
+        return self::responseJsonMsg($status,$message['title'],$message['validationFields'],$message['results']);
+      }
+
+
     }
 
 

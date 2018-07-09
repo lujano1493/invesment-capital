@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExtensionDocumentTable extends Migration
+class CreateStatusTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateExtensionDocumentTable extends Migration
      */
     public function up()
     {
-        Schema::create('extension_document', function (Blueprint $table) {
+        Schema::create('status_transactions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("extension",10);
-            $table->string("name",20);
-            $table->string("type" ,100);
+            $table->string("name",150);
         });
     }
 
@@ -28,6 +26,6 @@ class CreateExtensionDocumentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('extension_document');
+        Schema::dropIfExists('status_transactions');
     }
 }

@@ -22,13 +22,11 @@
 
 
 	@php
-
-		extract($options);
 		$_defaultLabel = [ 'class' =>'' , 'text'=> $name ];
 		if( isset($options['label']) &&  is_array($options['label'])){
-		 	$label = array_merge(  $_defaultLabel,$label  );
+		 	$label = array_merge(  $_defaultLabel,$options['label']  );
 		}else if(  isset($options['label']) && $type !== "hidden"   ){
-			$label = array_merge( $_defaultLabel ,[ 'text' =>$label ]      );
+			$label = array_merge( $_defaultLabel ,[ 'text' =>$options['label'] ]      );
 		}
 		else{
 			$label =[];
@@ -36,11 +34,7 @@
 		if( $type == 'select'){
 			$options['list'] = isset($options['list'])? $options['list'] :[]; 
 			if(isset($options['empty_option'])){
-				$options['list']= array_merge(   
-					is_array($options['empty_option']) ?  $options['empty_option'] :  
-					[ "" => $options['empty_option']],
-					$options['list'] 
-				);
+				$options['list'][""]= $options['empty_option'];
 
 			}
 		}
@@ -79,6 +73,8 @@
 		{{ Form::date($name,$options['value'], $attr  ) }}
 	@elseif ($type ==='select')
 		{{ Form::select($name, $options['list']  ,$options['value'], $attr  ) }}
+	@elseif ($type ==='file')
+		{{ Form::file($name, $attr ) }}
 	@elseif ($type ==='hidden')
 		{{ Form::hidden($name, $options['value'] , $attr  ) }}
 	@endif

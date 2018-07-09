@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClasifCountBank extends Model
 {
-    public $table="clasif_count_bank"
+    public $table="clasif_count_bank";
 }
