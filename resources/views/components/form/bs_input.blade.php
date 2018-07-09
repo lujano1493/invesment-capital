@@ -49,7 +49,8 @@
 			$attr=  isset( $options['attr'] ) ?   array_merge(['class' =>''], $options['attr']) : [ 'class' =>''];
 
 			if(  isset($options['elementIndex'])) {
-				$ident=  "{$name}_{$elementIndex}";
+				
+				$ident=  "{$name}_{$options['elementIndex']}";
 				$attr= array_merge($attr , [  'id' => $ident  , 'name' => $ident  ]  );
 			}
 

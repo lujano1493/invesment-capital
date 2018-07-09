@@ -51,7 +51,7 @@
 
 
 			   <div class="form-group text-center">
-                   {{ Form::Button('Guardar' , ['class' => 'btn btn-primary' , 'type' =>'submit' ]  ) }}
+                   {{ Form::Button('Guardar' , ['class' => 'btn btn-primary '.( isset($contrato)? 'btn-ajax':'' ) , 'type' =>'submit' ]  ) }}
                 </div>
 				
       {{ Form::close() }}

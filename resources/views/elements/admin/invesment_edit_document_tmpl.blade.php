@@ -10,7 +10,7 @@
 	</div>
 	<div class="card-body">
 		<div class="row">
-			<div class="col-12 col-sm-3">
+			<div class="col-12 col-sm-4">
 				{{ Form::bsInput('id_type_document' ,'select' , [ 
 					'label' =>'Tipo de Archivo',
 					'value' =>old('id_type_document'),
