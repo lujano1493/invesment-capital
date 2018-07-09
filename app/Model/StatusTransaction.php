@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class StatusTransaction extends Model
 {
-    $table ="status_transactions";
+    public $table ="status_transactions";
 
-    
+
 }

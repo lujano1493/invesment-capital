@@ -63,6 +63,8 @@
 
   	@if ( $type ==='text'  )
 		{{ Form::text($name, $options['value'], $attr  ) }}
+  	@elseif ( $type ==='number'  )
+		{{ Form::number($name, $options['value'], $attr  ) }}
 	@elseif ( $type ==='textarea'  )
 		{{ Form::textarea($name, $options['value'], $attr  ) }}
 	@elseif ($type ==='password')

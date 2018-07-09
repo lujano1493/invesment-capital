@@ -17,7 +17,7 @@ use App\Model\CountBankRepresentant;
 use App\Model\TypeDocument;
 use App\Model\ExtensionDocument;
 use App\Model\DocumentContract;
-
+use App\Model\TransactionContract;
 use App\Model\OriginTransaction;
 use App\Model\StatusTransaction;
 use App\Model\TypeTransaction;
@@ -338,13 +338,48 @@ class AdminInvesmentController extends Controller
     }
 
 
-    public function editTransaction($id){
+    public function editTransaction(Request $request,$id){
+      $user =  User::find($id);
+      if( $user == null ){
+          return $this->alertWarning('No fue posible encontrar usuario.');
+      }
+      $contrato=$user->contract;
 
+      if($contrato == null){
+          return $this->alertError( ['title' => "Debes crear un contrato para generar una transacción.",]);
+      }
+      $id = $request->get('id');
+      $transaccion= $id===null ?   new  TransactionContract($request->all()  ) : TransactionContract::find($id) ;
 
+      if( $id == null){
+        $contrato->transactions()->save( $transaccion  );
+      }else{
+        $transaccion->fill($request->all());
+        $transaccion->save();
+      }
+
+      $title= $id===null ?'Transaccion guardada exitosamente.' :'Transaccion editada correctamente';
+      return $this->alertSuccess([
+        'title' =>  $title,
+        'results' =>[
+          'inputs' =>['id' => $transaccion->id   ],
+          'change'=> [
+              'attr' => ['class'=> 'btn btn-success btn-ajax'  ] ,
+              'html' => 'Editar',
+              'selector' => '.btn-ajax'
+            ]
+        ]
+      ]);
 
     }
-    public function deleteTransaction($id){
-      
+    public function deleteTransaction(Request $request,$id=null){
+      $id= $id==null ?  $request->get("id"):$id;
+      if($id == null){
+        return $this->alertError("ingresa id  de transacción.");
+      }
+      $transaccion = TransactionContract::find(  $id );
+      $transaccion->delete();
+      return $this->alertSuccess("Se elimino el registro de documento correctamente.");
     }
 
 }

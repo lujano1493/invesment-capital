@@ -25,4 +25,7 @@ class Contract extends Model
     public function documents(){
       return $this->hasMany("App\Model\DocumentContract","id_contract");
     }
+    public function transactions(){
+        return $this->hasMany("App\Model\TransactionContract","id_contract");
+    }
 }

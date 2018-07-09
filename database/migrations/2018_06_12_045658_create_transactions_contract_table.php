@@ -18,7 +18,7 @@ class CreateTransactionsContractTable extends Migration
             $table->unsignedInteger('id_contract');
             $table->smallInteger("id_type_transaction");
             $table->smallInteger("id_status_transaction");
-            $table->decimal("amount",13,4);
+            $table->decimal("amount",13,2);
             $table->smallInteger("id_origin");
         });
     }

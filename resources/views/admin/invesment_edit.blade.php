@@ -22,7 +22,7 @@
 			$representantes = $contrato ->representants;
 			$documentos= $contrato->documents;
 
-			$transacciones= $contrato->transaction;
+			$transacciones= $contrato->transactions;
 	@endphp
 
 	<div class="card">
@@ -115,16 +115,16 @@
 	  					<button 
 	  					class="btn btn-primary add-form" 
 	  					data-target="#transacciones" 
-	  					data-title-head="Nuevo Documento"
-	  					data-id-tmpl="#tmpl-archivo"> Agregar </button>
+	  					data-title-head="Nueva Transacción"
+	  					data-id-tmpl="#tmpl-transaccion"> Agregar </button>
 	  				</div>
 
 	  			</div>
 
 	  			<div id="transacciones">
-	  				@foreach($documentos as $documento)
-	  				<div class="documento tmpl-item">
-	  					@include("elements.admin.invesment_edit_form_document_tmpl", ['count' =>$loop->index +1 , 'type' => 'edit' , 'documento' => $documento])
+	  				@foreach($transacciones as $transaccion)
+	  				<div class="transaccion tmpl-item">
+	  					@include("elements.admin.invesment_edit_form_trans_tmpl", ['count' =>$loop->index +1 , 'type' => 'edit' , 'transaccion' => $transaccion])
 	  				</div>
 
 	  				@endforeach
@@ -165,6 +165,12 @@
 		  <div class="content" > </div>
 		  <div class="caption"></div>
 	</div>
+
+	<script id="tmpl-transaccion" type="text/x-dot-template">
+		<div class="transaccion">
+		@include("elements.admin.invesment_edit_form_trans_tmpl", ['count' =>"{%=it.count +1 %}" ,'type' => 'register' , 'transaccion' => null])
+		</div>
+	</script>
 	@endisset
 
 

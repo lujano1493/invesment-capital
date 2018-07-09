@@ -111,6 +111,10 @@ Route::prefix('admin')->group(function (){
     Route::get('invesment/view/{id}-document', 'AdminInvesmentController@viewDocument')->where('id','[0-9]+')->name('admin.users.view.document');
     Route::get('invesment/download/{id}-document', 'AdminInvesmentController@downloadDocument')->where('id','[0-9]+')->name('admin.users.download.document');
 
+    Route::post('invesment/transaction-{id}-edit', 'AdminInvesmentController@editTransaction')->where('id','[0-9]+')->name('admin.users.edit.transaction');
+    Route::get('invesment/delete/transaction', 'AdminInvesmentController@deleteTransaction')->name('admin.users.delete.transaction');
+
+
     Route::get('educacion','AdminEducacionController@inicio')->name('admin.educacion');
 
 });
