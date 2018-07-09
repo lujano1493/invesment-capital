@@ -62,10 +62,11 @@ $(function() {
 				}
 			}		 		
 	});
-
+	var loading= null;
 	var callbacks= {
 		before: function(){
-		//	btn.prop("disabled",true);
+		btn.prop("disabled",true);
+		loading= new Loading({zIndex:500,title:'Espere un momento'});
 		},
 		done: function(data) { 	
 				if(idTmpl && idTarget  && $(idTmpl).length > 0  &&$(idTarget).length > 0    ){					
@@ -113,6 +114,7 @@ $(function() {
 		}, 
 		always:function (){
 			btn.prop("disabled" ,false);
+			loading.out();
 		}
 	};
 

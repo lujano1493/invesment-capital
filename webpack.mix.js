@@ -43,6 +43,7 @@ mix.sass('resources/assets/sass/app-admin.scss', 'public/css/app-admin.css')
 			'resources/assets/js/plugins/add-forms.js',
 			'resources/assets/js/plugins/ajaxForm.js',
 			'resources/assets/js/plugins/document-view.js',
+			'resources/assets/js/plugins/modal-loading.js',
 			'resources/assets/js/admin/main.js',
 
 		],'public/js/main-admin.js');
