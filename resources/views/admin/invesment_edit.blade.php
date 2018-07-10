@@ -30,47 +30,38 @@
 		       Registro de  Representantes
 		</div>
 	  	<div class="card-body">
-	  			<div class="row">
-	  				<div class="col-4 offset-4">
-	  					<button 
-	  					class="btn btn-primary add-form" 
-	  					data-target="#representantes" 
-	  					data-type="accordion" 
-	  					data-title-head="Nuevo Representante"
-	  					data-id-tmpl="#tmpl-representante"> Agregar Representante</button>
-	  				</div>
-
-	  			</div>
-
-
-
-	  	</div>
-	</div>
-
-
-
-	<div id="representantes" class="mt-3" >
-
-		@foreach( $representantes AS $representante )
-
-			<div class="card tmpl-item">
-				<div class="card-header">
-					<h5>
-					<button class="btn btn-link" data-toggle="collapse" data-target="#representantes_{{ $loop->index }}" aria-expanded="true" 
-						aria-controls="representantes_{{ $loop->index }}">
-						 {{ $representante->typeRepresent->name  }} - {{ $representante->name }} {{ $representante->last_name }} {{ $representante->last_second_name }}
-			 		</button>
-					</h5>
-	
-					</div>
-				<div id="representantes_{{ $loop->index }}" class="collapse" data-parent="#representantes">
-					<div  class="card-body" >
-						@include("elements.admin.invesment_edit_panel_representant_tmpl", ['count' => $loop->index , "representante" => $representante, 'type' => 'edit' ])
-					</div>
-				</div>
+		  	<div class="form-group text-center">
+				<button 
+				class="btn btn-primary add-form" 
+				data-target="#representantes" 
+				data-type="accordion" 
+				data-title-head="Nuevo Representante"
+				data-id-tmpl="#tmpl-representante"> Agregar Representante</button>
 			</div>
-			
-		@endforeach
+	  		<div id="representantes" class="mt-3" >
+
+				@foreach( $representantes AS $representante )
+
+					<div class="card tmpl-item">
+						<div class="card-header">
+							<h5>
+							<button class="btn btn-link" data-toggle="collapse" data-target="#representantes_{{ $loop->index }}" aria-expanded="true" 
+								aria-controls="representantes_{{ $loop->index }}">
+								 {{ $representante->typeRepresent->name  }} - {{ $representante->name }} {{ $representante->last_name }} {{ $representante->last_second_name }}
+					 		</button>
+							</h5>
+
+							</div>
+						<div id="representantes_{{ $loop->index }}" class="collapse" data-parent="#representantes">
+							<div  class="card-body" >
+								@include("elements.admin.invesment_edit_panel_representant_tmpl", ['count' => $loop->index , "representante" => $representante, 'type' => 'edit' ])
+							</div>
+						</div>
+					</div>
+					
+				@endforeach
+			</div>
+	  	</div>
 	</div>
 
 	<div class="card mt-3">
@@ -78,16 +69,13 @@
 		       Registro de Recibos (Archivos)
 		</div>
 	  	<div class="card-body">
-	  			<div class="row">
-	  				<div class="col-4 offset-4">
-	  					<button 
-	  					class="btn btn-primary add-form" 
-	  					data-target="#archivos" 
-	  					data-title-head="Nuevo Documento"
-	  					data-id-tmpl="#tmpl-archivo"> Agregar Documento</button>
-	  				</div>
-
-	  			</div>
+	  			<div class="form-group text-center">
+  					<button 
+  					class="btn btn-primary add-form" 
+  					data-target="#archivos" 
+  					data-title-head="Nuevo Documento"
+  					data-id-tmpl="#tmpl-archivo"> Agregar Documento</button>
+  				</div>
 
 	  			<div id="archivos">
 	  				@foreach($documentos as $documento)
@@ -110,16 +98,15 @@
 		      Transacciones
 		</div>
 	  	<div class="card-body">
-	  			<div class="row">
-	  				<div class="col-4 offset-4">
-	  					<button 
-	  					class="btn btn-primary add-form" 
-	  					data-target="#transacciones" 
-	  					data-title-head="Nueva Transacción"
-	  					data-id-tmpl="#tmpl-transaccion"> Agregar </button>
-	  				</div>
+	  		
+  			    <div class="form-group text-center">
+  					<button 
+  					class="btn btn-primary add-form" 
+  					data-target="#transacciones" 
+  					data-title-head="Nueva Transacción"
+  					data-id-tmpl="#tmpl-transaccion"> Agregar </button>
+  				</div>
 
-	  			</div>
 
 	  			<div id="transacciones">
 	  				@foreach($transacciones as $transaccion)

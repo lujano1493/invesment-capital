@@ -29,15 +29,15 @@
 		</div>
 
 	 	<div class="tab-pane fade" id="cuentas{{$count}}" role="tabpanel" aria-labelledby="cuentas-tab{{$count}}">
-			<div class="row mt-3">
-					<div class="col-4 offset-4">
-						<button 
-						class="btn btn-primary add-form" 
-						data-target="#cuentas-bancarias{{$count}}" 
-						data-id-name="id_representant"
-						data-id-value="{{ isset($representante) ? $representante->id : ''}}"
-						data-id-tmpl="#tmpl-cuenta-banco"> Agregar Cuenta</button>
-					</div>
+			
+ 
+			<div class="form-group text-center mt-3">
+					<button 
+					class="btn btn-primary add-form" 
+					data-target="#cuentas-bancarias{{$count}}" 
+					data-id-name="id_representant"
+					data-id-value="{{ isset($representante) ? $representante->id : ''}}"
+					data-id-tmpl="#tmpl-cuenta-banco"> Agregar Cuenta</button>
 				</div>
 
 				<div id="cuentas-bancarias{{$count}}"> 

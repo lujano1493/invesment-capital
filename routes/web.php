@@ -64,8 +64,10 @@ Route::prefix('capital')->group(function(){
 });
 
 
-Route::group(['prefix' => 'invesment' , 'middleware' => 'auth.access:invesment' ],function  (){
+Route::group(['prefix' => 'investment' , 'middleware' => 'auth.access:investment' ],function  (){
     Route::get('/', 'CapitalController@invesment')->name('capital.invesment');
+
+
 });
 
 
@@ -93,26 +95,26 @@ Route::prefix('admin')->group(function (){
 
 
 
-    Route::get('invesment','AdminInvesmentController@inicio')->name('admin.invesment');
-    Route::get('invesment/{id}/edit', 'AdminInvesmentController@edit')->where('id','[0-9]+')->name('admin.invesment.edit');
-    Route::post('invesment/{id}/edit/contract', 'AdminInvesmentController@editContract')->where('id','[0-9]+')->name('admin.users.edit.contract');
+    Route::get('investment','AdminInvesmentController@inicio')->name('admin.invesment');
+    Route::get('investment/{id}/edit', 'AdminInvesmentController@edit')->where('id','[0-9]+')->name('admin.invesment.edit');
+    Route::post('investment/{id}/edit/contract', 'AdminInvesmentController@editContract')->where('id','[0-9]+')->name('admin.users.edit.contract');
 
-    Route::post('invesment/{id}/edit/representant', 'AdminInvesmentController@editRepresentant')->where('id','[0-9]+')->name('admin.users.edit.representant');
-    Route::get('invesment/delete/representant', 'AdminInvesmentController@deleteRepresentant')->name('admin.users.delete.representant');
-
-
-    Route::post('invesment/{id}/edit/count-bank', 'AdminInvesmentController@editCountBank')->where('id','[0-9]+')->name('admin.users.edit.count.bank');
-    Route::get('invesment/delete/count-bank', 'AdminInvesmentController@deleteCountBank')->name('admin.users.delete.count.bank');
+    Route::post('investment/{id}/edit/representant', 'AdminInvesmentController@editRepresentant')->where('id','[0-9]+')->name('admin.users.edit.representant');
+    Route::get('investment/delete/representant', 'AdminInvesmentController@deleteRepresentant')->name('admin.users.delete.representant');
 
 
-    Route::post('invesment/{id}/edit/document', 'AdminInvesmentController@editDocument')->where('id','[0-9]+')->name('admin.users.edit.document');
-    Route::get('invesment/delete/document', 'AdminInvesmentController@deleteDocument')->name('admin.users.delete.document');
+    Route::post('investment/{id}/edit/count-bank', 'AdminInvesmentController@editCountBank')->where('id','[0-9]+')->name('admin.users.edit.count.bank');
+    Route::get('investment/delete/count-bank', 'AdminInvesmentController@deleteCountBank')->name('admin.users.delete.count.bank');
 
-    Route::get('invesment/view/{id}-document', 'AdminInvesmentController@viewDocument')->where('id','[0-9]+')->name('admin.users.view.document');
-    Route::get('invesment/download/{id}-document', 'AdminInvesmentController@downloadDocument')->where('id','[0-9]+')->name('admin.users.download.document');
 
-    Route::post('invesment/transaction-{id}-edit', 'AdminInvesmentController@editTransaction')->where('id','[0-9]+')->name('admin.users.edit.transaction');
-    Route::get('invesment/delete/transaction', 'AdminInvesmentController@deleteTransaction')->name('admin.users.delete.transaction');
+    Route::post('investment/{id}/edit/document', 'AdminInvesmentController@editDocument')->where('id','[0-9]+')->name('admin.users.edit.document');
+    Route::get('investment/delete/document', 'AdminInvesmentController@deleteDocument')->name('admin.users.delete.document');
+
+    Route::get('investment/view/{id}-document', 'AdminInvesmentController@viewDocument')->where('id','[0-9]+')->name('admin.users.view.document');
+    Route::get('investment/download/{id}-document', 'AdminInvesmentController@downloadDocument')->where('id','[0-9]+')->name('admin.users.download.document');
+
+    Route::post('investment/transaction-{id}-edit', 'AdminInvesmentController@editTransaction')->where('id','[0-9]+')->name('admin.users.edit.transaction');
+    Route::get('investment/delete/transaction', 'AdminInvesmentController@deleteTransaction')->name('admin.users.delete.transaction');
 
 
     Route::get('educacion','AdminEducacionController@inicio')->name('admin.educacion');

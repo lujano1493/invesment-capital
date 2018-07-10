@@ -5,7 +5,7 @@
 		$modules=$user->modules()->get();
 		$now = \Carbon\Carbon::today();
 		$view_session = [
-				"invesment" => "elements/user/inicio/invesment_summary",
+				"investment" => "elements/user/inicio/invesment_summary",
 				"educacion"=>"elements/user/inicio/educacion_summary"
 		];
 @endphp

@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
-@section('title', 'Administración Invesment')
- @section('panel-title' ,'Administración Invesment')
+@section('title', 'Administración Investment')
+ @section('panel-title' ,'Administración Investment')
 
 @section('content')
     <div class="card mb-3">

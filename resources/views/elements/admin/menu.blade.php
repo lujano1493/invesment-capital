@@ -1,7 +1,7 @@
 @php
   $menu=[
       [ 'route' => 'admin.users' , 'title' => 'Usuarios','icon' =>'fa-fw fa-user' ,'titleDesc' =>'Administrar Usuarios'  ],
-      [ 'route' => 'admin.invesment' , 'title' => 'Invesment' ,'icon' =>'fa-fw fa-money' ],
+      [ 'route' => 'admin.invesment' , 'title' => 'Investment' ,'icon' =>'fa-fw fa-money' ],
       [ 'route' => 'admin.educacion' , 'title' => 'Educación','icon' =>'fa-fw fa-book' ,'titleDesc' =>'Administrar Cuestionarios' ]
   ]  
 @endphp

@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title> @yield('title','Invesment Capital') </title>
+    <title> @yield('title','Capital 444') </title>
 
   
 
@@ -47,7 +47,7 @@
                 </div>  
 
                 <div class="col-lg-12">
-                    <h1 class="page-header"> @yield('title','Invesment Capital') </h1>
+                    <h1 class="page-header"> @yield('title','Capital444') </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

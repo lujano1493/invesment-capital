@@ -158,11 +158,13 @@ $("#modal-cambio-password").on("show.bs.modal",function (){
 	});
 });
 
+if($("#container-home").length > 0){
 particlesJS.load('container-home', 'assets/particlesjs-config.json', function() {
-	  console.log('hola perros');
-	  console.log("as");
+	
 
 	});
+}
+
 
 
 
