@@ -2,8 +2,8 @@
 
 
 
-@section('title', 'Usuarios :: Administración Invesment')
-@section('panel-title' ,'Administracion Invesment')
+@section('title', 'Usuarios :: Administración Investment')
+@section('panel-title' ,'Administracion Investment')
 
 
 @php

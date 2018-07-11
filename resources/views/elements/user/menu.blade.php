@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ route('capital.inicio') }}">Investment</a>
+        <a class="navbar-brand" href="{{ route('capital.inicio') }}">Capital 444</a>
     </div>
     <!-- /.navbar-header -->
     @include("elements/user/navbar-top" )
