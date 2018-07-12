@@ -31,5 +31,12 @@
 			</div> 
 			
 		</div> 
+
+
+		<div id="view-doc" class="modal-view-doc">
+			  <span class="close">&times;</span>
+			  <div class="content" > </div>
+			  <div class="caption"></div>
+		</div>
 	
 @endsection

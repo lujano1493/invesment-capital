@@ -64,9 +64,19 @@ mix.sass(
 	.scripts(
 		[
 			'node_modules/startbootstrap-sb-admin/vendor/jquery/jquery.js',
-			'node_modules/dot/doT.js',
 			'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
 			'node_modules/datatables.net/js/jquery.dataTables.js',
+			'node_modules/dot/doT.js',
+			'node_modules/jquery.redirect/jquery.redirect.js',
+			'node_modules/jquery-validation/dist/jquery.validate.js',
+			'node_modules/jquery-validation-bootstrap-tooltip/jquery-validate.bootstrap-tooltip.js',
+			'node_modules/toastr/toastr.js',
+			'resources/assets/js/plugins/jquery.doT.js',
+			'resources/assets/js/plugins/calc-rfc.js',
+			'resources/assets/js/plugins/add-forms.js',
+			'resources/assets/js/plugins/ajaxForm.js',
+			'resources/assets/js/plugins/document-view.js',
+			'resources/assets/js/plugins/modal-loading.js',
 			'node_modules/startbootstrap-sb-admin-2/vendor/datatables-plugins/dataTables.bootstrap.js', // para obtener la version 3.7
 			'node_modules/datatables-responsive/js/dataTables.responsive.js',
 			'node_modules/particles.js/particles.js',

@@ -26,18 +26,20 @@
 
 			<div class="col-12 col-sm-6">
 				<label> Nombre de Archivo</label>
-				<div class="input-group ">
+				<div class="input-group">
 					 {{ Form::text('name',null  , [ 
 					 			'required' =>true,
 								'readonly'=> true,
 								'class' => 'form-control'
 						]) }}
-					  <div class="input-group-append">
-					    <button class="btn btn-success view-document"  
-					    data-type="{{ $documento->extension->name }}" 
-					    data-url="{{ route("admin.users.view.document",[ "id"=> $documento->id ] ) }}"
-					    data-title="{{ $documento->name }}" > Ver </button>
-					    <button class="btn btn-info download-document " data-url="{{ route("admin.users.download.document",[ "id"=> $documento->id ] ) }} " > Descargar </button>
+					  	<div class="input-group-btn">
+					  	
+					  	 	<button class="btn btn-success view-document"  
+							    data-type="{{ $documento->extension->name }}" 
+							    data-url="{{ route("capital.document.view",[ "id"=> $documento->id ] ) }}"
+							    data-title="{{ $documento->name }}" > Ver 
+							</button>
+					    	<button class="btn btn-info download-document " data-url="{{ route("capital.document.download",[ "id"=> $documento->id ] ) }} " > Descargar </button>
 					  </div>
 				</div>
 			</div>

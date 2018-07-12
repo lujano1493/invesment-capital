@@ -8,5 +8,11 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 @import "~font-awesome/scss/font-awesome";
+
+@import "~toastr/toastr";
+@import "document-view";
+@import "modal-loading";
+@import "modal-loading-animate";
+
 @import "home";
 @import "capital"

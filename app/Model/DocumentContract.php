@@ -13,6 +13,10 @@ class DocumentContract extends Model
     ];
 
 
+
+    public function contract(){
+        return $this->belongsTo("App\Model\Contract","id_contract");
+    }
     public function type(){
       return $this->belongsTo("App\Model\TypeDocument", "id_type_document"  );
     }

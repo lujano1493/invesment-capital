@@ -66,7 +66,10 @@ Route::prefix('capital')->group(function(){
 
 Route::group(['prefix' => 'investment' , 'middleware' => 'auth.access:investment' ],function  (){
     Route::get('/', 'CapitalController@invesment')->name('capital.invesment');
-
+    Route::get('/document/view/{id}','CapitalController@viewDocument')
+       ->where('id',"[0-9]+")->name('capital.document.view');
+    Route::get('/document/download/{id}','CapitalController@downloadDocument')
+       ->where('id',"[0-9]+")->name('capital.document.download');
 
 });
 
