@@ -192,7 +192,7 @@
 
 	<script id="tmpl-balance" type="text/x-dot-template">
 	<div class="balance">
-	@include("elements.admin.invesment_edit_form_balance_tmpl", ['count' =>"{%=it.count +1 %}" ,'type' => 'register' , 'transaccion' => null])
+	@include("elements.admin.invesment_edit_form_balance_tmpl", ['count' =>"{%=it.count +1 %}" ,'type' => 'register' , 'balance' => null])
 	</div>
 	</script>
 	@endisset

@@ -1,3 +1,4 @@
+
 {{ Form::model( $balance  ,['route' => ['admin.users.edit.balance' , $user ] ] ) }}
 	@include('elements/admin/invesment_edit_balance_tmpl', compact('user','count','balance','type'))
 	<div class="form-group text-center mt-3">
