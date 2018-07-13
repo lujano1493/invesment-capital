@@ -1,5 +1,5 @@
 {{ Form::model( $transaccion  ,['route' => ['admin.users.edit.transaction' , $user ] ] ) }}
-	@include('elements/admin/invesment_edit_trans_tmpl', compact('user','documento','type'))
+	@include('elements/admin/invesment_edit_trans_tmpl', compact('user','transaccion','type'))
 	<div class="form-group text-center mt-3">
 			@if ( $type ==='register')
 				{{ Form::Button('Registrar' , ['class' => 'btn btn-primary btn-ajax ' , 'type' =>'submit' ]  ) }}

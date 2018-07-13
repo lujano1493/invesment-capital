@@ -27,10 +27,14 @@ $(document).ready(function (){
 
  	});
 
- 	$(target).prepend( tmplHTML);
- 	if(  type ==='accordion' ){
- 		$(target).find("[data-toggle='collapse']:first").click();
- 	}
+ 	$(target).append( tmplHTML);
+
+ 	$(tmplHTML).scrollElement(function (){
+ 		if(  type ==='accordion' ){
+		 		$(target).find("[data-toggle='collapse']:last").click();
+		 }
+ 	});
+ 	
 
  	return false;
  });

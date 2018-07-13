@@ -119,6 +119,9 @@ Route::prefix('admin')->group(function (){
     Route::post('investment/transaction-{id}-edit', 'AdminInvesmentController@editTransaction')->where('id','[0-9]+')->name('admin.users.edit.transaction');
     Route::get('investment/delete/transaction', 'AdminInvesmentController@deleteTransaction')->name('admin.users.delete.transaction');
 
+        Route::post('investment/balance-{id}-edit', 'AdminInvesmentController@editBalance')->where('id','[0-9]+')->name('admin.users.edit.balance');
+    Route::get('investment/delete/balance', 'AdminInvesmentController@deleteBalance')->name('admin.users.delete.balance');
+
 
     Route::get('educacion','AdminEducacionController@inicio')->name('admin.educacion');
 

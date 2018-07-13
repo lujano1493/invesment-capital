@@ -21,6 +21,8 @@ use App\Model\TransactionContract;
 use App\Model\OriginTransaction;
 use App\Model\StatusTransaction;
 use App\Model\TypeTransaction;
+use App\Model\StatusBalance;
+use App\Model\Balance;
 
 
 class AdminInvesmentController extends Controller
@@ -70,10 +72,12 @@ class AdminInvesmentController extends Controller
         $catOriginTrans= OriginTransaction::pluck('name','id')->all();
         $catTypeTrans=TypeTransaction::pluck('name','id') ->all();
         $catStatusTrans = StatusTransaction::pluck('name','id')->all();
+        $catStatusBalance= StatusBalance::pluck('name','id')->all();
         return view('admin.invesment_edit',
         compact('user','catProfile','catHorizon','catTypeObjective',
                 'catTypeReprensentant' ,'catBancks','catClasifCountBanck',
-                'catTypeDocument','catOriginTrans','catTypeTrans','catStatusTrans'));
+                'catTypeDocument','catOriginTrans','catTypeTrans','catStatusTrans',
+                'catStatusBalance'));
     }
 
 
@@ -377,9 +381,60 @@ class AdminInvesmentController extends Controller
       if($id == null){
         return $this->alertError("ingresa id  de transacción.");
       }
-      $transaccion = TransactionContract::find(  $id );
+      $transaccion = Balance::find(  $id );
       $transaccion->delete();
       return $this->alertSuccess("Se elimino el registro de documento correctamente.");
     }
+
+    //***  Balance Diario  ** */
+
+    public function editBalance(Request $request,$id){
+      $user =  User::find($id);
+      if( $user == null ){
+          return $this->alertWarning('No fue posible encontrar usuario.');
+      }
+      $contrato=$user->contract;
+
+      if($contrato == null){
+          return $this->alertError( ['title' => "Debes crear un contrato para generar un balance.",]);
+      }
+      $id = $request->get('id');
+      $transaccion= $id===null ?   new  Balance($request->all()  ) : Balance::find($id) ;
+
+      if( $id == null){
+        $contrato->balances()->save( $transaccion  );
+      }else{
+        $transaccion->fill($request->all());
+        $transaccion->save();
+      }
+
+      $title= $id===null ?'Balance guardada exitosamente.' :'Balance editada correctamente';
+      return $this->alertSuccess([
+        'title' =>  $title,
+        'results' =>[
+          'inputs' =>['id' => $transaccion->id   ],
+          'change'=> [
+              'attr' => ['class'=> 'btn btn-success btn-ajax'  ] ,
+              'html' => 'Editar',
+              'selector' => '.btn-ajax'
+            ]
+        ]
+      ]);
+    }
+
+    public function deleteBalance(Request $request,$id=null){
+      $id= $id==null ?  $request->get("id"):$id;
+      if($id == null){
+        return $this->alertError("ingresa id  de Balance.");
+      }
+      $balance = Balance::find(  $id );
+      $balance->delete();
+      return $this->alertSuccess("Se elimino el registro de balance correctamente.");
+    }
+
+
+
+
+
 
 }

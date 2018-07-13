@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
            TypeObjectiveSeeder::class,
            TypeRepresentantSeeder::class,
            StatusTransactionSeeder::class,
-           ContractSeeder::class
+           ContractSeeder::class,
+           StatusBalanceSeeder::class
            ] );
       //  $this->call(UsersFackeSeeder::class);
     }

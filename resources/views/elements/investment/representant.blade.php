@@ -135,7 +135,7 @@
 				'label' =>'Numero Interior',
 				'value' => isset($address)?  $address->noInt : old('noInt'),
 				'attr' =>[
-					
+					'disabled' => true
 				]  
 
 				]) }}

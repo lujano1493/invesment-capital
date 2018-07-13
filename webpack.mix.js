@@ -35,6 +35,7 @@ mix.sass('resources/assets/sass/app-admin.scss', 'public/css/app-admin.css')
 	.scripts([
 			'node_modules/dot/doT.js',
 			'node_modules/jquery.redirect/jquery.redirect.js',
+			'resources/assets/js/plugins/scroll-element.js',
 			'node_modules/jquery-validation/dist/jquery.validate.js',
 			'node_modules/jquery-validation-bootstrap-tooltip/jquery-validate.bootstrap-tooltip.js',
 			'node_modules/toastr/toastr.js',
@@ -71,6 +72,7 @@ mix.sass(
 			'node_modules/jquery-validation/dist/jquery.validate.js',
 			'node_modules/jquery-validation-bootstrap-tooltip/jquery-validate.bootstrap-tooltip.js',
 			'node_modules/toastr/toastr.js',
+			'resources/assets/js/plugins/scroll-element.js',
 			'resources/assets/js/plugins/jquery.doT.js',
 			'resources/assets/js/plugins/calc-rfc.js',
 			'resources/assets/js/plugins/add-forms.js',
