@@ -20,6 +20,7 @@ class CreateTransactionsContractTable extends Migration
             $table->smallInteger("id_status_transaction");
             $table->decimal("amount",13,2);
             $table->smallInteger("id_origin");
+            $table->timestamps();
         });
     }
 

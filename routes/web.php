@@ -66,6 +66,7 @@ Route::prefix('capital')->group(function(){
 
 Route::group(['prefix' => 'investment' , 'middleware' => 'auth.access:investment' ],function  (){
     Route::get('/', 'CapitalController@invesment')->name('capital.invesment');
+    Route::post('/retirar', 'CapitalController@retirar')->name('capital.retirar');
     Route::get('/document/view/{id}','CapitalController@viewDocument')
        ->where('id',"[0-9]+")->name('capital.document.view');
     Route::get('/document/download/{id}','CapitalController@downloadDocument')
@@ -119,8 +120,12 @@ Route::prefix('admin')->group(function (){
     Route::post('investment/transaction-{id}-edit', 'AdminInvesmentController@editTransaction')->where('id','[0-9]+')->name('admin.users.edit.transaction');
     Route::get('investment/delete/transaction', 'AdminInvesmentController@deleteTransaction')->name('admin.users.delete.transaction');
 
-        Route::post('investment/balance-{id}-edit', 'AdminInvesmentController@editBalance')->where('id','[0-9]+')->name('admin.users.edit.balance');
+    Route::post('investment/balance-{id}-edit', 'AdminInvesmentController@editBalance')->where('id','[0-9]+')->name('admin.users.edit.balance');
     Route::get('investment/delete/balance', 'AdminInvesmentController@deleteBalance')->name('admin.users.delete.balance');
+
+
+     Route::get('investment/calcula-depositos/{id}', 'AdminInvesmentController@calcularTotalDepositos')->where('id','[0-9]+')->name('admin.users.calcula.depositos');
+     Route::get('investment/calcula-retiros/{id}', 'AdminInvesmentController@calcularTotalRetiros')->where('id','[0-9]+')->name('admin.users.calcula.retiros');
 
 
     Route::get('educacion','AdminEducacionController@inicio')->name('admin.educacion');

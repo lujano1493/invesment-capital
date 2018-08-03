@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,17 @@ class AppServiceProvider extends ServiceProvider
         Paginator::defaultView('vendor/pagination/bootstrap-4');
 
         Paginator::defaultSimpleView('vendor/pagination/simple-bootstrap-4');
+
+
+        Blade::directive('money', function ($amount) {
+               return "<?php echo '$ ' . number_format($amount, 2); ?>";
+          });
+
+        Blade::directive('percentage', function ($amount) {
+               return "<?php echo  number_format($amount,2).'%' ; ?>";
+          });
+
+
 
     }
 

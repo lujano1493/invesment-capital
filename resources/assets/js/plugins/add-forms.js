@@ -48,7 +48,7 @@ $(document).ready(function (){
 
 
  		if(confirm("¿Esta seguro que desea eliminar registro?")){
- 			loading= new Loading({zIndex:500,title:'Espere un momento'});
+ 			var loading= new Loading({zIndex:500,title:'Espere un momento'});
  			btn.prop("disabled",true);
  			$.getJSON(  urlDelete,{id:id}, function (data){
  				toastr.success(    data.message, data.title || 'Proceso satisfactorio.' );

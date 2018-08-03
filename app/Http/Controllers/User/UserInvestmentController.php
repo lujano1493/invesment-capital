@@ -18,8 +18,9 @@ use App\Model\OriginTransaction;
 use App\Model\StatusTransaction;
 use App\Model\TypeTransaction;
 
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 trait UserInvestmentController{
 
@@ -94,6 +95,57 @@ trait UserInvestmentController{
           ->header('Content-Transfer-Encoding', 'binary');
   }
 
+
+
+  public function retirar(Request $request){
+
+    $user = Auth::user();
+    $contrato = $user->contract;
+    if( !isset($contrato) ){
+        return $this->alertError("Aun no tienes configurado un contrato.");
+    }
+
+    $montoRetiro = $request->get("retirar");
+
+    if(!is_numeric($montoRetiro)){
+        return $this->alertError("Debes ingresar un monto valido");
+    }
+
+    $montoRetiro= floatval($montoRetiro );
+
+    if( $montoRetiro <= 0.0){
+        return $this->alertError("Debes ingresar un monto mayor a cero");
+    }
+
+    $totalDeposito= $contrato->transactions()
+ 			->where(['id_status_transaction'  =>2 ,'id_type_transaction' => 1 ])
+ 			->sum("amount");
+
+    $totalDeposito=floatval($totalDeposito);
+
+
+    if( $montoRetiro > $totalDeposito   ){
+        return $this->alertError("El monto a retirar es mayor al que se tiene.");
+    }
+
+    /*$masRetiros = $contrato->transactions()
+      ->where(['id_type_transaction' => 1 ,'DATE(created_at)' =>  date('d-m-Y')  ])->get();*/
+
+     $transactionContract= new TransactionContract([
+      'id_type_transaction' => 2,
+      'id_status_transaction' => 1,
+      'amount' => $montoRetiro,
+      'id_origin' => 2 , //Revisar si sera transferencia bancaria
+      ]
+    );
+    $transaccion = $contrato->transactions()->save($transactionContract) ;
+    if( $transaccion ){
+      $transaccion->notifyTransaccion();
+      return $this->alertSuccess("La petición de retiro fue enviada correctamente.");
+    }
+    return $this->alertError("No fue posible realizar petición de retiro.");
+
+  }
 
 
 

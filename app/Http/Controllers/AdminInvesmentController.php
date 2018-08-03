@@ -381,7 +381,7 @@ class AdminInvesmentController extends Controller
       if($id == null){
         return $this->alertError("ingresa id  de transacción.");
       }
-      $transaccion = Balance::find(  $id );
+      $transaccion = TransactionContract::find(  $id );
       $transaccion->delete();
       return $this->alertSuccess("Se elimino el registro de documento correctamente.");
     }
@@ -431,6 +431,47 @@ class AdminInvesmentController extends Controller
       $balance->delete();
       return $this->alertSuccess("Se elimino el registro de balance correctamente.");
     }
+
+
+    public function calcularTotalDepositos($id){
+      $user =  User::find($id);
+      if( $user == null ){
+          return $this->alertWarning('No fue posible encontrar usuario.');
+      }
+      $contrato=$user->contract;
+
+      if($contrato == null){
+          return $this->alertError( ['title' => "Debes crear un contrato para calcular depositos.",]);
+      }
+
+      $sum=TransactionContract::where(
+          [ 'id_contract' => $contrato->id  ,
+            'id_type_transaction' => 1,
+            'id_status_transaction' => 2 ])->sum('amount');
+
+      return response()->json( (float)  $sum  );
+    }
+
+
+    public function calcularTotalRetiros($id){
+      $user =  User::find($id);
+      if( $user == null ){
+          return $this->alertWarning('No fue posible encontrar usuario.');
+      }
+      $contrato=$user->contract;
+      if($contrato == null){
+          return $this->alertError( ['title' => "Debes crear un contrato para calcular retiros.",]);
+      }
+
+      $sum=TransactionContract::where([
+          'id_contract' => $contrato->id  ,
+          'id_type_transaction' => 2,
+          'id_status_transaction' => 2    ])->sum('amount');
+
+      return response()->json( (float)  $sum  );
+
+  }
+
 
 
 

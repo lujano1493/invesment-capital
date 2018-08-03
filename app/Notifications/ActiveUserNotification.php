@@ -42,7 +42,7 @@ class ActiveUserNotification extends Notification
     {
 
         return (new MailMessage)
-            ->from("invesmente.capital.notification@invesment.com.mx","Activación Invesment Capital")
+            ->from("notification@capital444.com.mx","Activación Cuenta Capital 444")
             ->subject('Activación de Cuenta')
             ->greeting("Bienvenido {$this->data['name']} {$this->data['last_name']},")
             ->line("Se creado una cuenta en el portal Invesment Capital con las siguiente información:")
