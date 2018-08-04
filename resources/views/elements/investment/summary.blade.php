@@ -60,10 +60,11 @@
       			<h5> Total de Aportaciones</h5>
       			<h4>  @money($totalAportaciones) MXN</h4>
       		</div>
-      		<div class="col-xs-12 col-sm-4 text-center">
-      			<h5> Minusvalia</h5>
-      			<h4>  @money($minusvalia) MXN</h4>
-      			<h6>  @percentage($porcetanjeMinusValia) </h6>
+      		<div class="col-xs-12 col-sm-4 text-center {{ ($minusvalia <0) ? 'has-error' :'' }}">
+               <label class="control-label"> {{  ($minusvalia <0) ?  'Minusvalia' :   'Plusvalia' }}</label>
+              
+      			<h4 class="control-label">  @money($minusvalia) MXN</h4>
+      			<h6 class="control-label">  @percentage($porcetanjeMinusValia) </h6>
       		</div>
       		<div class="col-xs-12 col-sm-4 text-center">
       			<h5> Saldo Total</h5>

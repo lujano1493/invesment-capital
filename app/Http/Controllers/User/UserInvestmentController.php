@@ -140,7 +140,7 @@ trait UserInvestmentController{
     );
     $transaccion = $contrato->transactions()->save($transactionContract) ;
     if( $transaccion ){
-      $transaccion->notifyTransaccion();
+      $transaccion->notifyTransaction();
       return $this->alertSuccess("La petición de retiro fue enviada correctamente.");
     }
     return $this->alertError("No fue posible realizar petición de retiro.");

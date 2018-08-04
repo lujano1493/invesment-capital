@@ -32,7 +32,7 @@ class TransactionContract extends Model
     }
 
 
-    public function notifyTransaccion( ){
+    public function notifyTransaction( ){
       $users = User::where([
           "id_role" => 1
 
