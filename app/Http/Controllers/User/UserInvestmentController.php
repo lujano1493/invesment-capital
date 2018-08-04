@@ -128,9 +128,18 @@ trait UserInvestmentController{
         return $this->alertError("El monto a retirar es mayor al que se tiene.");
     }
 
-    /*$masRetiros = $contrato->transactions()
-      ->where(['id_type_transaction' => 1 ,'DATE(created_at)' =>  date('d-m-Y')  ])->get();*/
 
+  //  $fieldDate=DB::raw("DATE(created_at)='". date('Y-m-d') ."'");
+
+
+    $masRetiros = $contrato->transactions()
+      ->where('id_type_transaction' , 2  )
+      ->where('id_status_transaction',1)
+      ->whereDate(  'created_at','=', date('Y-m-d') )->get();
+
+    if( $masRetiros->isNotEmpty()){
+        return $this->alertWarning("Existe una petición de retiro en proceso.");
+    }
      $transactionContract= new TransactionContract([
       'id_type_transaction' => 2,
       'id_status_transaction' => 1,
