@@ -1,5 +1,3 @@
-
-<script id="tmpl-accordion-add" type="text/x-dot-template">
 <div class="card">
 	<div class="card-header">
 		<h5>
@@ -16,5 +14,3 @@
 		</div>
 	</div>
 </div>
-
-</script>

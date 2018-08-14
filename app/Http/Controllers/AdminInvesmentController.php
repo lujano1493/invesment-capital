@@ -69,15 +69,11 @@ class AdminInvesmentController extends Controller
         $catBancks= Bank::pluck('name','id')->all();
         $catClasifCountBanck=ClasifCountBank::pluck('name','id') ->all();
         $catTypeDocument = TypeDocument::pluck('name','id')->all();
-        $catOriginTrans= OriginTransaction::pluck('name','id')->all();
-        $catTypeTrans=TypeTransaction::pluck('name','id') ->all();
-        $catStatusTrans = StatusTransaction::pluck('name','id')->all();
-        $catStatusBalance= StatusBalance::pluck('name','id')->all();
+
         return view('admin.invesment_edit',
         compact('user','catProfile','catHorizon','catTypeObjective',
                 'catTypeReprensentant' ,'catBancks','catClasifCountBanck',
-                'catTypeDocument','catOriginTrans','catTypeTrans','catStatusTrans',
-                'catStatusBalance'));
+                'catTypeDocument'));
     }
 
 
@@ -341,6 +337,22 @@ class AdminInvesmentController extends Controller
         return $this->alertSuccess("Se elimino el registro de documento correctamente.");
     }
 
+    public function balances( $id){
+
+      $user= User::find($id);
+      if( $user == null ){
+          return $this->alertWarning('No fue posible encontrar usuario.');
+      }
+
+      $catOriginTrans= OriginTransaction::pluck('name','id')->all();
+      $catTypeTrans=TypeTransaction::pluck('name','id') ->all();
+      $catStatusTrans = StatusTransaction::pluck('name','id')->all();
+      $catStatusBalance= StatusBalance::pluck('name','id')->all();
+
+      return view("admin.invesment_balances",compact('user','catOriginTrans','catTypeTrans','catStatusTrans',
+      'catStatusBalance'));
+    }
+
 
     public function editTransaction(Request $request,$id){
       $user =  User::find($id);
@@ -361,16 +373,25 @@ class AdminInvesmentController extends Controller
         $transaccion->fill($request->all());
         $transaccion->save();
       }
-
+      $count= $request->get('count');
       $title= $id===null ?'Transaccion guardada exitosamente.' :'Transaccion editada correctamente';
       return $this->alertSuccess([
         'title' =>  $title,
         'results' =>[
-          'inputs' =>['id' => $transaccion->id   ],
           'change'=> [
-              'attr' => ['class'=> 'btn btn-success btn-ajax'  ] ,
-              'html' => 'Editar',
-              'selector' => '.btn-ajax'
+            'html' =>  view("elements.admin.invesment_edit_form_trans_tmpl",
+                        [
+                          'user'=> $user,
+                          'contrato' =>$contrato,
+                          'count' =>$count,
+                          'catOriginTrans' => OriginTransaction::pluck('name','id')->all(),
+                          'catTypeTrans' => TypeTransaction::pluck('name','id') ->all(),
+                          'catStatusTrans' => StatusTransaction::pluck('name','id')->all(),
+                          'type' => 'edit' ,
+                          'transaccion' => $transaccion
+                        ]
+                        )->render(),
+            'closest' =>'.tmpl-item'
             ]
         ]
       ]);

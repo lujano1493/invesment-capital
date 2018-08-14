@@ -50,9 +50,31 @@
 					]   
 					]) }}
 			</div>
-		
-		
 		</div>
+		@if ($type === 'edit')
+			<div class="row">
+				<div class="col-12 col-sm-5">
+					{{ Form::bsInput('created_at' ,'text' , [ 
+						'label' =>'Creado',
+						'value' =>old('created_at'),
+						'attr' =>[
+							'required' =>true,
+							'readonly' =>true
+						]   
+						]) }}
+				</div>
+				<div class="col-12 offset-sm-1 offset-0 col-sm-5">
+					{{ Form::bsInput('updated_at' ,'text' , [ 
+						'label' =>'Modificado',
+						'value' =>old('updated_at'),
+						'attr' =>[
+							'required' =>true,
+							'readonly' =>true
+						]   
+						]) }}
+				</div>
+			</div>
+		@endif
 	</div>
 
 	

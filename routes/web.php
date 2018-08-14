@@ -117,6 +117,8 @@ Route::prefix('admin')->group(function (){
     Route::get('investment/view/{id}-document', 'AdminInvesmentController@viewDocument')->where('id','[0-9]+')->name('admin.users.view.document');
     Route::get('investment/download/{id}-document', 'AdminInvesmentController@downloadDocument')->where('id','[0-9]+')->name('admin.users.download.document');
 
+    Route::get('investment/{id}/balances', 'AdminInvesmentController@balances')->where('id','[0-9]+')->name('admin.invesment.balances');
+
     Route::post('investment/transaction-{id}-edit', 'AdminInvesmentController@editTransaction')->where('id','[0-9]+')->name('admin.users.edit.transaction');
     Route::get('investment/delete/transaction', 'AdminInvesmentController@deleteTransaction')->name('admin.users.delete.transaction');
 
@@ -129,5 +131,8 @@ Route::prefix('admin')->group(function (){
 
 
     Route::get('educacion','AdminEducacionController@inicio')->name('admin.educacion');
+    Route::match(['get','post'],'educacion/administrar/{id?}', 'AdminEducacionController@administrar')->where('id','[0-9]+')->name('admin.educacion.administrar');
+    Route::post('educacion/pregunta/{id?}', 'AdminEducacionController@editarPregunta')->where('id','[0-9]+')->name('admin.educacion.pregunta');
+     Route::get('educacion/elimina/pregunta', 'AdminEducacionController@eliminaPregunta')->name('admin.educacion.elimina.pregunta');
 
 });

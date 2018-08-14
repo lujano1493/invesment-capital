@@ -34,7 +34,8 @@
                 			<td>{{ $user->last_name . ( isset($user->last_second_name) ? ' '. $user->last_second_name : '' )    }}</td>
                 			<td>{{ $user->email }}</td>
                 			<td>
-                				<a class="btn btn-success" href="{{ route('admin.invesment.edit' , ['id' => $user->id ]) }}" > Modificar </a>
+                				<a class="btn btn-success" href="{{ route('admin.invesment.edit' , ['id' => $user->id ]) }}" > Contrato </a>
+                                <a class="btn btn-info" href="{{ route('admin.invesment.balances' , ['id' => $user->id ]) }}" > Saldos </a>
                 			 </td>
 
                 	</tr>

@@ -5,15 +5,23 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
+use Collective\Html\Eloquent\FormAccessible;
+
 use App\Notifications\PeticionRetiroNotification;
 
 class TransactionContract extends Model
 {
+    use FormAccessible;
     use Notifiable;
     public $table="transactions_contract";
     protected $fillable = [
       'id_contract', 'id_type_transaction','id_status_transaction','amount','id_origin'
     ];
+
+    protected $dates = [
+       'created_at',
+       'updated_at'
+   ];
 
     protected $casts = [
         'amount' => 'float',
@@ -30,6 +38,19 @@ class TransactionContract extends Model
     public function contract(){
       return $this->belongsTo("App\Model\Contract" ,"id_contract" );
     }
+
+
+    public function formCreatedAtAttribute($value){
+
+        return $value->format('d-m-Y h:i:s A');
+    }
+
+    public function formUpdatedAtAttribute($value){
+
+        return $value->format('d-m-Y h:i:s A');
+    }
+
+
 
 
     public function notifyTransaction( ){

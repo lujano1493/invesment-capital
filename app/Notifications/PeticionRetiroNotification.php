@@ -50,7 +50,7 @@ class PeticionRetiroNotification extends Notification
              ->line("Se ha realizado una petición de retiro por $ ".number_format($this->data['monto'],2)  ." MXN  del siguiente usuario:")
              ->line("Correo Electrónico :   {$this->data['email'] } ")
              ->line(" Para poder revisar el movimiento da clic en el siguiente botón.")
-             ->action('Ver Detalle', url(config('app.url') . route('admin.invesment.edit',['id' => $this->data['idUser']  ], false)))
+             ->action('Ver Detalle', url(config('app.url') . route('admin.invesment.balances',['id' => $this->data['idUser']  ], false)))
              ->salutation('');
      }
 
