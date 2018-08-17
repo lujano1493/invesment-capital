@@ -2,8 +2,7 @@
 
 $(document).ready(function (){
 	
-
-
+	
 	/**  Modificacion de perfil  */
 	
 

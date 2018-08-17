@@ -84,7 +84,11 @@ $(function() {
 				for(var name in data.results.inputs){
 					form.find("[name='"+name+"']").val( data.results.inputs[name]  );
 				}
-
+				
+				if( btn.data('clear-form') ){
+					form[0].reset();
+				}
+				btn.trigger("done.forms.ajax",[ data]);
 				if(data.results.change){
 					var change=data.results.change;
 					$(change).each(function (index,el){
@@ -93,6 +97,8 @@ $(function() {
 						var itemFind=  el.selector && el.selector !=="" ? content.find(el.selector) : content;
 						if( el.html)
 							itemFind.html(el.html);
+						if(el.text)
+							itemFind.text(el.text);
 						if(el.attr){
 							for( var attr in el.attr){
 								itemFind.attr(attr,  el.attr[attr]);
@@ -102,9 +108,7 @@ $(function() {
 					});
 				}
 
-				if( btn.data('clear-form') ){
-					form[0].reset();
-				}
+				
 				
 	 		},
 		fail: function (response,status, errorThrown  ){

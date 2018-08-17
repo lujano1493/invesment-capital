@@ -368,16 +368,26 @@ class AdminInvesmentController extends Controller
       $transaccion= $id===null ?   new  TransactionContract($request->all()  ) : TransactionContract::find($id) ;
 
       if( $id == null){
-        $contrato->transactions()->save( $transaccion  );
+        $result =$contrato->transactions()->save( $transaccion  );
       }else{
         $transaccion->fill($request->all());
-        $transaccion->save();
+        $result= $transaccion->save();
       }
+
+      $balance=Balance::updateCalculo($transaccion->id_contract);
+
+
       $count= $request->get('count');
       $title= $id===null ?'Transaccion guardada exitosamente.' :'Transaccion editada correctamente';
       return $this->alertSuccess([
         'title' =>  $title,
         'results' =>[
+          'balance'=>[
+              'balance' => $balance->balance,
+              'balance_total' => $balance->balance_total,
+              'payments' => $balance->payments,
+              'withdrawals' => $balance->withdrawals
+          ],
           'change'=> [
             'html' =>  view("elements.admin.invesment_edit_form_trans_tmpl",
                         [
@@ -420,24 +430,40 @@ class AdminInvesmentController extends Controller
           return $this->alertError( ['title' => "Debes crear un contrato para generar un balance.",]);
       }
       $id = $request->get('id');
-      $transaccion= $id===null ?   new  Balance($request->all()  ) : Balance::find($id) ;
+      $balance= $id===null ?   new  Balance($request->all()  ) : Balance::find($id) ;
 
       if( $id == null){
-        $contrato->balances()->save( $transaccion  );
+        $contrato->balances()->save( $balance  );
       }else{
-        $transaccion->fill($request->all());
-        $transaccion->save();
+        $balance->fill($request->all());
+        $balance->save();
       }
-
+      $count= $request->get('count');
       $title= $id===null ?'Balance guardada exitosamente.' :'Balance editada correctamente';
       return $this->alertSuccess([
         'title' =>  $title,
         'results' =>[
-          'inputs' =>['id' => $transaccion->id   ],
+          'inputs' =>['id' => $balance->id   ],
           'change'=> [
-              'attr' => ['class'=> 'btn btn-success btn-ajax'  ] ,
-              'html' => 'Editar',
-              'selector' => '.btn-ajax'
+              [
+                'text' => 'Balance del '. $balance->creacion,
+                'closest' =>'.tmpl-item',
+                'selector' => '.title-acor-btn'
+              ],
+              [
+                'html' =>  view("elements.admin.invesment_edit_form_balance_tmpl",
+                          [
+                            'user'=> $user,
+                            'contrato' =>$contrato,
+                            'count' =>$count,
+                            'catStatusBalance' => StatusBalance::pluck('name','id')->all(),
+                            'type' => 'edit' ,
+                            'balance' => $balance
+                          ]
+                          )->render(),
+              'closest' =>'.tmpl-item',
+              'selector' =>'.card-body'
+            ]
             ]
         ]
       ]);

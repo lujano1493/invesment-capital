@@ -8,11 +8,12 @@
 		    Cuentas Bancarias</a>
 		  </li>
 	</ul>
-	<div class="tab-content" id="myTabContent">
+	<div class="tab-content mt-3" id="myTabContent{{$count}}">
 
 		<div class="tab-pane fade show active" id="datosGeneral{{$count}}" role="tabpanel" aria-labelledby="datos-general{{$count}}">
 			{{ Form::model( $representante ,['route' => ['admin.users.edit.representant' , $user ]  ] ) }}
-				@include('elements/admin/invesment_edit_represent_tmpl', compact('user','representante'))
+	
+				@include('elements/admin/invesment_edit_represent_tmpl', compact('user','representante','catTypeReprensentant'))
 				<div class="form-group text-center">
 					@if ( $type ==='register')
 						{{ Form::Button('Registrar' , ['class' => 'btn btn-primary btn-ajax' , 'type' =>'submit' ]  ) }}
@@ -36,6 +37,7 @@
 					class="btn btn-primary add-form" 
 					data-target="#cuentas-bancarias{{$count}}" 
 					data-id-name="id_representant"
+					data-cls-tmpl="cuenta-banco"
 					data-id-value="{{ isset($representante) ? $representante->id : ''}}"
 					data-id-tmpl="#tmpl-cuenta-banco"> Agregar Cuenta</button>
 				</div>
@@ -47,8 +49,8 @@
 								$count = $loop->index + 1;
 								$type = 'edit'
 							@endphp
-							<div class="tmpl-item cuentas-bancarias">
-								@include("elements.admin.invesment_edit_form_count", compact('user','representante','cuenta','count','edit'))
+							<div class="cuenta-banco tmpl-item ">
+								@include("elements.admin.invesment_edit_form_count", compact('user','representante','cuenta','catBancks','catClasifCountBanck','count','edit'))
 							</div>
 						@endforeach
 					@endisset

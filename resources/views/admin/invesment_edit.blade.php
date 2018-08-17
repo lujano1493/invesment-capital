@@ -40,23 +40,28 @@
 	  		<div id="representantes" class="mt-3" >
 
 				@foreach( $representantes AS $representante )
+					
 
-					<div class="card tmpl-item">
-						<div class="card-header">
-							<h5>
-							<button class="btn btn-link" data-toggle="collapse" data-target="#representantes_{{ $loop->index }}" aria-expanded="true" 
-								aria-controls="representantes_{{ $loop->index }}">
-								 {{ $representante->typeRepresent->name  }} - {{ $representante->name }} {{ $representante->last_name }} {{ $representante->last_second_name }}
-					 		</button>
-							</h5>
+					@include('elements.acorddion_tmpl', [
+					'extraClsTmpl' => "tmpl-item",
+					'target' => "#repr_".$loop->index,
+					'idTarget' => "repr_".$loop->index,
+					'title' => $representante->typeRepresent->name  ." - ". $representante->name." ".$representante->last_name." ".$representante->last_second_name  ,
+					'parent' => "#representantes",
+					'body' => View::make("elements.admin.invesment_edit_panel_representant_tmpl", 
+								[
+								'user' => $user,
+								'contrato' => $contrato,
+								'count' => $loop->index , 
+								"representante" => $representante, 
+								'type' => 'edit' ,
+								'catTypeReprensentant' =>$catTypeReprensentant, 
+								'catBancks' => $catBancks,
+								'catClasifCountBanck' => $catClasifCountBanck
+							])->render()
+					])
 
-							</div>
-						<div id="representantes_{{ $loop->index }}" class="collapse" data-parent="#representantes">
-							<div  class="card-body" >
-								@include("elements.admin.invesment_edit_panel_representant_tmpl", ['count' => $loop->index , "representante" => $representante, 'type' => 'edit' ])
-							</div>
-						</div>
-					</div>
+					
 					
 				@endforeach
 			</div>
@@ -73,6 +78,7 @@
   					class="btn btn-primary add-form" 
   					data-target="#archivos" 
   					data-title-head="Nuevo Documento"
+  					data-cls-tmpl="documento"
   					data-id-tmpl="#tmpl-archivo"> Agregar Documento</button>
   				</div>
 
@@ -104,15 +110,12 @@
 			$count = "{%=it.count + 1%}";
 			$type= "register";
 		@endphp
-		<div class="cuenta-bancaria">
 			@include("elements.admin.invesment_edit_form_count", compact('user','representante','cuenta','count','edit','type'))
-		</div>
 	</script>
 
 	<script id="tmpl-archivo" type="text/x-dot-template">
-		<div class="documento">
 		@include("elements.admin.invesment_edit_form_document_tmpl", ['count' =>"{%=it.count +1 %}" ,'type' => 'register' , 'documento' => null])
-		</div>
+	
 	</script>
 
 	<div id="view-doc" class="modal-view-doc">
@@ -130,6 +133,12 @@
 	</div>
 
 	<script id="tmpl-accordion-add" type="text/x-dot-template">
-		@include('elements.acorddion_tmpl')
+		@include('elements.acorddion_tmpl', [
+				'target' => "{%=it.targetContent%}",
+				'idTarget' => "{%=it.targetContent.substring(1)%}",
+				'title' => "{%=it.titleHead%}",
+				'parent' => "{%=it.target%}",
+				'body' =>'{%=it.body%}'
+			])
 	</script>
 @endsection

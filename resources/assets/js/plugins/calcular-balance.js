@@ -40,10 +40,50 @@ $(document).ready(function (){
 
 		}
 
-
-
-
-
 	});
 
+	 $(document).on("after.forms.add","#btnAgregaSaldos",function(event,selectorTarget,tmpl){
+	 	var btn=$(this), ddPosition= btn.data('add-position') ||'last';
+	 	var selector = ddPosition =='last' ? 'nth-last-child(2)' :'nth-child(2)';
+	 	var lastForm =  $( selectorTarget+" .tmpl-item:" +selector);
+	 	lastForm.find("[name]").each(function(){
+	 		var input = $(this), name= input.attr("name") ,value= input.val();
+	 		if(value && value.length > 0 &&  name  != 'id'  && name != 'count'){
+	 			tmpl.find("[name='"+name+"']").val(value)
+	 		}
+
+	 	});
+	 });
+
+	 $(document).on("done.forms.ajax",".btn-trans",function(event,data){
+	 	var btn =$("#btnAgregaSaldos"),ddPosition= btn.data('add-position') ||'last';
+	 	var selector = ddPosition =='last' ? 'last' :'first';
+	 	var lastForm =  $("#balances .tmpl-item:" +selector);
+	 	var balance = data.results.balance;
+
+	 	var inputs =[];
+	 	for(var x in balance ){
+	 		var value = balance[x];
+	 		var input = lastForm.find("[name='"+x+"']");
+
+	 		input.val(value);
+	 		input.addClass("is-valid");
+	 		inputs.push(input);
+	 	}
+
+	 	setTimeout(function (){
+	 		$(inputs).each(function (){
+	 			this.removeClass("is-valid");
+	 		});
+
+
+	 	}, 5000);
+
+	 	
+
+	 });
+
 });
+
+
+

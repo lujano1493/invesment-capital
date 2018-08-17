@@ -2,7 +2,7 @@
 	<ul class="nav nav-tabs"  > 
 		<li  class="active">
 			<a href="#contrato-info" id="datos-contrato"  data-toggle="tab"  ">
-			 <h6> Datos de Contrato </h6>
+			 <h6> Datos de Representantes </h6>
 			</a>
 		</li> 
 		<li  >
@@ -18,8 +18,7 @@
 	</ul> 
 	<div class="tab-content tab-margin-top" > 
 		<div class="tab-pane  fade active in"  id="contrato-info" > 
-			@include("elements.investment.contract")
-
+		
 			@include("elements.investment.representants")
 		</div> 
 

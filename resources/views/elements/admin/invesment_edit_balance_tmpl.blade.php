@@ -3,12 +3,7 @@
 {{ Form::bsInput('id_contract' ,'hidden', ['value' => $contrato->id]) }}
 {{ Form::bsInput('count' ,'hidden', ['value' => $count]) }}
 
-<div class="card mt-3">
 
-	<div class="card-header"> 
-	 Balance {{ $count }} 
-	</div>
-	<div class="card-body">
 		<div class="row">
 			<div class="col-12 col-sm-4">
 				<label> Deposito Total	
@@ -106,7 +101,24 @@
 				
 			</div>
 
-				<div class="col-12 col-sm-2">
+			<div class="col-12 col-sm-4">
+				{{ Form::bsInput('id_status_balance' ,'select' , [ 
+					'label' =>'Saldo Base',
+					'value' =>old('id_status_balance'),
+					'list' => $catStatusBalance,
+					'attr' =>[
+						'required' =>true
+					]   
+					]) }}
+			</div>
+	
+		
+		</div>
+	
+		<div class="row">
+			
+
+				<div class="col-12 col-sm-4">
 					<label> Fondos R. V.
 					</label>
 					<div class="input-group mb-3">
@@ -121,7 +133,7 @@
 					
 				</div>
 
-				<div class="col-12 col-sm-2">
+				<div class="col-12 col-sm-4">
 					<div class="form-group">
 						<label> Fondos D.
 						</label>
@@ -136,29 +148,14 @@
 						
 					</div>
 					
-					
 				</div>
-	
-		
-		</div>
-	
-		<div class="row">
-			<div class="col-12 col-sm-4">
-				{{ Form::bsInput('id_status_balance' ,'select' , [ 
-					'label' =>'Saldo Base',
-					'value' =>old('id_status_balance'),
-					'list' => $catStatusBalance,
-					'attr' =>[
-						'required' =>true
-					]   
-					]) }}
-			</div>
 
 			@if($type == 'edit')
+
 			<div class="col-12 col-sm-4">
-				{{ Form::bsInput('created_at' ,'text' , [ 
-					'label' =>'Registro',
-					'value' =>old('created_at'),
+				{{ Form::bsInput('updated_at' ,'text' , [ 
+					'label' =>'Ultima Modificación',
+					'value' =>old('updated_at'),
 					'attr' =>[
 						'required' =>true,
 						'disabled' => true
@@ -168,8 +165,4 @@
 
 			@endif
 		</div>
-	</div>
-
 	
-
-</div>

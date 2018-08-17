@@ -27,17 +27,20 @@
       $balance= $balances->get(0);
       $totalAportaciones=  $balance->balance;
       $saldoTotal=$balance->balance_total;
+     
+
+      $fecha= $balance->updated_at;
+
+      $porcetanjeMinusValia= $balance->change;
+
+      $minusvalia= $saldoTotal - $totalAportaciones;
+
+
       $fondoRentaV = $balance->renta_variable;
       $fondoDeuda = $balance->deuda;
-      $fecha= $balance->updated_at;
    }
 
-   if( $balances->count() == 2 ){
-      $balance1=  $balances->get(1);
-      $minusvalia =   $saldoTotal-$balance1->balance_total;
-      $porcetanjeMinusValia =  ($minusvalia/ $balance1->balance_total) *100;
-
-   }
+ 
  
    
 @endphp
@@ -54,7 +57,7 @@
       			<h5> MI RESUMEN</h5>
       		</div>
       </div>
-
+        @include("elements.investment.contract")
        <div class="row">
       		<div class="col-xs-12  col-sm-4 text-center">
       			<h5> Total de Aportaciones</h5>
