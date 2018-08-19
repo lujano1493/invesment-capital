@@ -374,7 +374,14 @@ class AdminInvesmentController extends Controller
         $result= $transaccion->save();
       }
 
+      if ($request['id_type_transaction'] ==  TransactionContract::TYPE_RETIRO
+        && $request['id_status_transaction']== TransactionContract::STATUS_REALIZADO){
+          $transaccion->notifyTransaction(false);
+        }
+
       $balance=Balance::updateCalculo($transaccion->id_contract);
+
+
 
 
       $count= $request->get('count');

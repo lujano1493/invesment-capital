@@ -28,13 +28,9 @@
       $totalAportaciones=  $balance->balance;
       $saldoTotal=$balance->balance_total;
      
-
       $fecha= $balance->updated_at;
-
       $porcetanjeMinusValia= $balance->change;
-
       $minusvalia= $saldoTotal - $totalAportaciones;
-
 
       $fondoRentaV = $balance->renta_variable;
       $fondoDeuda = $balance->deuda;

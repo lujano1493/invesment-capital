@@ -67,13 +67,13 @@ $(document).ready(function (){
 	 		var input = lastForm.find("[name='"+x+"']");
 
 	 		input.val(value);
-	 		input.addClass("is-valid");
+	 		input.addClass("change-input-sucess",1000);
 	 		inputs.push(input);
 	 	}
 
 	 	setTimeout(function (){
 	 		$(inputs).each(function (){
-	 			this.removeClass("is-valid");
+	 			this.removeClass("change-input-sucess",1000);
 	 		});
 
 

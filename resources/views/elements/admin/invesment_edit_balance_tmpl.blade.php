@@ -17,7 +17,7 @@
 						 data-target="[name='payments']"
 						type="button">Calcular</button>
 					</span>
-					{{ Form::number('payments'  , old('payments') ,  ['required' => true,'class' => 'form-control','data-type-calc' =>'add' ] ) }}
+					{{ Form::number('payments'  , old('payments') ,  ['required' => true,'class' => 'form-control input-calc','data-type-calc' =>'add' ] ) }}
 				</div>
 				
 			</div>
@@ -35,7 +35,7 @@
 							data-target="[name='withdrawals']"
 							type="button">Calcular</button>
 						</span>
-						{{ Form::number('withdrawals'  , old('withdrawals') ,  ['required' => true,'class' => 'form-control' ,'data-type-calc' =>'sub' ] ) }}
+						{{ Form::number('withdrawals'  , old('withdrawals') ,  ['required' => true,'class' => 'form-control input-calc' ,'data-type-calc' =>'sub' ] ) }}
 					</div>
 				
 			</div>
@@ -52,7 +52,7 @@
 									data-inputs = "[name='payments'],[name='withdrawals']"
 									type="button">Calcular</button>
 						</span>
-						{{ Form::number('balance'  , old('balance') ,  ['required' => true,'class' => 'form-control' ,'data-type-calc' =>  "value" ] ) }}
+						{{ Form::number('balance'  , old('balance') ,  ['required' => true,'class' => 'form-control input-calc' ,'data-type-calc' =>  "value" ] ) }}
 					</div>
 				
 			</div>
@@ -73,7 +73,7 @@
 
 								>Calcular</button>
 						</span>
-					{{ Form::number('change'  , old('change') ,  ['required' => true,'class' => 'form-control', 'data-type-calc' =>  "percent" ] ) }}
+					{{ Form::number('change'  , old('change') ,  ['required' => true,'class' => 'form-control ', 'data-type-calc' =>  "percent" ] ) }}
 					<div class="input-group-append" >
 						<span class="input-group-text">
 						%
@@ -96,7 +96,7 @@
 
 								>Calcular</button>
 						</span>
-						{{ Form::number('balance_total'  , old('balance_total') ,  ['required' => true,'class' => 'form-control','data-type-calc' =>'result'] ) }}
+						{{ Form::number('balance_total'  , old('balance_total') ,  ['required' => true,'class' => 'form-control input-calc','data-type-calc' =>'result'] ) }}
 					</div>
 				
 			</div>

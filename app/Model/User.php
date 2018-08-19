@@ -90,6 +90,10 @@ class User extends Authenticatable
         return $value->format('Y-m-d');
     }
 
+    public function getFullNameAttribute(){
+      return "{$this->name} {$this->last_name} {$this->last_second_name}";
+    }
+
 
     public function getPasswordPlain(){
         return $this->passwordPlain;
