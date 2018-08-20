@@ -65,10 +65,18 @@ class AdminEducacionController extends Controller
           'results' => [
               'inputs' =>['id' => $pregunta->id ],
               'change'=> [
+                [
                   'selector' =>  '.btn-add-opciones',
                   'attr' => ['data-id-value'=> $pregunta->id  ],
                   'closest' => '.tmpl-item'
-              ]
+                ],
+                [
+                  'selector' =>  '[name="id_pregunta"]',
+                  'attr' => ['value'=> $pregunta->id  ],
+                  'closest' => '.tmpl-item'
+                ]
+
+            ]
 
           ],
         ]
