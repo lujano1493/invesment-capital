@@ -390,10 +390,10 @@ class AdminInvesmentController extends Controller
         'title' =>  $title,
         'results' =>[
           'balance'=>[
-              'balance' => $balance->balance,
-              'balance_total' => $balance->balance_total,
-              'payments' => $balance->payments,
-              'withdrawals' => $balance->withdrawals
+              'balance' =>  isset($balance) ?  $balance->balance : 0,
+              'balance_total' =>isset($balance) ? $balance->balance_total:0,
+              'payments' => isset($balance) ? $balance->payments : 0,
+              'withdrawals' => isset($balance) ? $balance->withdrawals:0
           ],
           'change'=> [
             'html' =>  view("elements.admin.invesment_edit_form_trans_tmpl",
