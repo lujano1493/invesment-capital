@@ -32,13 +32,12 @@
 
 				@foreach( $preguntas AS $pregunta )
 				<div class="pregunta tmpl-item">
+					
 				  @include("elements.admin.educacion_configurar_form_pregunta_tmpl", 
 				  	['count' =>$loop->index +1, "pregunta" => $pregunta, 'type' => 'edit'])
-				</div>
+				  
 
-				@php
-					$opciones = $pregunta->opciones;
-				@endphp
+				</div>
 					
 				@endforeach
 			</div>
@@ -46,9 +45,11 @@
 	</div>
 
 	<script id="tmpl-pregunta" type="text/x-dot-template">
-		<div class="pregunta">
 		@include("elements.admin.educacion_configurar_form_pregunta_tmpl", ['count' =>"{%=it.count +1%}" , "pregunta" => null, 'type' => 'register'])
-		</div>
+	</script>
+
+		<script id="tmpl-opcion" type="text/x-dot-template">
+		@include("elements.admin.educacion_configurar_form_opcion_tmpl", ['count' =>"{%=it.count +1%}" , "pregunta" =>null,  "opcion" => null, 'type' => 'register'])
 	</script>
 	@endisset
 

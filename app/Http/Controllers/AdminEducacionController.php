@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Model\Cuestionario;
 use App\Model\CuestionarioPreguntas;
+use App\Model\CuestionarioPreguntasOpciones;
 
 class AdminEducacionController extends Controller
 {
@@ -15,7 +16,7 @@ class AdminEducacionController extends Controller
       $this->middleware('auth');
       $this->middleware('auth.admin');
   }
-  
+
     public function inicio(Request $request){
 
 
@@ -29,7 +30,7 @@ class AdminEducacionController extends Controller
     public function administrar(Request $request, $id=null){
     	$id = $id!= null ?  $id : $request->get("id");
     	$cuestionario=  Cuestionario::find($id);
-    	
+
     	if(  $request->isMethod("post")){
     		$data= $request->all();
     		$data['tipo'] =1 ; //TODO fijo
@@ -58,7 +59,20 @@ class AdminEducacionController extends Controller
     	if( $id == null ){
     		$pregunta= new CuestionarioPreguntas( $data );
     		$cuestionario->preguntas()->save($pregunta);
-    		return $this->alertSuccess("La pregunta fue guardada correctamente.");
+    		return $this->alertSuccess(
+        [
+          'title' => "La pregunta fue guardada correctamente.",
+          'results' => [
+              'inputs' =>['id' => $pregunta->id ],
+              'change'=> [
+                  'selector' =>  '.btn-add-opciones',
+                  'attr' => ['data-id-value'=> $pregunta->id  ],
+                  'closest' => '.tmpl-item'
+              ]
+
+          ],
+        ]
+        );
     	}
     	else {
     		$pregunta = $cuestionario->preguntas()->find($id);
@@ -73,7 +87,57 @@ class AdminEducacionController extends Controller
         return $this->alertError("ingresa id  de pregunta.");
       }
       $pregunta = CuestionarioPreguntas::find(  $id );
+      $opciones=  CuestionarioPreguntasOpciones::where('id_pregunta', $id)->get();
+      foreach ($opciones  as  $opcion) {
+        $opcion->delete();
+      }
       $pregunta->delete();
       return $this->alertSuccess("Se elimino la pregunta.");
     }
+
+
+    public function guardarOpcion(Request $request ,$id=null){
+      $data=$request->all();
+      $id_pregunta = $data['id_pregunta'];
+      $pregunta=CuestionarioPreguntas::find($id_pregunta );
+      if(  $pregunta== null){
+        return $this->alertError("Aun no se ha creado la pregunta.");
+      }
+      if( $id == null ){
+        $opcion= new CuestionarioPreguntasOpciones( $data );
+        $pregunta->opciones()->save($opcion);
+        return $this->alertSuccess(
+        [
+          'title' => "La opción fue guardada correctamente.",
+          'results' => [
+              'inputs' =>['id' => $opcion->id ]
+
+          ],
+        ]
+        );
+      }
+      else {
+        $pregunta = $pregunta->preguntas()->find($id);
+        $pregunta->update($data);
+        return $this->alertSuccess("La opcion fue editada correctamente.");
+      }
+
+    }
+    public function eliminaOpcion(Request $request,$id=null){
+      $id= $id==null ?  $request->get("id"):$id;
+      if($id == null){
+        return $this->alertError("ingresa id  de pregunta.");
+      }
+      $opcion = CuestionarioPreguntasOpciones::find(  $id );
+      if($opcion ==null){
+        return $this->alertError("no fue posible encontrar la opcion.");
+      }
+      $opcion->delete();
+      return $this->alertSuccess("Se elimino la opcion.");
+    }
+
+
+
+
+
 }
