@@ -56,8 +56,8 @@ class Balance extends Model
 
 
       $saldoBase = $despositos-$retiros;
-      $porcentaje = $balance->change /100;
-      $saldoTotal =   $saldoBase * $porcentaje;
+      $porcentaje =  $balance->change /100;
+      $saldoTotal =  $saldoBase + ($saldoBase * $porcentaje) ;
       $data = [
             'payments' => $despositos,
             'withdrawals' => $retiros,
