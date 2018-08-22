@@ -45,7 +45,7 @@
 	</div>
 
 	<script id="tmpl-pregunta" type="text/x-dot-template">
-		@include("elements.admin.educacion_configurar_form_pregunta_tmpl", ['count' =>"{%=it.count +1%}" , "pregunta" => null, 'type' => 'register'])
+		@include("elements.admin.educacion_configurar_form_pregunta_tmpl", ['count' =>"{%=it.count+1%}" , "pregunta" => null, 'type' => 'register'])
 	</script>
 
 		<script id="tmpl-opcion" type="text/x-dot-template">

@@ -2,7 +2,7 @@
 	@include('elements/admin/educacion_configurar_pregunta_tmpl' , compact('pregunta'))
 
 
-	<div id="opcion_{{$count}}" class="mt-3">
+	<div id="opcion_{{$count}}" class="mt-3 sub-tmpl">
 
 		 @isset( $pregunta  )
 			@php

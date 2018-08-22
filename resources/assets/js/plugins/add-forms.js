@@ -8,6 +8,7 @@ $(document).ready(function (){
  	titleHead= btn.data('title-head') || ('Nuevo Registro ' + count), idName = btn.data("id-name"), idValue= btn.attr("data-id-value"), addPosition= btn.data('add-position') ||'last';
 
  	var 	tmplHTML =  '';
+ 	console.log(count);
  	tmplHTML=$.tmpl(idTmpl,{count:count});
 
 
@@ -27,6 +28,9 @@ $(document).ready(function (){
  	tmplHTML.addClass('tmpl-item');
  	 var form = tmplHTML.is("form") ? tmplHTML :tmplHTML.find("form");
  		form.find("[id]").each(function (){
+ 		if( $(this).hasClass("sub-tmpl") ){
+ 			return true;
+ 		}
  		var  item=$(this),id = item.attr("id");
  		item.attr("id", id+"_"+count );
 
