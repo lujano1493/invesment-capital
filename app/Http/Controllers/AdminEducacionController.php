@@ -56,14 +56,54 @@ class AdminEducacionController extends Controller
     	if(  $cuestionario== null){
     		return $this->alertError("Aun no se ha creado un cuestionario.");
     	}
+      $inputs=[];
     	if( $id == null ){
     		$pregunta= new CuestionarioPreguntas( $data );
     		$cuestionario->preguntas()->save($pregunta);
-    		return $this->alertSuccess(
+            $inputs['id'] =$pregunta->id;
+    	}
+    	else {
+    		$pregunta = $cuestionario->preguntas()->find($id);
+    		$pregunta->update($data);
+    	}
+      $opciones = $request->get("opciones");
+      if(isset($opciones)&& is_array($opciones)){
+        foreach ($opciones as $key => $value) {
+            $opciones[$key]['id_pregunta'] = $pregunta->id;
+        }
+        $nuevos = [];
+        $editados = [];
+        foreach ($opciones as $key => $opcion) {
+          if(  !isset($opcion['id'])  ) {
+              $nuevos[$key] = $opcion;
+          }
+          else{
+            $editados [$key] =$opcion;
+          }
+        }
+        if( !empty($nuevos)){
+            $opciones =$pregunta->opciones()->createMany($nuevos);
+            $index =0;
+            foreach($nuevos as $key => $value){
+              $inputs["opciones[$key][id]"]= $opciones->get($index)->id;
+              $index++;
+            }
+        }
+        if(!empty($editados)){
+            foreach ($editados  as $key => $value) {
+              $opcion=   CuestionarioPreguntasOpciones::find( $value['id'] );
+              $opcion->update( $value  );
+            }
+        }
+
+      }
+
+      if( $id == null  ){
+        return $this->alertSuccess(
         [
           'title' => "La pregunta fue guardada correctamente.",
           'results' => [
-              'inputs' =>['id' => $pregunta->id ],
+              'inputs' =>$inputs,
               'change'=> [
                 [
                   'selector' =>  '.btn-add-opciones',
@@ -74,6 +114,11 @@ class AdminEducacionController extends Controller
                   'selector' =>  '[name="id_pregunta"]',
                   'attr' => ['value'=> $pregunta->id  ],
                   'closest' => '.tmpl-item'
+                ],
+                [
+                  'attr' => ['class'=> 'btn btn-success btn-ajax'  ] ,
+                  'html' => 'Editar',
+                  'selector' => '.btn-ajax'
                 ]
 
             ]
@@ -81,12 +126,16 @@ class AdminEducacionController extends Controller
           ],
         ]
         );
-    	}
-    	else {
-    		$pregunta = $cuestionario->preguntas()->find($id);
-    		$pregunta->update($data);
-    		return $this->alertSuccess("La pregunta fue editada correctamente.");
-    	}
+      } else {
+        	return $this->alertSuccess(["title" => "La pregunta fue editada correctamente.",
+          'results' => [
+              'inputs' =>$inputs,
+
+            ]
+        ]);
+      }
+
+
 
     }
     public function eliminaPregunta(Request $request,$id=null){

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class CuestionarioPreguntas extends Model
 {
 
-  
+
     protected $fillable = [
-        'secuencia','tipo','pregunta','respuesta'
+        'secuencia','tipo','pregunta','respuesta','puntaje'
     ];
 
     public function opciones(){

@@ -20,6 +20,7 @@ class CreateCuestionarioPreguntasTable extends Migration
             $table->smallInteger("tipo");
             $table->string("pregunta", 1024);
             $table->string("respuesta",512);
+            $table->decimal("puntaje",13,2);
             $table->timestamps();
         });
     }

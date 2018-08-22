@@ -49,7 +49,7 @@
 	</script>
 
 		<script id="tmpl-opcion" type="text/x-dot-template">
-		@include("elements.admin.educacion_configurar_form_opcion_tmpl", ['count' =>"{%=it.count +1%}" , "pregunta" =>null,  "opcion" => null, 'type' => 'register'])
+		@include("elements.admin.educacion_configurar_opcion_tmpl", ['count' =>"{%=it.count%}" , "pregunta" =>null,  "opcion" => null, 'type' => 'register'])
 	</script>
 	@endisset
 

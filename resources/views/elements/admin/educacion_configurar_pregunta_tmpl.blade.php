@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-9">
+			<div class="col-6">
 				{{ Form::bsInput('respuesta' ,'text' , [ 
 					'label' =>'Respuesta',
 					'value' =>old('respuesta'),
@@ -57,13 +57,25 @@
 				
 			</div>
 
+			<div class="col-4">
+				{{ Form::bsInput('puntaje' ,'number' , [ 
+					'label' =>'Puntaje',
+					'value' =>old('puntaje'),
+					'attr' =>[
+						'required' =>true
+					]   
 
-			<div class="col-3">
+					]) }}
+				
+			</div>
+
+			<div class="col-2">
 					{{ Form::Button('+' , [
 							'class' => 'btn btn-primary  btn-add-opciones add-form mt-4',
 							'data-target' => '#opcion_'.$count , 
 							'data-id-tmpl'=>"#tmpl-opcion",
 							'data-id-name' => "id_pregunta",
+							'data-cls-tmpl' =>"opcion",
 							'data-id-value'=>  isset($pregunta) ? $pregunta->id :"",    
 							'type' =>'submit' ]  ) }}
 			</div>

@@ -46,21 +46,29 @@ $(document).ready(function (){
 
 
  $(document).on("click",".btn-delete-form",function(){
- 	var  btn=$(this) , form= btn.closest('form');
- 	var id = form.find("[name='id']").val() ||  btn.data("id") ,urlDelete= btn.attr("href") || btn.data("url");
+ 	var  btn=$(this) , form= btn.closest( btn.data("scope")|| 'form' );
+ 	var   nameId= btn.data("name-id")||"id" ,id = form.find("[name='"+nameId+"']").val() ||  btn.data("id") ,
+ 			urlDelete= btn.attr("href") || btn.data("url");
 
 
  	function removeTmpl(){
  		var tmpl =btn.closest('.tmpl-item');
  		var form =  tmpl.find("form");
- 		var validate = form.validate();
- 		form.find("input.error, select.error, textarea.error").each(function (index,el){
- 			$(el).tooltip('hide');
- 		});
- 		validate.resetForm();
+
+ 		var novalidate = form.attr("novalidate");
+
+ 		if(!!novalidate){
+ 			var validate = form.validate();
+	 		form.find("input.error, select.error, textarea.error").each(function (index,el){
+	 			$(el).tooltip('hide');
+	 		});
+	 		validate.resetForm();
+ 		}	
+ 		
  		tmpl.remove();
 
  	}
+
 
  	if( id && id.length > 0  ){
 
