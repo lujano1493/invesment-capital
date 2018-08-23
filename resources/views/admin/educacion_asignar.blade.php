@@ -84,7 +84,7 @@
     </div>
 
     <div class="mt-3 text-center">
-        <button class="btn btn-danger" href ="{{ route('admin.educacion') }}"> Regresar </button>
+        <a class="btn btn-danger" href ="{{ route('admin.educacion') }}"> Regresar </a>
     </div>
 
 @endsection
