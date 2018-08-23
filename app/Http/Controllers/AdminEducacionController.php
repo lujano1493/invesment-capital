@@ -118,6 +118,7 @@ class AdminEducacionController extends Controller
 
     public function editarPregunta(Request $request ,$id=null){
     	$data=$request->all();
+      $id = isset($id) ? $id : $data['id'];
     	$id_cuestionario = $data['id_cuestionario'];
     	$cuestionario=Cuestionario::find($id_cuestionario );
 
