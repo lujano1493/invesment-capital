@@ -51,7 +51,9 @@ class MsgStatusFacade{
         if( $route ===null ){
           return redirect()->back()->with("alert", $msg);
         }
-        return  redirect()->route($route)->with("alert",$msg);
+        $name = is_array($route) ? $route[0] : $route;
+        $params = is_array($route) ? $route[1] : [];
+        return  redirect()->route($name,$params)->with("alert",$msg);
       }
       else{
           if( is_string($message) ){

@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('title', 'Administración de Cuestionarios')
- @section('panel-title' ,'Administración de  Cuestionoario')
+ @section('panel-title' ,'Administración de  Cuestionarios')
 
 @section('content')
 
@@ -32,7 +32,7 @@
                     </div>
                 </div>
               
-                <table class="table"  cellspacing="0">
+                <table class="table mt-3"  cellspacing="0">
                 <thead>
                 	<tr>
                 		<th scope="col">   @sortablelink('id', 'Id') </th>
@@ -44,13 +44,18 @@
                 </thead>
                 <tbody>
                 	@foreach($cuestionarios as $cuestionario)
-                	<tr>
-                			<td>{{ $cuestionario->id }}</td>
+                	<tr class="tmpl-item">
+                			<td>{{ $cuestionario->id }} <input type="hidden" name="id" value = {{ $cuestionario->id }}></td>
                 			<td>{{ $cuestionario->titulo }}</td>
                 			<td>{{ $cuestionario->fecha_limite->format('d-m-Y') }}</td>
                 			<td>{{ $cuestionario->updated_at->format('d-m-Y') }}</td>
                 			<td>
                 				<a class="btn btn-success" href="{{ route('admin.educacion.administrar' , $cuestionario ) }}" > Configurar </a>
+                                <a class="btn btn-info" href="{{ route('admin.educacion.asigna.cuestionario' , $cuestionario ) }}" > Asignar </a>
+                                <a class="btn btn-danger btn-delete-form " 
+                                    data-scope=".tmpl-item" 
+                                    href="{{ route('admin.educacion.elimina.cuestionario' , $cuestionario ) }}" > Eliminar 
+                                </a>
                 			 </td>
                 	</tr>
                 	@endforeach

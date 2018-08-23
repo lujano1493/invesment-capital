@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Model\User;
 use App\Model\Cuestionario;
 use App\Model\CuestionarioPreguntas;
 use App\Model\CuestionarioPreguntasOpciones;
@@ -41,10 +42,77 @@ class AdminEducacionController extends Controller
     		}else{
     			$cuestionario->update($data);
     		}
-    		return $this->alertSuccess("La información del cuestionario fue guardado.");
+    		return $this->alertSuccess("La información del cuestionario fue guardado.",
+          [ 'admin.educacion.administrar' ,  [ "id" => $cuestionario->id ]  ]
+        );
     	}
 
     	return view("admin.educacion_configurar",compact('cuestionario'));
+    }
+
+
+    public function asignaCuestionario(Request $request, $id =null){
+
+      if( !isset($id) ){
+        return $this->alertError("Ingresa el id de un cuestionario.");
+      }
+      $cuestionario = Cuestionario::find($id);
+      if( !isset($cuestionario)){
+          return $this->alertError("No fue posible encontrar el cuestionario.");
+      }
+
+      $query = $request->get("query_search");
+
+      $users = User::search($query)->sortable()->where( "id_role" ,"!=",User::ROLE_ADMIN  ) ->paginate(20);
+
+      $request->flashOnly(["query_search"]);
+
+        return  view('admin.educacion_asignar',compact('users','cuestionario'));
+
+    }
+
+    public function asignaUsuario(Request $request , $idUser, $idCuestionario){
+
+      if(  !isset($idUser) ){
+        return $this->alertError("Es necesario seleccionar un usuario.");
+      }
+      if ( !isset($idCuestionario)){
+        return $this->alertError("Es necesario seleccionar una encuestas.");
+      }
+
+      $user= User::find($idUser);
+      $cuestionarios = $user->cuestionarios()->wherePivot('id_cuestionario',$idCuestionario )->get();
+      $msg="La encuesta fue  desasignada correctamente.";
+      if( $cuestionarios->isNotEmpty()){
+        $user->cuestionarios()->detach($idCuestionario);
+      }
+      else {
+          $user->cuestionarios()->attach($idCuestionario);
+        $msg="La encuesta fue asignada correctamente.";
+      }
+      return  $this->alertSuccess($msg) ;
+    }
+
+
+    public function eliminaCuestionario(Request $request , $id =null){
+      if( !isset($id) ){
+        return $this->alertError("Ingresa el id de un cuestionario.");
+      }
+      $cuestionario = Cuestionario::find($id);
+      if( !isset($cuestionario)){
+          return $this->alertError("No fue posible encontrar el cuestionario.");
+      }
+      $preguntas = $cuestionario->preguntas;
+
+      foreach ($preguntas as $pregunta) {
+          $opciones = $pregunta->opciones;
+          foreach ($opciones  as  $opcion) {
+            $opcion->delete();
+          }
+          $pregunta->delete();
+      }
+      $cuestionario->delete();
+      return $this->alertSuccess("El cuestionario fue eliminado correctamente");
     }
 
 

@@ -1,4 +1,8 @@
-<form class="" action = "{{ route($route) }}" >
+@php
+	$params = isset($params) ? $params :[]; 
+@endphp
+
+<form class="" action = "{{ route($route,$params) }}" >
   <div class="input-group">
     <input class="form-control" name="{{!isset($id) ? 'query_search' : $id }}"  id="{{!isset($id) ? 'query_search' : $id }}" 
     type="text" value= "{{ old(  !isset($id) ? 'query_search' : $id ) }}" placeholder="Buscar...">

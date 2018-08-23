@@ -83,6 +83,11 @@ class User extends Authenticatable
                ->as('access')->withPivot('date_expired','id')->orderBy("id_module","asc");
      }
 
+     public function cuestionarios(){
+       return $this->belongsToMany("App\Model\Cuestionario","asignacion_cuestionarios","id_user","id_cuestionario")
+           ->using("App\Model\AsignacionCuestionario")->as("asignacion");
+     }
+
 
 
     public function formBirthDateAttribute($value){

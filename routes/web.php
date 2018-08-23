@@ -132,6 +132,15 @@ Route::prefix('admin')->group(function (){
 
     Route::get('educacion','AdminEducacionController@inicio')->name('admin.educacion');
     Route::match(['get','post'],'educacion/administrar/{id?}', 'AdminEducacionController@administrar')->where('id','[0-9]+')->name('admin.educacion.administrar');
+   Route::get('educacion/elimina/cuestionario/{id}', 'AdminEducacionController@eliminaCuestionario')->where('id','[0-9]+')->name('admin.educacion.elimina.cuestionario');
+
+   Route::get('educacion/asigna/cuestionario/{id}', 'AdminEducacionController@asignaCuestionario')->where('id','[0-9]+')->name('admin.educacion.asigna.cuestionario');
+
+   Route::get('educacion/asigna/cuestionario/user-{idUser}-cuestionario-{idCuestionario}', 'AdminEducacionController@asignaUsuario')
+         ->where('idUser','[0-9]+')
+         ->where('idCuestionario','[0-9]+')
+         ->name('admin.educacion.asigna.usuario');
+
     Route::post('educacion/pregunta/{id?}', 'AdminEducacionController@editarPregunta')->where('id','[0-9]+')->name('admin.educacion.pregunta');
     Route::get('educacion/elimina/pregunta', 'AdminEducacionController@eliminaPregunta')->name('admin.educacion.elimina.pregunta');
 

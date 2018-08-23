@@ -17,8 +17,8 @@ class CreateAsignacionCuestionariosTable extends Migration
             $table->increments('id');
             $table->integer("id_user");
             $table->integer("id_cuestionario");
-            $table->date("fecha_limite")->nullable(true);
-            $table->timestamps();
+            $table->dateTime('fecha_finalizado')->nullable();
+
         });
     }
 
