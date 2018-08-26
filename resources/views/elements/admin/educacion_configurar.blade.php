@@ -21,7 +21,7 @@
 				</div>
 				<div class="col-12 col-sm-6">
 					@php
-						$expiredDefault =\Carbon\Carbon::today()->addDay(15);   // fecha de caducidad por defecto
+						$expiredDefault =\Carbon\Carbon::today()->addDay(30);   // fecha de caducidad por defecto
 					@endphp
 					{{ Form::bsInput('fecha_limite' ,'date' , [ 
 						'label' =>'Fecha Limite',

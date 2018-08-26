@@ -4,12 +4,17 @@ $(document).ready(function (){
  
  $(document).on("click",".add-form",function (){
  	var btn= $(this),form=btn.closest('form') , target = btn.data('target')
- 	, idTmpl=btn.data('id-tmpl') , type= btn.data('type') , count =$(target).find(".tmpl-item").length , clsTmpl = btn.data("cls-tmpl") ||  target.substring(1) +'-tmpl'  ,
+ 	, idTmpl=btn.data('id-tmpl') , type= btn.data('type') , clsTmpl = btn.data("cls-tmpl") ||  target.substring(1) +'-tmpl' , count =$(target).children().length  ,
  	titleHead= btn.data('title-head') || ('Nuevo Registro ' + count), idName = btn.data("id-name"), idValue= btn.attr("data-id-value"), addPosition= btn.data('add-position') ||'last';
-
+ 	var parentTarget = btn.data('parent-target');
  	var 	tmplHTML =  '';
- 	console.log(count);
- 	tmplHTML=$.tmpl(idTmpl,{count:count});
+ 	var data ={count:count};
+
+ 	if( parentTarget ){
+ 		data.parentCount= $(parentTarget).children().length;
+ 	}
+
+ 	tmplHTML=$.tmpl(idTmpl,data);
 
 
 
@@ -27,14 +32,14 @@ $(document).ready(function (){
  	
  	tmplHTML.addClass('tmpl-item');
  	 var form = tmplHTML.is("form") ? tmplHTML :tmplHTML.find("form");
- 		form.find("[id]").each(function (){
- 		if( $(this).hasClass("sub-tmpl") ){
- 			return true;
- 		}
- 		var  item=$(this),id = item.attr("id");
- 		item.attr("id", id+"_"+count );
+ 	// 	form.find("[id]").each(function (){
+ 	// 	if( $(this).hasClass("sub-tmpl") ){
+ 	// 		return true;
+ 	// 	}
+ 	// 	var  item=$(this),id = item.attr("id");
+ 	// 	item.attr("id", id+"_"+count );
 
- 	});
+ 	// });
 
  	$(target)[   addPosition=='last'  ? 'append' :'prepend'   ]( tmplHTML);
 

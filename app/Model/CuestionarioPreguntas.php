@@ -9,10 +9,10 @@ class CuestionarioPreguntas extends Model
 
 
     protected $fillable = [
-        'secuencia','tipo','pregunta','respuesta','puntaje'
+        'secuencia','tipo','pregunta','puntaje'
     ];
 
     public function opciones(){
-      return $this->hasMany("App\Model\CuestionarioPreguntasOpciones","id_cuestionario");
+      return $this->hasMany("App\Model\CuestionarioPreguntasOpciones","id_pregunta");
     }
 }

@@ -9,9 +9,10 @@ class AsignacionCuestionario extends Pivot
 {
   use FormAccessible;
 
+  public $table="asignacion_cuestionarios";
+  public $timestamps=false;
+
   protected $dates = [
-      'created_at',
-      'updated_at',
       'fecha_finalizado'
   ];
 
@@ -19,5 +20,17 @@ class AsignacionCuestionario extends Pivot
       return $value->format('Y-m-d');
   }
 
+
+  public function cuestionario(){
+    return $this->belongsTo("App\Model\Cuestionario","id_cuestionario");
+  }
+
+  public function usuario(){
+    return $this->belongsTo("App\Model\User","id_user");
+  }
+
+  public function respuestas(){
+    return $this->hasMany("App\Model\CuestionarioUsuarioRespuesta","id_asignacion");
+  }
 
 }

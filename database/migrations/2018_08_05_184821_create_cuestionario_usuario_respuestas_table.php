@@ -15,11 +15,11 @@ class CreateCuestionarioUsuarioRespuestasTable extends Migration
     {
         Schema::create('cuestionario_usuario_respuestas', function (Blueprint $table) {
           $table->increments('id');
+          $table->integer('id_asignacion');
           $table->integer("id_user");
           $table->integer("id_cuestionario");
           $table->integer("id_pregunta");
-          $table->string("respuesta");
-          $table->boolean("es_correcto");
+          $table->integer("id_opcion");
           $table->timestamps();
         });
     }

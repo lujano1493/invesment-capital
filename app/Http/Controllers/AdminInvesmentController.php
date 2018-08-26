@@ -386,15 +386,17 @@ class AdminInvesmentController extends Controller
 
       $count= $request->get('count');
       $title= $id===null ?'Transaccion guardada exitosamente.' :'Transaccion editada correctamente';
+
+      $balance = isset($balance)  ? [
+          'balance' => $balance->balance ,
+          'balance_total' => $balance->balance_total,
+          'payments' =>  $balance->payments ,
+          'withdrawals' =>  $balance->withdrawals
+      ]: null;
       return $this->alertSuccess([
         'title' =>  $title,
         'results' =>[
-          'balance'=>[
-              'balance' =>  isset($balance) ?  $balance->balance : 0,
-              'balance_total' =>isset($balance) ? $balance->balance_total:0,
-              'payments' => isset($balance) ? $balance->payments : 0,
-              'withdrawals' => isset($balance) ? $balance->withdrawals:0
-          ],
+          'balance'=>   $balance,
           'change'=> [
             'html' =>  view("elements.admin.invesment_edit_form_trans_tmpl",
                         [

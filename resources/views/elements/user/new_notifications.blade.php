@@ -11,7 +11,8 @@
                 </div>
             </div>
         </div>
-        <a href=" {{ $route }}">
+
+        <a href=" {{ route($route , isset($params) ? $params :[])}}">
             <div class="panel-footer">
                 <span class="pull-left">  Ver Detalles</span>
                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

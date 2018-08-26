@@ -50,11 +50,19 @@
                 			<td>{{ $cuestionario->fecha_limite->format('d-m-Y') }}</td>
                 			<td>{{ $cuestionario->updated_at->format('d-m-Y') }}</td>
                 			<td>
-                				<a class="btn btn-success" href="{{ route('admin.educacion.administrar' , $cuestionario ) }}" > Configurar </a>
-                                <a class="btn btn-info" href="{{ route('admin.educacion.asigna.cuestionario' , $cuestionario ) }}" > Asignar </a>
+                				<a class="btn btn-success" href="{{ route('admin.educacion.administrar' , $cuestionario ) }}" title="Editar" > 
+                                    <i class="fa fa-edit"></i> 
+                                </a>
+                                <a class="btn btn-primary" href="{{ route('admin.educacion.ver.cuestionario' , $cuestionario ) }}" title="Vista Previa"  > 
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-info" href="{{ route('admin.educacion.asigna.cuestionario' , $cuestionario ) }}" title="Asignar"> 
+                                    <i class="fa fa-check"></i> 
+                                </a>
                                 <a class="btn btn-danger btn-delete-form " 
                                     data-scope=".tmpl-item" 
-                                    href="{{ route('admin.educacion.elimina.cuestionario' , $cuestionario ) }}" > Eliminar 
+                                    href="{{ route('admin.educacion.elimina.cuestionario' , $cuestionario ) }}"  title="Eliminar">  
+                                    <i class="fa fa-trash"></i> 
                                 </a>
                 			 </td>
                 	</tr>

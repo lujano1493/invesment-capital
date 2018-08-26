@@ -18,7 +18,8 @@ class CreateCuestionarioPreguntasOpcionesTable extends Migration
             $table->integer("id_cuestionario");
             $table->integer("id_pregunta");
             $table->string("enciso",50);
-            $table->string("valor",512);
+            $table->boolean("es_correcto")->default(false);
+            $table->string("valor",3024);
             $table->timestamps();
         });
     }

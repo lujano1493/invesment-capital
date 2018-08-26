@@ -61,6 +61,11 @@ $(document).ready(function (){
 	 	var lastForm =  $("#balances .tmpl-item:" +selector);
 	 	var balance = data.results.balance;
 
+	 	if( !!balance ){
+	 		return false;
+	 	}	
+
+
 	 	var inputs =[];
 	 	for(var x in balance ){
 	 		var value = balance[x];

@@ -77,6 +77,10 @@ Route::group(['prefix' => 'investment' , 'middleware' => 'auth.access:investment
 
 Route::group(['prefix' => 'educacion' , 'middleware' => 'auth.access:educacion' ],function  (){
     Route::get('/', 'CapitalController@educacion')->name('capital.educacion');
+
+    Route::get('/cuestionario/contestar/{id}', 'CapitalController@constestar')->where('id','[0-9]+')->name("capital.cuestionario.contestar");
+    Route::post('/cuestionario/guardar/{id}', 'CapitalController@guardar')->where('id','[0-9]+')->name("capital.cuestionario.guardar");
+    Route::post('/cuestionario/finalizar/{id}', 'CapitalController@finalizar')->where('id','[0-9]+')->name("capital.cuestionario.finalizar");
 });
 
 
@@ -140,6 +144,8 @@ Route::prefix('admin')->group(function (){
          ->where('idUser','[0-9]+')
          ->where('idCuestionario','[0-9]+')
          ->name('admin.educacion.asigna.usuario');
+
+    Route::get('educacion/cuestionario/vista/{id}','AdminEducacionController@verCuestionario')->where('id','[0-9]+')->name('admin.educacion.ver.cuestionario');
 
     Route::post('educacion/pregunta/{id?}', 'AdminEducacionController@editarPregunta')->where('id','[0-9]+')->name('admin.educacion.pregunta');
     Route::get('educacion/elimina/pregunta', 'AdminEducacionController@eliminaPregunta')->name('admin.educacion.elimina.pregunta');

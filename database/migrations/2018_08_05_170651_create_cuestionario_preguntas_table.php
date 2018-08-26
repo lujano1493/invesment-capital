@@ -18,8 +18,7 @@ class CreateCuestionarioPreguntasTable extends Migration
             $table->integer("id_cuestionario");
             $table->integer("secuencia");
             $table->smallInteger("tipo");
-            $table->string("pregunta", 1024);
-            $table->string("respuesta",512);
+            $table->longText("pregunta", 1024);
             $table->decimal("puntaje",13,2);
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ class CreateCuestionariosTable extends Migration
         Schema::create('cuestionarios', function (Blueprint $table) {
             $table->increments('id');
             $table->string("titulo",512);
-            $table->string("descripcion",1000);
+            $table->longText("descripcion");
             $table->date("fecha_limite");
             $table->smallInteger("tipo");
             $table->timestamps();

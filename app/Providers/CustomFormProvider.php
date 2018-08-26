@@ -31,6 +31,9 @@ class CustomFormProvider extends ServiceProvider
 
 
         Form::component('bsInput', 'components.form.bs_input', ['name','type','options' =>[] ]);
+
+        Form::component('bsCheck', 'components.form.bs_check', ['name','type','options' =>[] ]);
+
         Form::component('bsChecable', 'components.form.bs_checkable',['name','type','options' =>[] ] );
 
         Form::component('bsButton', 'components.form.bs_button',['value','options' =>[] ] );
@@ -48,6 +51,6 @@ class CustomFormProvider extends ServiceProvider
      */
     public function register()
     {
-        
+
     }
 }

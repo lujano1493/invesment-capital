@@ -32,32 +32,8 @@
 					]) }}
 
 			</div>
-			<div class="col-12 col-sm-6">
-				{{ Form::bsInput('pregunta' ,'text' , [ 
-					'label' =>'Texto',
-					'value' =>old('pregunta'),
-					'attr' =>[
-						'required' =>true
-					]   
 
-					]) }}
-
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-6">
-				{{ Form::bsInput('respuesta' ,'text' , [ 
-					'label' =>'Respuesta',
-					'value' =>old('respuesta'),
-					'attr' =>[
-						'required' =>true
-					]   
-
-					]) }}
-				
-			</div>
-
-			<div class="col-4">
+			<div class="col-5">
 				{{ Form::bsInput('puntaje' ,'number' , [ 
 					'label' =>'Puntaje',
 					'value' =>old('puntaje'),
@@ -68,17 +44,66 @@
 					]) }}
 				
 			</div>
+			
+		</div>
+		<div class="row">
+			
+			<div class="col-12 ">
+				{{ Form::bsInput('pregunta' ,'textarea' , [ 
+					'label' =>'Texto',
+					'value' =>old('pregunta'),
+					'attr' =>[
+						'required' =>true,
+						'rows' => 2,
+						'cols' =>50
+					]   
 
-			<div class="col-2">
-					{{ Form::Button('+' , [
-							'class' => 'btn btn-primary  btn-add-opciones add-form mt-4',
+					]) }}
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 text-left">
+			<h7 > <b> Opciones </b></h7>
+			</div>
+			
+		</div>		
+		<div class="row">
+			<div id="opcion_{{$count}}" class="mt-3 sub-tmpl body-opcion">
+
+			 @isset( $pregunta  )
+				@php
+					$opciones = $pregunta->opciones;
+				@endphp
+					@foreach( $opciones AS $opcion )
+							<div class="opcion tmpl-item">
+								@include("elements.admin.educacion_configurar_opcion_tmpl", 
+				  				[  'parent_count' => $count ,'count' =>$loop->index , "opcion" => $opcion, 'type' => 'edit'])
+			  				</div>
+
+					@endforeach
+			@endisset
+
+			</div>	
+		
+		</div>	
+
+		
+
+		<div class="row">
+		 	<div class="mt-3 col-12 text-left">
+					{{ Form::Button('Agregar opciones' , [
+							'class' => 'btn btn-primary  btn-add-opciones add-form',
 							'data-target' => '#opcion_'.$count , 
 							'data-id-tmpl'=>"#tmpl-opcion",
 							'data-id-name' => "id_pregunta",
 							'data-cls-tmpl' =>"opcion",
+							'data-parent-target' => '#preguntas',
 							'data-id-value'=>  isset($pregunta) ? $pregunta->id :"",    
 							'type' =>'submit' ]  ) }}
 			</div>
+			
 		</div>
 
 

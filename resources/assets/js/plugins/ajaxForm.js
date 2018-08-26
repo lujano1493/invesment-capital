@@ -51,7 +51,12 @@ $(function() {
 
 
 	form.find("input, select, textarea").each(function(index, el) {
-		var input= $(el),name=input.attr("name");		 	
+		var input= $(el),name=input.attr("name");	
+
+		if(  (input.is(":checkbox")  ||  input .is(":radio") )  &&  !input.prop("checked")  ){
+			return true;
+		}
+
 			if(  isMultipart  ){
 					var val = input.is("[type='file']")    ?   el.files[0] : input.val();
 					data.append( name,   val  );								

@@ -1,3 +1,11 @@
+@php
+
+$user = Auth::user();
+
+$cuestionarios =$user->cuestionarios()->orderBy('id','asc')->paginate(5)->items();
+
+@endphp
+
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -12,10 +20,24 @@
                         <tr>
                             <th>#</th>
                             <th>Nombre de Cuestionario</th>
-                            <th>Fecha de Asignación</th>
-                            <th>Username</th>
+                            <th>Fecha de Fecha Limite</th>
+                            <th></th>
                         </tr>
                     </thead>
+                    <tbody>
+
+                        @foreach( $cuestionarios as $cuestionario )
+                        <tr>
+                            <td> {{ $cuestionario->id }} </td>
+                            <td>{{ $cuestionario->titulo }}</td>
+                            <td> {{ $cuestionario->fecha_limite->format('d-m-Y') }}</td>
+                            <td> <a class="btn btn-primary" href="{{ route('capital.educacion') }}"> Ver Detalles  </a></td>
+                        </tr>
+                        @endforeach
+
+
+
+                    </tbody>
                     
                 </table>
             </div>

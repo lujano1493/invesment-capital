@@ -39,7 +39,7 @@
  }
 
 
-
+ $cuestionarios = $user->cuestionarios;
 
 
 
@@ -71,7 +71,7 @@
 			"icon" =>'fa fa-arrow-up ',
 			"dsc" => "Nuevos Depositos",
 			"countNew" =>$countDepositos,
-			"route" => "invesment/deposito"
+			"route" => "capital.invesment"
 
 		])
 
@@ -80,15 +80,15 @@
 			"icon" =>'fa fa-arrow-down',
 			"dsc" => "Nuevos Retiros",
 			"countNew" =>$countRetiros,
-			"route" => "educacion/retiro"
+			"route" => "capital.invesment"
 
 		])
 	@include("elements/user/new_notifications", [
 			"colorClass" =>'panel-green',
 			"icon" =>'fa fa-tasks',
 			"dsc" => "Nuevos Cuestionarios",
-			"countNew" =>"2",
-			"route" => "educacion/asignacion"
+			"countNew" =>  $cuestionarios->count(),
+			"route" => "capital.educacion"
 
 		])
  
