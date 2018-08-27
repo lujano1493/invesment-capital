@@ -100,3 +100,31 @@
         width: 100%;
     }
 }
+
+
+
+
+/*  Tooltip  */
+
+
+
+.tooltip-inner{
+	background-color:#f71818 !important;
+}
+
+
+.tooltip.top .tooltip-arrow{
+	border-top-color: #f71818 !important;
+}
+.tooltip.left .tooltip-arrow{
+	 border-left-color:#f71818 !important;
+}
+
+.tooltip.right .tooltip-arrow{
+	 border-right-color:#f71818 !important;
+}
+.tooltip.bottom .tooltip-arrow{
+	border-bottom-color: #f71818 !important;
+}
+
+

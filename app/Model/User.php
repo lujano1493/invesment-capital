@@ -85,7 +85,7 @@ class User extends Authenticatable
 
      public function cuestionarios(){
        return $this->belongsToMany("App\Model\Cuestionario","asignacion_cuestionarios","id_user","id_cuestionario")
-           ->using("App\Model\AsignacionCuestionario")->as("asignacion")->withPivot('fecha_finalizado','id');
+           ->using("App\Model\AsignacionCuestionario")->as("asignacion")->withPivot('visto','fecha_finalizado','id');
      }
 
 

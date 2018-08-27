@@ -39,7 +39,7 @@
  }
 
 
- $cuestionarios = $user->cuestionarios;
+ $cuestionarios =$user->cuestionarios()->wherePivot("fecha_finalizado", null);
 
 
 

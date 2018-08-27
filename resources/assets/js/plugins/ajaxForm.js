@@ -29,10 +29,18 @@ $(function() {
  			always(callbacks.always  );
 	}
  $(document).on("click",".btn-ajax",function (){
- 	var  btn=$(this) ,form= btn.closest("form") ,idTmpl=btn.data("id-tmpl"), idTarget= btn.data("target-show");
- 	if( !form.valid()){
+ 	var  btn=$(this) ,form= btn.closest("form") ,idTmpl=btn.data("id-tmpl"), idTarget= btn.data("target-show"), 
+ 		customValidation = btn.data("custom-validate"), noShowMsg= !! btn.data("no-show-msg") ;
+
+ 	if( !customValidation &&  !form.valid()){
  		return false;
  	}
+
+ 	if(customValidation &&   !btn.data(customValidation)()   ){
+ 		return false;
+ 	}
+
+
  	var contentType = form.attr("enctype") || form.attr("accept");
  	var isMultipart=  contentType ==="multipart/form-data";
 	if(  /*$.isOldVersionExplorer() */ -1 !== -1 ){ 
@@ -46,27 +54,7 @@ $(function() {
 		form.submit();
 		return false;			
 	}
-
- 	var data = isMultipart ?  new FormData() : {}  ; 	
-
-
-	form.find("input, select, textarea").each(function(index, el) {
-		var input= $(el),name=input.attr("name");	
-
-		if(  (input.is(":checkbox")  ||  input .is(":radio") )  &&  !input.prop("checked")  ){
-			return true;
-		}
-
-			if(  isMultipart  ){
-					var val = input.is("[type='file']")    ?   el.files[0] : input.val();
-					data.append( name,   val  );								
-			}else{
-				data[ name ] = input.val();
-				if(input.is("[data-id-value]")){     //checamos si tiene el atributo configurado por anterios llamadas json
-					data[ name ] =input.attr("data-id-value");
-				}
-			}		 		
-	});
+ 	var data =   form.serializeForm();
 	var loading= null;
 	var callbacks= {
 		before: function(){
@@ -77,23 +65,19 @@ $(function() {
 				if(idTmpl && idTarget  && $(idTmpl).length > 0  &&$(idTarget).length > 0    ){					
 					var html=$.tmpl( idTmpl , data  );
 	 	    		$(idTarget).html(html).removeClass("invisible");
-				}else {		
-
+				}else if(! noShowMsg ){		
 					toastr[ data.status ==='ok' ? 'success' :'error' ]  (data.message, data.title ||   ( data.status ==='ok' ?'Proceso satisfactorio.'  : 'Error en el Proceso'));
 				}
-
-				if( !data.results ){
-					return false;
-				}
-
-				for(var name in data.results.inputs){
-					form.find("[name='"+name+"']").val( data.results.inputs[name]  );
-				}
-				
+				btn.trigger("done.forms.ajax",[ data]);
 				if( btn.data('clear-form') ){
 					form[0].reset();
 				}
-				btn.trigger("done.forms.ajax",[ data]);
+				if( !data.results ){
+					return false;
+				}
+				for(var name in data.results.inputs){
+					form.find("[name='"+name+"']").val( data.results.inputs[name]  );
+				}
 				if(data.results.change){
 					var change=data.results.change;
 					$(change).each(function (index,el){
@@ -118,7 +102,7 @@ $(function() {
 	 		},
 		fail: function (response,status, errorThrown  ){
 			response =  response.responseJSON?  response.responseJSON : {message:response.responseText, title : 'Error Interno de Servidor'  };
-			toastr.error(    response.message || response.mesanje    ,    response.title ||  response.titulo  || errorThrown  );
+			!noShowMsg&& toastr.error(    response.message || response.mesanje    ,    response.title ||  response.titulo  || errorThrown  );
 
 		}, 
 		always:function (){

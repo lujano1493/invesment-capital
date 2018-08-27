@@ -2,7 +2,7 @@
 
 $user = Auth::user();
 
-$cuestionarios =$user->cuestionarios()->orderBy('id','asc')->paginate(5)->items();
+$cuestionarios =$user->cuestionarios()->wherePivot("fecha_finalizado", null)->orderBy('id','asc')->paginate(5)->items();
 
 @endphp
 

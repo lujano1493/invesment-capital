@@ -36,6 +36,7 @@ mix.sass('resources/assets/sass/app-admin.scss', 'public/css/app-admin.css')
 			'node_modules/dot/doT.js',
 			'node_modules/jquery.redirect/jquery.redirect.js',
 			'resources/assets/js/plugins/scroll-element.js',
+			'resources/assets/js/plugins/serializeForm.js',
 			'node_modules/jquery-validation/dist/jquery.validate.js',
 			'node_modules/jquery-validation-bootstrap-tooltip/jquery-validate.bootstrap-tooltip.js',
 			'node_modules/toastr/toastr.js',
@@ -75,6 +76,7 @@ mix.sass(
 			'node_modules/jquery-validation-bootstrap-tooltip/jquery-validate.bootstrap-tooltip.js',
 			'node_modules/toastr/toastr.js',
 			'resources/assets/js/plugins/scroll-element.js',
+			'resources/assets/js/plugins/serializeForm.js',
 			'resources/assets/js/plugins/jquery.doT.js',
 			'resources/assets/js/plugins/calc-rfc.js',
 			'resources/assets/js/plugins/add-forms.js',
@@ -103,6 +105,7 @@ mix.sass(
 			'resources/assets/js/plugins/jq.charts-investment.js',
 			'resources/assets/js/plugins/config-app.js',
 			'resources/assets/js/capital/main.js',
+			'resources/assets/js/capital/cuestionario.js'
 
 		], 'public/js/app-invesment.js');
 

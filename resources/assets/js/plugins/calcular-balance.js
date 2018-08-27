@@ -42,6 +42,8 @@ $(document).ready(function (){
 
 	});
 
+
+
 	 $(document).on("after.forms.add","#btnAgregaSaldos",function(event,selectorTarget,tmpl){
 	 	var btn=$(this), ddPosition= btn.data('add-position') ||'last';
 	 	var selector = ddPosition =='last' ? 'nth-last-child(2)' :'nth-child(2)';
@@ -61,7 +63,7 @@ $(document).ready(function (){
 	 	var lastForm =  $("#balances .tmpl-item:" +selector);
 	 	var balance = data.results.balance;
 
-	 	if( !!balance ){
+	 	if( !balance ){
 	 		return false;
 	 	}	
 

@@ -18,6 +18,7 @@ class CreateCuestionariosTable extends Migration
             $table->string("titulo",512);
             $table->longText("descripcion");
             $table->date("fecha_limite");
+            $table->boolean("mostrar_resultados")->default(1);
             $table->smallInteger("tipo");
             $table->timestamps();
         });

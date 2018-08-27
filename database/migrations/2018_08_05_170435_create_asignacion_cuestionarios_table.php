@@ -17,6 +17,7 @@ class CreateAsignacionCuestionariosTable extends Migration
             $table->increments('id');
             $table->integer("id_user");
             $table->integer("id_cuestionario");
+            $table->boolean("visto")->default(false);
             $table->dateTime('fecha_finalizado')->nullable();
 
         });

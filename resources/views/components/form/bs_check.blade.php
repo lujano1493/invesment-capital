@@ -4,7 +4,8 @@
 	$isAdmin =  isset($user) ? $user->isAdmin() : false;
 
 	$id = isset($options['id'])?  $options['id'] : $name;
-	$attr= [   'id' =>  $id  ,'class' => $isAdmin ? 'form-check-input' :''];
+	$disabled = isset($options['disabled'])?  $options['disabled'] :false;
+	$attr= [   'id' =>  $id  ,'class' => $isAdmin ? 'form-check-input' :''  ,'disabled' => $disabled];
 	$attr =  isset($options['attr'])  ? array_merge($attr , $options['attr'])  :$attr ;
 @endphp
 

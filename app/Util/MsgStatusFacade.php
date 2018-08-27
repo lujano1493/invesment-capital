@@ -49,10 +49,14 @@ class MsgStatusFacade{
           $msg['message'] = $message['title'];
         }
         if( $route ===null ){
+          $route= Request::session()->get("routeModule");
+          if( isset($route)  ){
+            redirect()->route($route,[])->with("alert",$msg);
+          }
           return redirect()->back()->with("alert", $msg);
         }
         $name = is_array($route) ? $route[0] : $route;
-        $params = is_array($route) ? $route[1] : [];
+        $params = is_array($route) && count($route) >=2  ? $route[1] : [];
         return  redirect()->route($name,$params)->with("alert",$msg);
       }
       else{
