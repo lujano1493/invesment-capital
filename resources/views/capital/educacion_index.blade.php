@@ -41,7 +41,7 @@
                                 $clsStatus = "label-warning";
                                 $txtStatus= "En Proceso";
                             }
-                            else if ( $asignar->fecha_finalizado ){
+                            if ( $asignar->fecha_finalizado ){
                                 $clsStatus = "label-success";
                                 $txtStatus= "Finalizado";
                             }
