@@ -3,7 +3,7 @@
 
 <div class="card mt-3">
 	<div class="card-header"> 
-	Pregunta {{ $count }} 
+	Pregunta {{ $count  }} 
 	</div>
 
 	<div class="card-body">
@@ -99,7 +99,7 @@
 							'data-id-tmpl'=>"#tmpl-opcion",
 							'data-id-name' => "id_pregunta",
 							'data-cls-tmpl' =>"opcion",
-							'data-parent-target' => '#preguntas',
+							'data-parent-target' => '.pregunta',
 							'data-id-value'=>  isset($pregunta) ? $pregunta->id :"",    
 							'type' =>'submit' ]  ) }}
 			</div>

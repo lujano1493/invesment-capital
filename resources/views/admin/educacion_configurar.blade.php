@@ -39,6 +39,7 @@
 				<button 
 				class="btn btn-primary add-form" 
 				data-target="#preguntas" 
+				data-cls-tmpl ="pregunta"
 				data-id-tmpl="#tmpl-pregunta"> Agregar Pregunta</button>
 			</div>
 	  	</div>

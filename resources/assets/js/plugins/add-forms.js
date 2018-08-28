@@ -1,18 +1,22 @@
 $(document).ready(function (){
 
-
- 
  $(document).on("click",".add-form",function (){
  	var btn= $(this),form=btn.closest('form') , target = btn.data('target')
  	, idTmpl=btn.data('id-tmpl') , type= btn.data('type') , clsTmpl = btn.data("cls-tmpl") ||  target.substring(1) +'-tmpl' , count =$(target).children().length  ,
  	titleHead= btn.data('title-head') || ('Nuevo Registro ' + count), idName = btn.data("id-name"), idValue= btn.attr("data-id-value"), addPosition= btn.data('add-position') ||'last';
  	var parentTarget = btn.data('parent-target');
  	var 	tmplHTML =  '';
- 	var data ={count:count};
-
- 	if( parentTarget ){
- 		data.parentCount= $(parentTarget).children().length;
+ 	if(!btn.data("id-count")){
+ 		btn.data("id-count", count);
  	}
+ 	var id =btn.data("id-count");
+ 	var data ={count:id};
+ 	btn.data("id-count",++id);
+ 	if( parentTarget ){
+ 		var parentTmpl = btn.closest(parentTarget);
+ 		data.parentCount=  parentTmpl.index()+1 ;
+ 	}
+ 	console.log(data);
 
  	tmplHTML=$.tmpl(idTmpl,data);
 

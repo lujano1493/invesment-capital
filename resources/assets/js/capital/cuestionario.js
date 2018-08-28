@@ -1,6 +1,11 @@
 $(document).ready(function ($){
 
-	var btnTest = $("#btn-test") , customValidate= btnTest.data("custom-validate");
+	var btnTest = $("#btn-test") ;
+
+	if( btnTest.length == 0 ) {
+		return false;
+	}
+	var  customValidate= btnTest.data("custom-validate");
 	btnTest.data(customValidate, function (){
 			var preguntas = $(".pregunta_opcion");
 			var flgValidate= true;
@@ -30,6 +35,8 @@ $(document).ready(function ($){
 	btnTest.on("done.forms.ajax",function(event, data){
 		$("#modalFinalizar").modal({backdrop:'static'});
 	});
+
+
 	
 
 	setInterval( 
