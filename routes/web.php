@@ -83,6 +83,7 @@ Route::group(['prefix' => 'educacion' , 'middleware' => 'auth.access:educacion' 
     Route::post('/cuestionario/finalizar/{id}', 'CapitalController@finalizar')->where('id','[0-9]+')->name("capital.cuestionario.finalizar");
 
     Route::get('/cuestionario/resultado/{id}', 'CapitalController@resultado')->where('id','[0-9]+')->name("capital.cuestionario.resultado");
+    Route::get('/cuestionario/intentar/{id}', 'CapitalController@intentar')->where('id','[0-9]+')->name("capital.cuestionario.intentar");
 });
 
 

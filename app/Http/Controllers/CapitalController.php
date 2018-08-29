@@ -161,12 +161,35 @@ class CapitalController extends Controller
       if( $asignacion->fecha_finalizado ==null ){
         return $this->alertError("El cuestionario aun no finaliza.");
       }
+      $resultado = $asignacion->calcularCalificacion();
 
-      return view('capital.educacion_cuestionario_finalizado',compact('asignacion'));
+      return view('capital.educacion_cuestionario_finalizado',compact('resultado','id'));
 
 
     }
 
+    public function intentar(Request $request,$id){
+      if(!isset($id)){
+        return $this->alertError("Ingresa una asignacion valida.");
+      }
+      $asignacion= AsignacionCuestionario::find($id);
+      if(!isset($asignacion)){
+        return $this->alertError("No se encontro ninguna asignacion");
+      }
+      $user = Auth::user();
+      if( $user->id  != $asignacion->id_user){
+        return $this->alertError("La asignacion no pertenece al usuario actual.");
+      }
+
+      $asignacion->fecha_finalizado=null;
+      $asignacion->visto= 0;
+      $asignacion->update();
+      $affectedRows= CuestionarioUsuarioRespuesta::where('id_asignacion', $asignacion->id)->delete();
+      return $this->alertSuccess("Nuevo intento para contestar la encuesta.", ['capital.cuestionario.contestar', compact('id')]);
+
+
+
+    }
 
 
 

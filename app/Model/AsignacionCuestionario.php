@@ -33,4 +33,38 @@ class AsignacionCuestionario extends Pivot
     return $this->hasMany("App\Model\CuestionarioUsuarioRespuesta","id_asignacion");
   }
 
+
+  public function calcularCalificacion (){
+
+  $cuestionario = $this->cuestionario;
+  $respuestas =$this->respuestas;
+  $respuestas= $respuestas->pluck('id','id_opcion')->toArray();
+  $preguntas=$cuestionario->preguntas()->orderBy('secuencia','asc')->get();
+   $preguntasCorrectas=0;
+   foreach( $preguntas  as $pregunta  ){
+     $opcionesCorrecta=0;
+     $opcionesCorrectasSeleccionadas=0;
+     $opciones =  $pregunta->opciones()->orderBy('enciso','asc') ->get();
+       foreach( $opciones as  $opcion ){
+       $opcionSeleccionada= isset(  $respuestas[ $opcion->id ]   );
+       if($opcion->es_correcto){
+           $opcionesCorrecta++;
+       }
+       if($opcion->es_correcto && $opcionSeleccionada ) {
+            $opcionesCorrectasSeleccionadas++;
+       }
+     }
+     if($opcionesCorrectasSeleccionadas == $opcionesCorrecta ){
+         $preguntasCorrectas++;
+     }
+   }
+   $totalPreguntas=$preguntas->count(); 
+   return compact( 'totalPreguntas' ,'preguntasCorrectas' );
+  }
+
+  public function calculaPorcentaje(){
+      $resultado= $this->calcularCalificacion();
+      return ($resultado['totalPreguntas'] /$resultado['totalPreguntas'])*100;
+  }
+
 }

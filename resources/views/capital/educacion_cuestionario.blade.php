@@ -25,7 +25,7 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-info no-selection " role="alert">
                       {{ $cuestionario->descripcion }}
 
                 </div>
@@ -42,7 +42,7 @@
         @endphp
         @foreach( $cuestionario->preguntas()->orderBy('secuencia','asc')->get()  as $pregunta  )
             <div class="row {{ $loop->first ? 'margin-top3' :'margin-top4'   }}" >
-                <div id="pregunta_{{ $loop->index }}" class="col-12 ">
+                <div id="pregunta_{{ $loop->index }}" class="col-12 no-selection ">
                      <b>{{  $pregunta->secuencia }} .</b>  {{ $pregunta->pregunta }}
                 </div>
                 
@@ -53,7 +53,7 @@
                     $opciones =  $pregunta->opciones()->orderBy('enciso','asc') ->get();
                 @endphp
                 @foreach( $opciones as  $opcion )
-                <div class="col-11 col-xs-offset-1 opciones" >
+                <div class="col-11 col-xs-offset-1 opciones no-selection " >
 
 
                         {{ Form::bsCheck( "opciones[".( $count++)."]" ,'checkbox' , [ 
@@ -85,7 +85,7 @@
         <h4 class="modal-title">Finalización de Cuestionario</h4>
       </div>
       <div class="modal-body">
-        <p> El proceso del cuestionario ha terminado con exito. Te invitamos a elegir las siguientes opcion </p>
+        <p> El proceso del cuestionario ha terminado con exito. Te invitamos a elegir las siguientes opciones </p>
       </div>
       <div class="modal-footer">
         <a id="btnResultados" class="btn btn-primary"  href="{{route('capital.cuestionario.resultado' , $asignacion) }}" >Revisar Resultados</a>

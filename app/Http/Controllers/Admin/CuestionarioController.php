@@ -171,6 +171,12 @@ trait CuestionarioController
                   'closest' => '.tmpl-item'
                 ],
                 [
+                    'text' => 'Pregunta '. $pregunta->secuencia,
+                   'closest' =>'.tmpl-item',
+                   'selector' => '.title-acor-btn'
+                ],
+
+                [
                   'selector' =>  '[name="id_pregunta"]',
                   'attr' => ['value'=> $pregunta->id  ],
                   'closest' => '.tmpl-item'
