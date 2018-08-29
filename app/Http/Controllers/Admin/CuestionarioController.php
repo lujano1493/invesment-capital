@@ -8,6 +8,7 @@ use App\Model\User;
 use App\Model\Cuestionario;
 use App\Model\CuestionarioPreguntas;
 use App\Model\CuestionarioPreguntasOpciones;
+use App\Model\AsignacionCuestionario;
 
 trait CuestionarioController
 {
@@ -80,6 +81,26 @@ trait CuestionarioController
         $msg="La encuesta fue asignada correctamente.";
       }
       return  $this->alertSuccess($msg) ;
+    }
+
+    public function verResultado($id){
+
+      if(!isset($id)){
+        return $this->alertError('Ingresa una asignacion valida.');
+      }
+      $asignacion= AsignacionCuestionario::find($id);
+      if(!isset($asignacion)){
+        return $this->alertError("No se encontro ninguna asignacion");
+      }
+    
+      if( $asignacion->fecha_finalizado ==null ){
+        return $this->alertError("El cuestionario aun no finaliza.");
+      }
+      $resultado = $asignacion->calcularCalificacion();
+
+      return view('admin.educacion_asigna_resultado',compact('asignacion'));
+
+
     }
 
 

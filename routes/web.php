@@ -150,6 +150,9 @@ Route::prefix('admin')->group(function (){
 
     Route::get('educacion/cuestionario/vista/{id}','AdminEducacionController@verCuestionario')->where('id','[0-9]+')->name('admin.educacion.ver.cuestionario');
 
+
+    Route::get('educacion/cuestionario/resultado/{id}','AdminEducacionController@verResultado')->where('id','[0-9]+')->name('admin.educacion.ver.resultado');
+
     Route::post('educacion/pregunta/{id?}', 'AdminEducacionController@editarPregunta')->where('id','[0-9]+')->name('admin.educacion.pregunta');
     Route::get('educacion/elimina/pregunta', 'AdminEducacionController@eliminaPregunta')->name('admin.educacion.elimina.pregunta');
 
