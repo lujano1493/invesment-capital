@@ -22,8 +22,9 @@
 					'label' =>'Tipo de Pregunta',
 					'value' =>old('tipo'),
 					'list' =>[
-							1 => 'Opción multiple',
-							2 => 'Respuesta abierta'
+							1 => 'Una sola opción',
+							2 => 'Opcion multiple',
+							3 => 'Respuesta abierta'
 					],
 					'attr' =>[
 						'required' =>true
@@ -33,18 +34,7 @@
 
 			</div>
 
-			<div class="col-5">
-				{{ Form::bsInput('puntaje' ,'number' , [ 
-					'label' =>'Puntaje',
-					'value' =>old('puntaje'),
-					'attr' =>[
-						'required' =>true
-					]   
-
-					]) }}
-				
-			</div>
-			
+		
 		</div>
 		<div class="row">
 			

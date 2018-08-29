@@ -16,12 +16,7 @@ $(document).ready(function (){
  		var parentTmpl = btn.closest(parentTarget);
  		data.parentCount=  parentTmpl.index()+1 ;
  	}
- 	console.log(data);
-
  	tmplHTML=$.tmpl(idTmpl,data);
-
-
-
  	if( type  === 'accordion'){
  		tmplHTML =  $.tmpl('#tmpl-accordion-add', {targetContent: target+'_'+count ,titleHead: titleHead, target:target ,body : tmplHTML })
  	} else{
