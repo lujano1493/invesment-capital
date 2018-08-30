@@ -71,6 +71,15 @@
                                             ])  
 
                                     }}" > {{ $textBtn }} </a>
+                                @if($cuestionarios->isNotEmpty() )
+                                    @php
+                                            $asignacion = $cuestionarios->get(0)->asignacion;
+                                    @endphp
+                                    @if($asignacion->fecha_finalizado)
+                                        <a class="btn btn-primary" href="{{ route('admin.educacion.ver.resultado', $asignacion) }}"> Ver Resultado </a>
+                                    @endif
+
+                                @endif
                 			 </td>
 
                 	</tr>

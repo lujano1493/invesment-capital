@@ -6,6 +6,8 @@
 @section('content')
 
 @php
+    
+    $usuario = $asignacion->usuario;
     $cuestionario = $asignacion->cuestionario;
     $respuestas =$asignacion->respuestas;
     $respuestas= $respuestas->pluck('id','id_opcion')->toArray();
@@ -91,14 +93,21 @@
      <div class="col-12">
             
         <h5>
-            De un total de {{ $preguntas->count() }} preguntas  tuviste {{ $preguntasCorrectas }} correctas y {{ $preguntas->count()-$preguntasCorrectas }} incorrectas
-        </h5> 
+            De un total de {{ $preguntas->count() }} preguntas  tuvo {{ $preguntasCorrectas }} correctas y {{ $preguntas->count()-$preguntasCorrectas }} incorrectas
+        </h5>
+        <h5>
+            El porcentaje obtenido fue de  @percentage($asignacion->calculaPorcentaje())
+
+        </h5>
+
      </div>
  </div>
  
 
    <div class="form-group text-center mt-3">
-        <a class="btn btn-warning" href ="{{ route('capital.educacion') }}"> Regresar </a>
+        <a class="btn btn-warning" href ="{{ route('admin.educacion.asigna.cuestionario' ,[
+              'idUser' =>   $cuestionario->id
+          ]) }}"> Regresar </a>
     </div>
 
 @endsection

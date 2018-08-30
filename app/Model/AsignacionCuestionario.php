@@ -58,13 +58,13 @@ class AsignacionCuestionario extends Pivot
          $preguntasCorrectas++;
      }
    }
-   $totalPreguntas=$preguntas->count(); 
+   $totalPreguntas=$preguntas->count();
    return compact( 'totalPreguntas' ,'preguntasCorrectas' );
   }
 
   public function calculaPorcentaje(){
       $resultado= $this->calcularCalificacion();
-      return ($resultado['totalPreguntas'] /$resultado['totalPreguntas'])*100;
+      return ($resultado['preguntasCorrectas'] /$resultado['totalPreguntas'])*100;
   }
 
 }
