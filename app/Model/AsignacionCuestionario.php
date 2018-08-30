@@ -67,4 +67,23 @@ class AsignacionCuestionario extends Pivot
       return ($resultado['preguntasCorrectas'] /$resultado['totalPreguntas'])*100;
   }
 
+
+
+  protected static function  boot(){
+      parent::boot();
+
+      static::creating(function ($asignacion){
+          //Envio de notificacion cuando se le asigne al usuario
+      });
+
+      static::updating(function ( $asignacion){
+
+        //notificacion cuando se termine de manera satisfactoria
+      });
+
+
+
+
+  }
+
 }

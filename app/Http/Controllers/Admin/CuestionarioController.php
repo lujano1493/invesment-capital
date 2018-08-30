@@ -74,6 +74,10 @@ trait CuestionarioController
       $cuestionarios = $user->cuestionarios()->wherePivot('id_cuestionario',$idCuestionario )->get();
       $msg="La encuesta fue  desasignada correctamente.";
       if( $cuestionarios->isNotEmpty()){
+        $asignacion =$cuestionarios->get(0)->asignacion;
+        if($asignacion->visto){
+          return $this->alertError("No se puede desasignar la encuesta, se encuentra en proceso o ha finalizado.");
+        }
         $user->cuestionarios()->detach($idCuestionario);
       }
       else {
@@ -92,7 +96,7 @@ trait CuestionarioController
       if(!isset($asignacion)){
         return $this->alertError("No se encontro ninguna asignacion");
       }
-    
+
       if( $asignacion->fecha_finalizado ==null ){
         return $this->alertError("El cuestionario aun no finaliza.");
       }

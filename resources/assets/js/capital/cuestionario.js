@@ -37,6 +37,14 @@ $(document).ready(function ($){
 	});
 
 
+	$(document).on("change","input:checkbox",function(event){
+		var check= $(this),checked = check.prop("checked") , group=  check.closest(".pregunta_opcion");
+		 group.find("input:checkbox").prop("checked",false);
+		 check.prop("checked",checked);
+
+	});
+
+
 	
 
 	setInterval( 
