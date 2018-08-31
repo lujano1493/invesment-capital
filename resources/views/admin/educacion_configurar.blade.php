@@ -14,7 +14,7 @@
 	@isset( $cuestionario)
 
 	@php
-			$preguntas = $cuestionario ->preguntas()->orderBy("secuencia","asc")->get();
+			$preguntas = $cuestionario ->preguntas;
 	@endphp
 
 	<div class="card">

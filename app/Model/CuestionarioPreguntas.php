@@ -13,6 +13,6 @@ class CuestionarioPreguntas extends Model
     ];
 
     public function opciones(){
-      return $this->hasMany("App\Model\CuestionarioPreguntasOpciones","id_pregunta");
+      return $this->hasMany("App\Model\CuestionarioPreguntasOpciones","id_pregunta")->orderBy('enciso','asc');
     }
 }

@@ -75,13 +75,18 @@ trait CuestionarioController
       $msg="La encuesta fue  desasignada correctamente.";
       if( $cuestionarios->isNotEmpty()){
         $asignacion =$cuestionarios->get(0)->asignacion;
-        if($asignacion->visto){
+        if($asignacion->visto   ){
           return $this->alertError("No se puede desasignar la encuesta, se encuentra en proceso o ha finalizado.");
         }
         $user->cuestionarios()->detach($idCuestionario);
       }
       else {
           $user->cuestionarios()->attach($idCuestionario);
+
+          $cuestionarios = $user->cuestionarios()->wherePivot('id_cuestionario',$idCuestionario )->get();
+          $cuestionario= $cuestionarios->get(0);
+          $asignacion = $cuestionario->asignacion;
+          $asignacion->notificarAsignacion();
         $msg="La encuesta fue asignada correctamente.";
       }
       return  $this->alertSuccess($msg) ;

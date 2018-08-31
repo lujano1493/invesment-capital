@@ -161,9 +161,8 @@ class CapitalController extends Controller
       if( $asignacion->fecha_finalizado ==null ){
         return $this->alertError("El cuestionario aun no finaliza.");
       }
-      $resultado = $asignacion->calcularCalificacion();
 
-      return view('capital.educacion_cuestionario_finalizado',compact('resultado','id'));
+      return view('capital.educacion_cuestionario_finalizado',compact('asignacion'));
 
 
     }

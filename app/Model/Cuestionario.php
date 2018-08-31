@@ -33,7 +33,7 @@ class Cuestionario extends Model
 
 
 public function preguntas(){
-  return $this->hasMany("App\Model\CuestionarioPreguntas","id_cuestionario");
+  return $this->hasMany("App\Model\CuestionarioPreguntas","id_cuestionario")->orderBy('secuencia','asc');
 }
 
 public function usuarios(){

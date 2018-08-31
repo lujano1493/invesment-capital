@@ -1,10 +1,7 @@
 $(document).ready(function (){
-
-
 	$(document).on("click",".btn-calcular",function (){
 		var btn = $(this),type =btn.data("type"),selectTarget= btn.data("target"), 
 			url = btn.data("url"),form = btn.closest("form"), target= form.find( selectTarget);
-
 		if( type === "remote" ){
 			var loading= new Loading({zIndex:500,title:'Espere un momento'});
 	 			btn.prop("disabled",true);
@@ -14,7 +11,6 @@ $(document).ready(function (){
 	 				btn.prop("disabled",false);
 	 				loading.out();
 	 			});
-
 		}
 		else if (type === "summation" || type === "sum" ) {
 			var selectInputs = btn.data("inputs"),inputs= form.find(selectInputs);
@@ -37,14 +33,10 @@ $(document).ready(function (){
 		else if (type =="valiaInversoPercent"  ){
 			var result = 1* form.find("[data-type-calc='result']").val(),value = 1*form.find("[data-type-calc='value']").val();
 			var percent =  (100*result/value) -100;
-			
 			target.val(  percent.toFixed(2)  );
-
 		}
 
 	});
-
-
 
 	 $(document).on("after.forms.add","#btnAgregaSaldos",function(event,selectorTarget,tmpl){
 	 	var btn=$(this), ddPosition= btn.data('add-position') ||'last';

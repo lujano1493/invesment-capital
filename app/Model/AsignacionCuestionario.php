@@ -4,10 +4,14 @@ namespace App\Model;
 
 use \Illuminate\Database\Eloquent\Relations\Pivot;
 use Collective\Html\Eloquent\FormAccessible;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\CuestionarioAsignadoNotification;
+use App\Notifications\CuestionarioFinalizacionNotification;
 
 class AsignacionCuestionario extends Pivot
 {
   use FormAccessible;
+  use Notifiable;
 
   public $table="asignacion_cuestionarios";
   public $timestamps=false;
@@ -39,24 +43,30 @@ class AsignacionCuestionario extends Pivot
   $cuestionario = $this->cuestionario;
   $respuestas =$this->respuestas;
   $respuestas= $respuestas->pluck('id','id_opcion')->toArray();
-  $preguntas=$cuestionario->preguntas()->orderBy('secuencia','asc')->get();
+  $preguntas=$cuestionario->preguntas;
    $preguntasCorrectas=0;
    foreach( $preguntas  as $pregunta  ){
      $opcionesCorrecta=0;
      $opcionesCorrectasSeleccionadas=0;
-     $opciones =  $pregunta->opciones()->orderBy('enciso','asc') ->get();
+     $opciones =  $pregunta->opciones;
        foreach( $opciones as  $opcion ){
-       $opcionSeleccionada= isset(  $respuestas[ $opcion->id ]   );
+       $opcion->es_seleccionada= isset(  $respuestas[ $opcion->id ]   );
        if($opcion->es_correcto){
            $opcionesCorrecta++;
        }
-       if($opcion->es_correcto && $opcionSeleccionada ) {
+       if($opcion->es_correcto && $opcion->es_seleccionada ) {
             $opcionesCorrectasSeleccionadas++;
        }
+       if(!$opcion->es_correcto && $opcion->es_seleccionada ) {  /* Si es incorrecta restamos  */
+            $opcionesCorrectasSeleccionadas--;
+       }
+
      }
      if($opcionesCorrectasSeleccionadas == $opcionesCorrecta ){
          $preguntasCorrectas++;
      }
+      $pregunta->es_correcta=  $opcionesCorrectasSeleccionadas==$opcionesCorrecta ? true:false   ;
+
    }
    $totalPreguntas=$preguntas->count();
    return compact( 'totalPreguntas' ,'preguntasCorrectas' );
@@ -67,16 +77,48 @@ class AsignacionCuestionario extends Pivot
       return ($resultado['preguntasCorrectas'] /$resultado['totalPreguntas'])*100;
   }
 
+  public function pasaCuestionario(){
+      $porcentaje =$this->calculaPorcentaje();
+      return  $porcentaje>=60;
+  }
+
+
+  public function notificarAsignacion(){
+      $usuario=  $this->usuario;
+      $cuestionario = $this->cuestionario;
+      $this->email = $usuario->email;
+
+      $data= [ 'nombre' => $usuario->fullName,
+                'email' => $usuario->email,
+                'nombre_encuesta' => $cuestionario->titulo,
+                'id' => $this->id,
+              ];
+      $this->notify( new CuestionarioAsignadoNotification($data) );
+
+  }
+
+  public function notificarFinalizacion(){
+      $usuario=  $this->usuario;
+      $cuestionario = $this->cuestionario;
+      $this->notify( new CuestionarioFinalizacionNotification($data) );
+
+  }
 
 
   protected static function  boot(){
       parent::boot();
 
       static::creating(function ($asignacion){
+
           //Envio de notificacion cuando se le asigne al usuario
       });
 
-      static::updating(function ( $asignacion){
+      static::updated(function ( $asignacion){
+
+          if(  $asignacion->fecha_finalizado &&  $asignacion->pasaCuestionario()){
+              $asignacion->notificarFinalizacion();
+          }
+
 
         //notificacion cuando se termine de manera satisfactoria
       });
