@@ -29,13 +29,15 @@ $(document).ready(function (){
 		}
 		else if ( type  == "ValiaPercentage"  || type == "ValiaPercent" ){
 			var percent = 1* form.find("[data-type-calc='percent']").val(),value = 1*form.find("[data-type-calc='value']").val();
-			var result=  value  + (value* (percent/100));
+			var depositos = 1* form.find("[name='payments']").val();
+			var result=  value  + (    depositos* (percent/100));
 			target.val(  result.toFixed(2)  );
 		}
 
 		else if (type =="valiaInversoPercent"  ){
 			var result = 1* form.find("[data-type-calc='result']").val(),value = 1*form.find("[data-type-calc='value']").val();
 			var percent =  (100*result/value) -100;
+			
 			target.val(  percent.toFixed(2)  );
 
 		}

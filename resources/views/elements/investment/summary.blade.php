@@ -22,16 +22,14 @@
    \Carbon\Carbon::setLocale("es");
    $fecha= \Carbon\Carbon::now();
 
-
    if($balances->count() > 0 ){
       $balance= $balances->get(0);
-      $totalAportaciones=  $balance->balance;
-      $saldoTotal=$balance->balance_total;
-     
-      $fecha= $balance->updated_at;
+      $minusvalia=  ( (  $balance->change /100 )    *  $balance->payments   ) ;
+      $totalAportaciones=  $balance->payments - $balance->withdrawals;
+      $saldoTotal= $totalAportaciones  +   $minusvalia     ;
       $porcetanjeMinusValia= $balance->change;
-      $minusvalia= $saldoTotal - $totalAportaciones;
-
+      $fecha= $balance->updated_at;
+    
       $fondoRentaV = $balance->renta_variable;
       $fondoDeuda = $balance->deuda;
    }

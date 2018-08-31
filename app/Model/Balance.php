@@ -55,13 +55,13 @@ class Balance extends Model
             'id_status_transaction' => 2 ])->sum('amount');
 
 
-      $saldoBase = $despositos-$retiros;
-      $porcentaje =  $balance->change /100;
-      $saldoTotal =  $saldoBase + ($saldoBase * $porcentaje) ;
+      $totalAportaciones = $despositos-$retiros;
+      $minusvalia =  ($balance->change /100) * $despositos;
+      $saldoTotal =  $totalAportaciones + $minusvalia ;
       $data = [
             'payments' => $despositos,
             'withdrawals' => $retiros,
-            'balance' => $saldoBase,
+            'balance' => $totalAportaciones,
             'balance_total' => $saldoTotal
         ] ;
       $balance->fill( $data);
