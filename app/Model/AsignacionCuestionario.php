@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Notifications\CuestionarioAsignadoNotification;
 use App\Notifications\CuestionarioFinalizacionNotification;
 
+
 class AsignacionCuestionario extends Pivot
 {
   use FormAccessible;
@@ -100,7 +101,23 @@ class AsignacionCuestionario extends Pivot
   public function notificarFinalizacion(){
       $usuario=  $this->usuario;
       $cuestionario = $this->cuestionario;
-      $this->notify( new CuestionarioFinalizacionNotification($data) );
+
+      $usersAdmin = User::where('id_role', User::ROLE_ADMIN)->get();
+
+      foreach($usersAdmin as $admin){
+        $this->email= $admin->email;
+        $data=[
+          'nombre' => $admin->fullName,
+          'correo' => $usuario->email,
+          'id' => $this->id
+        ];
+        $this->notify( new CuestionarioFinalizacionNotification($data) );
+
+      }
+
+
+
+
 
   }
 
@@ -108,7 +125,7 @@ class AsignacionCuestionario extends Pivot
   protected static function  boot(){
       parent::boot();
 
-      static::creating(function ($asignacion){
+      static::created(function ($asignacion){
 
           //Envio de notificacion cuando se le asigne al usuario
       });

@@ -12,6 +12,8 @@ use App\Model\AsignacionCuestionario;
 use App\Model\CuestionarioUsuarioRespuesta;
 use App\Model\CuestionarioPreguntasOpciones;
 
+use Carbon\Carbon;
+
 class CapitalController extends Controller
 {
 
@@ -62,6 +64,14 @@ class CapitalController extends Controller
       if( $user->id  != $asignacion->id_user){
         return $this->alertError("La asignacion no pertenece al usuario actual.");
       }
+      $cuestionario = $asignacion->cuestionario;
+      if( $cuestionario->fecha_limite   &&  $cuestionario->fecha_limite < Carbon::today() ){
+        $asignacion->visto = true;
+        $asignacion->fecha_finalizado= date("Y-m-d H:i:s");
+        $asignacion->update();
+        return $this->alertError("El plazo a terminado y por lo tanto se finaliza la encuesta.");
+      }
+
       if( $asignacion->fecha_finalizado !=null ){
         return $this->alertError("El cuestionario ya fue finalizado.");
       }
@@ -86,7 +96,10 @@ class CapitalController extends Controller
       if( $user->id  != $asignacion->id_user){
         return $this->alertError("La asignacion no pertenece al usuario actual.");
       }
-
+      $cuestionario=$asignacion->cuestionario;
+      if( $cuestionario->fecha_limite   &&  $cuestionario->fecha_limite < Carbon::today() ){
+        return $this->alertError("El plazo a terminado y por lo tanto no se puede guardar.");
+      }
       if( $asignacion->fecha_finalizado !=null ){
         return $this->alertError("El cuestionario ya fue finalizado.");
       }
@@ -122,7 +135,7 @@ class CapitalController extends Controller
       $this->guardarOpciones($data['opciones'],$asignacion);
       $asignacion->fecha_finalizado= date("Y-m-d H:i:s");
       $asignacion->update();
-      return $this->alertSuccess("El cuestinario fue finalizado correctamente");
+      return $this->alertSuccess("El cuestionario fue finalizado correctamente");
 
     }
 

@@ -11,14 +11,13 @@ class CuestionarioFinalizacionNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $data=null;
+
+
+
+    public function __construct($data)
     {
-        //
+          $this->data=$data;
     }
 
     /**
@@ -41,9 +40,14 @@ class CuestionarioFinalizacionNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->from("notification@capital444.com.mx","Notificación Finalización de Cuestionario")
+                    ->subject('Encuestas Finalizada')
+                    ->greeting("Hola   {$this->data['nombre']},")
+                    ->line( "el usuario: ".$this->data['correo']  ." ha terminado la encuesta." )
+                    ->line(" Para poder ver los resultados, de clic en el siguiente botón.")
+                    ->action('Ver Detalle', url(config('app.url') . route('admin.educacion.ver.resultado'  ,
+                      ['id' => $this->data['id']]  ,false)))
+                    ->salutation('');
     }
 
     /**
