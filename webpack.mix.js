@@ -31,8 +31,8 @@ mix.sass('resources/assets/sass/app-admin.scss', 'public/css/app-admin.css')
 	.js('resources/assets/js/app-admin.js', 'public/js')
 	.styles([
 			'public/css/app-admin.css',
-			'node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css'], 'public/css/app-admin.css')
-	.babel([
+			'node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css'], 'public/css/app-admin.css');
+	/*.babel([
 			'node_modules/dot/doT.js',
 			'node_modules/jquery.redirect/jquery.redirect.js',
 			'resources/assets/js/plugins/scroll-element.js',
@@ -50,7 +50,7 @@ mix.sass('resources/assets/sass/app-admin.scss', 'public/css/app-admin.css')
 			'resources/assets/js/plugins/config-app.js',
 			'resources/assets/js/admin/main.js',
 
-		],'public/js/main-admin.js');
+		],'public/js/main-admin.js');*/
 
 /*.Estilos y script para  Usuarios normale */
 
@@ -64,7 +64,7 @@ mix.sass(
 	'node_modules/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css',
 	'resources/assets/vendor/jquery.jqplot.1.0.9/jquery.jqplot.css'
 
-	] ,'public/css/app-invesment.css')
+	] ,'public/css/app-invesment.css');/*
 	.babel(
 		[
 			'node_modules/startbootstrap-sb-admin/vendor/jquery/jquery.js',
@@ -107,7 +107,7 @@ mix.sass(
 			'resources/assets/js/capital/main.js',
 			'resources/assets/js/capital/cuestionario.js'
 
-		], 'public/js/app-invesment.js');
+		], 'public/js/app-invesment.js');*/
 
 
 mix.browserSync('invesment.capital');
