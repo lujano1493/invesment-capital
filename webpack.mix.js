@@ -50,7 +50,7 @@ mix.sass('resources/assets/sass/app-admin.scss', 'public/css/app-admin.css')
 			'resources/assets/js/plugins/config-app.js',
 			'resources/assets/js/admin/main.js',
 
-		],'public/js/main-admin.js');
+		],'public/js/plugin-admin.js');
 
 /*.Estilos y script para  Usuarios normale */
 
@@ -107,4 +107,4 @@ mix.sass(
 			'resources/assets/js/capital/main.js',
 			'resources/assets/js/capital/cuestionario.js'
 
-		], 'public/js/app-invesment.js');
+		], 'public/js/app-plugin.js');

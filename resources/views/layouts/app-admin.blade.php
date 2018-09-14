@@ -53,7 +53,7 @@
    
     <!-- Scripts -->
     <script src="{{ asset('js/app-admin.js') }}"></script>
-    <script src="{{ asset('js/main-admin.js') }}"></script>
+    <script src="{{ asset('js/plugin-admin.js') }}"></script>
   </div>
 </body>
 

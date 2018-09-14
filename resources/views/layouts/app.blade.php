@@ -59,9 +59,8 @@
         <!-- /#page-wrapper -->
 
     </div>
-     <script src="{{ asset('js/app-invesment.js') }}"></script>
+     <script src="{{ asset('js/app-plugin.js') }}" ></script>
    
-
 
 
 

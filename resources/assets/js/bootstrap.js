@@ -41,7 +41,7 @@ if (token) {
     require('startbootstrap-sb-admin/js/sb-admin');
 
     require('chart.js');
-    require('datatables.net')
+    require('datatables.net');
     //require('startbootstrap-sb-admin/js/s');
 
 /**
