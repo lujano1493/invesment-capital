@@ -12,6 +12,11 @@ del(['public/js/*']).then(
    	console.log('\nEliminando archivos javascripts :\n', paths.join('\n'));
 	}
 );
+del(['public/fonts/*']).then( 
+	(paths) => {
+   	console.log('\nEliminando archivos fonts :\n', paths.join('\n'));
+	}
+);
 
 
 /*
@@ -65,8 +70,7 @@ mix.sass(
 	'resources/assets/vendor/jquery.jqplot.1.0.9/jquery.jqplot.css'
 
 	] ,'public/css/app-invesment.css')
-	.babel(
-		[
+	.babel([
 			'node_modules/startbootstrap-sb-admin/vendor/jquery/jquery.js',
 			'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
 			'node_modules/datatables.net/js/jquery.dataTables.js',
@@ -74,7 +78,10 @@ mix.sass(
 			'node_modules/jquery.redirect/jquery.redirect.js',
 			'node_modules/jquery-validation/dist/jquery.validate.js',
 			'node_modules/jquery-validation-bootstrap-tooltip/jquery-validate.bootstrap-tooltip.js',
-			'node_modules/toastr/toastr.js',
+			'node_modules/toastr/toastr.js'
+		], 'public/js/app.js')
+	.babel(
+		[
 			'resources/assets/js/plugins/scroll-element.js',
 			'resources/assets/js/plugins/serializeForm.js',
 			'resources/assets/js/plugins/jquery.doT.js',
@@ -88,18 +95,6 @@ mix.sass(
 			'node_modules/particles.js/particles.js',
 			'node_modules/startbootstrap-sb-admin-2/vendor/raphael/raphael.js',
 			'node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/jquery.jqplot.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.donutRenderer.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.dateAxisRenderer.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.logAxisRenderer.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.canvasTextRenderer.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.canvasAxisTickRenderer.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.highlighter.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.barRenderer.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.pieRenderer.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.categoryAxisRenderer.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.enhancedPieLegendRenderer.js',
-			'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.pointLabels.js',
 			'node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.js',
 			'resources/assets/js/plugins/jquery.chart-morris.js',
 			'resources/assets/js/plugins/jq.charts-investment.js',
@@ -107,4 +102,19 @@ mix.sass(
 			'resources/assets/js/capital/main.js',
 			'resources/assets/js/capital/cuestionario.js'
 
-		], 'public/js/app-plugin.js');
+		], 'public/js/app-plugin.js')
+
+	.babel([
+		'resources/assets/vendor/jquery.jqplot.1.0.9/jquery.jqplot.js',
+		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.donutRenderer.js',
+		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.dateAxisRenderer.js',
+		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.logAxisRenderer.js',
+		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.canvasTextRenderer.js',
+		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.canvasAxisTickRenderer.js',
+		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.highlighter.js',
+		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.barRenderer.js',
+		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.pieRenderer.js',
+		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.categoryAxisRenderer.js',
+		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.enhancedPieLegendRenderer.js',
+		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.pointLabels.js'
+		], 'public/js/jqplot.js');
