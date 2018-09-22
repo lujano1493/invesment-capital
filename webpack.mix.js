@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+const child_process = require("child_process");
 const del = require('del');
 /** Elominamos archivos temporale*/
 del(['public/css/*']).then( 
@@ -32,6 +33,10 @@ del(['public/fonts/*']).then(
 
 /*.Estilos para administrativos */
 
+
+function mixadmin(){
+
+
 mix.sass('resources/assets/sass/app-admin.scss', 'public/css/app-admin.css')
 	.js('resources/assets/js/app-admin.js', 'public/js')
 	.styles([
@@ -57,9 +62,15 @@ mix.sass('resources/assets/sass/app-admin.scss', 'public/css/app-admin.css')
 
 		],'public/js/plugin-admin.js');
 
+}
+
+
 /*.Estilos y script para  Usuarios normale */
 
-mix.sass(
+
+function mixApp(){
+
+	mix.sass(
 		'resources/assets/sass/app.scss', 'public/css/app-invesment.css')
 	.styles([
 	'public/css/app-invesment.css',
@@ -80,7 +91,14 @@ mix.sass(
 			'node_modules/jquery-validation-bootstrap-tooltip/jquery-validate.bootstrap-tooltip.js',
 			'node_modules/toastr/toastr.js'
 		], 'public/js/app.js')
-	.babel(
+
+
+}
+
+function mixPlugins(){
+
+
+	mix.babel(
 		[
 			'resources/assets/js/plugins/scroll-element.js',
 			'resources/assets/js/plugins/serializeForm.js',
@@ -102,9 +120,12 @@ mix.sass(
 			'resources/assets/js/capital/main.js',
 			'resources/assets/js/capital/cuestionario.js'
 
-		], 'public/js/app-plugin.js')
+		], 'public/js/app-plugin.js');
 
-	.babel([
+}
+
+function mixJplot(){
+	mix.babel([
 		'resources/assets/vendor/jquery.jqplot.1.0.9/jquery.jqplot.js',
 		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.donutRenderer.js',
 		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.dateAxisRenderer.js',
@@ -118,3 +139,17 @@ mix.sass(
 		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.enhancedPieLegendRenderer.js',
 		'resources/assets/vendor/jquery.jqplot.1.0.9/plugins/jqplot.pointLabels.js'
 		], 'public/js/jqplot.js');
+
+}
+	
+
+
+mixadmin();
+child_process.execSync("sleep 10");
+mixApp();
+child_process.execSync("sleep 10");
+mixPlugins();
+child_process.execSync("sleep 10");
+mixJplot();
+
+	

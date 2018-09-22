@@ -199,8 +199,6 @@ class CapitalController extends Controller
       $affectedRows= CuestionarioUsuarioRespuesta::where('id_asignacion', $asignacion->id)->delete();
       return $this->alertSuccess("Nuevo intento para contestar la encuesta.", ['capital.cuestionario.contestar', compact('id')]);
 
-
-
     }
 
 
