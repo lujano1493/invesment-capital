@@ -145,13 +145,13 @@ class LoginController extends Controller
 
 
 
-    public function active_user($token){
+    public function active_user($token,Request $request){
 
         $ticket= Tickets::where('token' ,$token)->first();
 
         if($ticket == null ){
            throw new NotFoundHttpException('no se encontro token para activar usuario, reenvie correo de activación.');
-            
+
         }
         $user = User::find(  (int)$ticket->entity_id );
         if($user == null){
@@ -160,6 +160,11 @@ class LoginController extends Controller
         $user->status= User::STATUS_ACTIVE;
         if ($user->save()){
             $ticket->delete();
+            $credentials = $request->only('email','password');
+            $msg="La cuenta de usuario fue activada correctamente.";
+            if(!empty($credentials)){
+                return  $this->alertSuccess("La cuenta de usuario fue activada correctamente.", ['loginget' , $credentials]);
+            }
            return $this->alertSuccess("La cuenta de usuario fue activada correctamente. ya puede ingresar al sistema.",'login');
 
         }

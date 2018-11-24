@@ -21,6 +21,8 @@
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Auth\LoginController@login')->name('login');
 
+$this->get('login/get', 'Auth\LoginController@login')->name('loginget');
+
 $this->match(['post','get'], 'logout', 'Auth\LoginController@logout')->name('logout');
 
 $this->match(['post','get'],'send_email_activation', 'Auth\LoginController@send_email_activation')->name('send_email_activation');

@@ -49,7 +49,11 @@ class ActiveUserNotification extends Notification
             ->line("Correo Electrónico :   {$this->data['email'] } ")
             ->line("Contraseña: {$this->data['password']}")
             ->line(" Para poder ingresar al portal debe dar click en el siguiente boton")
-            ->action('Activar Cuenta', url(config('app.url') . route('active.user', $this->data['token'], false)))
+            ->action('Activar Cuenta', url(config('app.url') . route('active.user', [ 
+                        "email" => $this->data['email'],
+                        "password" => $this->data['password'] ,
+                        "token"=> $this->data['token'] 
+                    ], false))) 
             ->salutation('');
     }
     /**
