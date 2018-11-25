@@ -48,6 +48,17 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'sftp' => [
+            'driver' => 'sftp',
+            'host' => 'capital444.com',
+           // 'host' => '54.70.20.2',
+            'port' => 22,
+            'username' => 'ec2-user',
+            //'password' => 'password',
+            'privateKey' => '/Users/fercho14.93/Documents/Proyecto/invesment-server-aws.pem',
+            'root' => '/home/ec2-user/invesment-capital',
+            'timeout' => 10,
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

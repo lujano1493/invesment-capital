@@ -1,1 +1,9 @@
-{}
+{
+    "/js/app-admin.js": "/js/app-admin.js",
+    "/css/app-admin.css": "/css/app-admin.css",
+    "/css/app-invesment.css": "/css/app-invesment.css",
+    "/js/plugin-admin.js": "/js/plugin-admin.js",
+    "/js/app.js": "/js/app.js",
+    "/js/app-plugin.js": "/js/app-plugin.js",
+    "/js/jqplot.js": "/js/jqplot.js"
+}

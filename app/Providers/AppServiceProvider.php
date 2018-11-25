@@ -7,6 +7,10 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 
+use Storage;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Sftp\SftpAdapter;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -29,7 +33,9 @@ class AppServiceProvider extends ServiceProvider
                return "<?php echo  number_format($amount,2).'%' ; ?>";
           });
 
-
+         Storage::extend('sftp', function ($app, $config) {
+            return new Filesystem(new SftpAdapter($config));
+        });
 
     }
 
