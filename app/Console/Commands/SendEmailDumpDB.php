@@ -46,12 +46,17 @@ class SendEmailDumpDB extends Command
             'name' => "xxx"
        );
 
+       
+        $password=env("DB_PASSWORD");
+        $database=env("DB_DATABASE");
+        $user=env("DB_USERNAME");
+
+
         $date = date("d_m_yxH_i_s");
-        $fileBase="investment_capital_$date";
+        $fileBase=$database."_$date";
         $file = "$fileBase.sql";
         $fileZip ="$fileBase.zip";
-
-        $comando =" mysqldump --user=root --password=F3rM1st3rCap1tal444 --lock-tables --databases invesment_capital >  backup/$file && ".
+        $comando =" mysqldump --user=$user --password=$password --lock-tables --databases $database >  backup/$file && ".
             "zip backup/$fileZip backup/$file";
         $process = new Process($comando);
         $process->run();

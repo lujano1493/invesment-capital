@@ -50,13 +50,13 @@ return [
 
         'sftp' => [
             'driver' => 'sftp',
-            'host' => 'capital444.com',
+            'host' => env('SFTP_HOST'),
            // 'host' => '54.70.20.2',
             'port' => 22,
-            'username' => 'ec2-user',
+            'username' => env('SFTP_USER'),
             //'password' => 'password',
-            'privateKey' => '/Users/fercho14.93/Documents/Proyecto/invesment-server-aws.pem',
-            'root' => '/home/ec2-user/invesment-capital',
+            'privateKey' => env('SFTP_PRIVATE_KEY'),
+            'root' => env('SFTP_ROOT'),
             'timeout' => 10,
         ],
         'public' => [
