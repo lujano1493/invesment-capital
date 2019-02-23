@@ -44,10 +44,10 @@ class SendFileAssets extends Command
         
 
         $process = new Process('npm run prod');
-        $process->run();
+     /*   $process->run();
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process); 
-        }
+        }*/
 
         $this->sendFile("public/fonts");
         $this->sendFile("public/css");
