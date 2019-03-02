@@ -1,5 +1,4 @@
 $(function() {
-
 	function uploadMultipart(options ,callbacks ){
 			
 		var request = new XMLHttpRequest();
@@ -28,17 +27,18 @@ $(function() {
  			.done( callbacks.done ).fail( callbacks.fail ).
  			always(callbacks.always  );
 	}
- $(document).on("click",".btn-ajax",function (){
+ $(document).on("click",".btn-ajax",function (event,disableValidate){
  	var  btn=$(this) ,form= btn.closest("form") ,idTmpl=btn.data("id-tmpl"), idTarget= btn.data("target-show"), 
  		customValidation = btn.data("custom-validate"), noShowMsg= !! btn.data("no-show-msg") ;
-
- 	if( !customValidation &&  !form.valid()){
- 		return false;
- 	}
-
- 	if(customValidation &&   !btn.data(customValidation)()   ){
- 		return false;
- 	}
+ 	if( !disableValidate){
+ 		if( !customValidation &&  !form.valid()){
+ 			return false;
+	 	}
+	 	if(customValidation &&   !btn.data(customValidation)()   ){
+	 		return false;
+	 	}
+ 	}	
+ 	
 
 
  	var contentType = form.attr("enctype") || form.attr("accept");
@@ -126,9 +126,4 @@ $(function() {
  	return false;
 
  });
-	
-
- 
-
-
 });

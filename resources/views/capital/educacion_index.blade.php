@@ -50,9 +50,28 @@
                         <tr>
                             <td> {{ $cuestionario->id }} </td>
                             <td>{{ $cuestionario->titulo }}</td>
-                            <td> {{ $asignar->fecha_finalizado ? $asignar->fecha_finalizado->format('d-m-Y H:i:s') : ''  }}</td>
+                            <td> {{ $asignar->fecha_finalizado ? $asignar->fecha_finalizado->format('d-m-Y H:i:s') : 'Sin Finalizar'  }}</td>
                             <td>  <label class="label {{ $clsStatus }}"> {{ $txtStatus }} </label></td>
-                            <td> {{ $cuestionario->fecha_limite->format('d-m-Y') }}</td>
+
+                            @php
+
+                                $fechaLimiteLabel ='Sin Limite';
+                                 $fechaLimiteLabel = $asignar->fecha_limite ?  $asignar->fecha_limite :$cuestionario->fecha_limite;
+
+                                if($cuestionario->tipo == 1){
+                                    $fechaLimiteLabel = $fechaLimiteLabel->format('d-m-Y');
+                                } else
+                                if ($cuestionario->tipo == 2) {
+                                    if($asignar->visto){
+                                       $fechaLimiteLabel= $fechaLimiteLabel->format('d-m-Y H:i') ;
+                                    } else{
+                                        list($horas,$mins) = preg_split( '[:]', $cuestionario->fecha_limite->format('H:i')); 
+                                        $fechaLimiteLabel =  "$horas horas y $mins mins.";
+                                    }
+                                  
+                                }
+                            @endphp
+                            <td> {{$fechaLimiteLabel}}</td>
                             <td> 
                                 @if( !$asignar->fecha_finalizado )
                                     <a class="btn btn-primary" href="{{ route('capital.cuestionario.contestar', $asignar ) }}"> Contestar </a>

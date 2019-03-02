@@ -10,6 +10,9 @@
     $respuestas =$asignacion->respuestas;
     $respuestas= $respuestas->pluck('id','id_opcion')->toArray();
 
+    $diffTime=   $asignacion->fecha_limite->timestamp -\Carbon\Carbon::now()->timestamp;
+
+
 @endphp
  <div class="card mb-3">
         <div class="card-header">
@@ -19,9 +22,18 @@
                 </div>
                
             </div>
+
+            @if ($cuestionario->tipo == 2 )
+                <div class="row" >
+                    <div class="text-right col-12 col-sm-12" style="font-size: 18px" >
+                        Tiempo restante:  <label class="label label-warning time-test"> {{ gmdate("H:i:s", $diffTime) }} </label>
+                    </div>
+                    
+                </div>
+            @endif
  
         </div>
-    <div class="card-body text-left">
+    <div class="card-body text-left tab-margin-top">
 
         <div class="row">
             <div class="col-12">
@@ -36,7 +48,13 @@
         </div>
 
         {{ Form::model($cuestionario ,['route' =>['capital.cuestionario.finalizar', $asignacion],'id' => 'cuestionario' ] ) }}
-        {{ Form::bsInput('id','hidden') }}
+        {{ Form::bsInput('id','hidden', [
+                'value' => $asignacion->id,
+                'class' =>'id-master'
+            ]) }}
+        {{ Form::bsInput('tipo','hidden' ,[ 'class' => 'type-questions']) }}
+
+         {{ Form::bsInput('diffTime','hidden' ,[ 'value' => $diffTime]) }}
         @php
          $count =0;
         @endphp
@@ -72,6 +90,8 @@
             <div class="form-group text-center ">
                 <button  class="btn btn-primary btn-test btn-ajax" id="btn-test" data-no-show-msg = "true"   data-custom-validate="validateTest" > Finalizar </button>
             </div>
+
+
 
 
         {{ Form::close() }}

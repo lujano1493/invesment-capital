@@ -13,6 +13,7 @@ use App\Model\CuestionarioUsuarioRespuesta;
 use App\Model\CuestionarioPreguntasOpciones;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CapitalController extends Controller
 {
@@ -64,20 +65,26 @@ class CapitalController extends Controller
       if( $user->id  != $asignacion->id_user){
         return $this->alertError("La asignacion no pertenece al usuario actual.");
       }
-      $cuestionario = $asignacion->cuestionario;
-      if( $cuestionario->fecha_limite   &&  $cuestionario->fecha_limite < Carbon::today() ){
-        $asignacion->visto = true;
-        $asignacion->fecha_finalizado= date("Y-m-d H:i:s");
-        $asignacion->update();
-        return $this->alertError("El plazo a terminado y por lo tanto se finaliza la encuesta.");
-      }
-
       if( $asignacion->fecha_finalizado !=null ){
         return $this->alertError("El cuestionario ya fue finalizado.");
       }
+      $cuestionario = $asignacion->cuestionario;
       if( !$asignacion->visto ){
           $asignacion->visto = true;
+          $asignacion->fecha_limite  = $cuestionario->tipo == 1 ? $cuestionario->fecha_limite: null;
+          if( $cuestionario ->tipo == 2 ){
+            list ($horas , $min) = preg_split('[:]',   $cuestionario->fecha_limite->format("H:i:s"));
+            $asignacion->fecha_limite =  \Carbon\Carbon::now()->addHours($horas)-> addMinutes($min);
+          }
+
           $asignacion->update();
+
+      }
+
+      if(  $asignacion->fecha_limite   &&  $asignacion->fecha_limite < Carbon::today() ){
+        $asignacion->fecha_finalizado= date("Y-m-d H:i:s");
+        $asignacion->update();
+        return $this->alertError("El plazo a terminado y por lo tanto se finaliza la encuesta.");
       }
 
       return view('capital.educacion_cuestionario',compact('asignacion'));
@@ -96,17 +103,23 @@ class CapitalController extends Controller
       if( $user->id  != $asignacion->id_user){
         return $this->alertError("La asignacion no pertenece al usuario actual.");
       }
-      $cuestionario=$asignacion->cuestionario;
-      if( $cuestionario->fecha_limite   &&  $cuestionario->fecha_limite < Carbon::today() ){
-        return $this->alertError("El plazo a terminado y por lo tanto no se puede guardar.");
-      }
       if( $asignacion->fecha_finalizado !=null ){
         return $this->alertError("El cuestionario ya fue finalizado.");
       }
+
+      $cuestionario=$asignacion->cuestionario;
+      if( $asignacion->fecha_limite   &&  $asignacion->fecha_limite < Carbon::today() ){
+        return $this->alertError("El plazo a terminado y por lo tanto no se puede guardar.");
+      }
+
       $data= $request->all();
       $this->guardarOpciones($data['opciones'],$asignacion);
 
-      return $this->alertSuccess("se guardo correctamente cuestionario.");
+      $diffTime=   $asignacion->fecha_limite->timestamp -\Carbon\Carbon::now()->timestamp;
+      return $this->alertSuccess( [
+          'title' => "se guardo correctamente cuestionario.",
+          'results' => compact('diffTime')
+        ] );
     }
 
     public function finalizar(Request $request,$id= null){
@@ -157,6 +170,7 @@ class CapitalController extends Controller
       }
       return $asignacion->respuestas()->createMany($opciones);
     }
+
     public function resultado($id){
 
       if(!isset($id)){
@@ -191,6 +205,11 @@ class CapitalController extends Controller
       $user = Auth::user();
       if( $user->id  != $asignacion->id_user){
         return $this->alertError("La asignacion no pertenece al usuario actual.");
+      }
+      $cuestionario= $asignacion->cuestionario;
+
+      if(    $asignacion->fecha_finalizado  && $cuestionario->tipo == 2 ){
+        return $this->alertError("No es posible intentar nueva la prueba ya que el limite tiempo termino.");
       }
 
       $asignacion->fecha_finalizado=null;

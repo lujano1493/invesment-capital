@@ -29,13 +29,10 @@ $(document).ready(function ($){
 			});
 		return flgValidate;
 	});
-
-
 		
 	btnTest.on("done.forms.ajax",function(event, data){
 		$("#modalFinalizar").modal({backdrop:'static'});
 	});
-
 
 	$(document).on("change","input:checkbox",function(event){
 		var check= $(this),checked = check.prop("checked") , group=  check.closest(".pregunta_opcion");
@@ -44,9 +41,7 @@ $(document).ready(function ($){
 
 	});
 
-
-	
-
+	var tipoEvaluacion = $("[name='tipo']").val();
 	setInterval( 
 			function (){
 				var id = $("[name='id']").val();
@@ -54,12 +49,46 @@ $(document).ready(function ($){
 				$.ajax({
 						url: '/educacion/cuestionario/guardar/'+id  ,
 						method:'POST',
-						data:data
+						data:data,
+						success:function(data){
+							var diffTime =data.results.diffTime;
+							$("[name='diffTime']").val(diffTime);
+							if(diffTime <= 0){
+								btnTest.trigger("click", [true]);
+								stopInterval();
+							}
+
+						}
 					})
 			}
 
 
-		, 1000 * 60 *3);
+		, 1000 * (60 *5 ));
 
-
+		if(tipoEvaluacion !=2){
+			return false;
+		}
+		function stopInterval(){
+			clearInterval(interval);
+			$(".time-test").text(toHHMMSS(0) );
+		}
+		function refrescaTiempo(){
+			var diffTime = + $("[name='diffTime']").val();
+			var labelTime= $(".time-test");
+			labelTime.text( toHHMMSS(diffTime)    );
+			diffTime--;
+			$("[name='diffTime']").val(diffTime);
+			if(diffTime <= 0){
+				btnTest.trigger("click", [true]);
+				stopInterval();
+			}
+		}
+		var interval = setInterval( refrescaTiempo,1000);
+		var toHHMMSS = (secs) => {
+		    var sec_num = parseInt(secs, 10)    
+		    var hours   = Math.floor(sec_num / 3600) % 24
+		    var minutes = Math.floor(sec_num / 60) % 60
+		    var seconds = sec_num % 60    
+		    return (hours <10 ? '0':'' )+ hours  +":" + (minutes <10 ? '0':'' ) + minutes+ ":" + (seconds <10 ? '0':'' )+seconds;
+		}
 });

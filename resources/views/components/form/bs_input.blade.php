@@ -74,6 +74,8 @@
 		{{ Form::email($name,$options['value'], $attr  ) }}
 	@elseif ($type ==='date')
 		{{ Form::date($name,$options['value'], $attr  ) }}
+	@elseif ($type ==='time')
+		{{ Form::time($name,$options['value'], $attr  ) }}
 	@elseif ($type ==='select')
 		{{ Form::select($name, $options['list']  ,$options['value'], $attr  ) }}
 	@elseif ($type ==='file')

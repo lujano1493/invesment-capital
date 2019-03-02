@@ -18,6 +18,7 @@ let mix = require('laravel-mix');
 			'node_modules/startbootstrap-sb-admin-2/vendor/raphael/raphael.js',
 			'node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.js',
 			'node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.js',
+			'resources/assets/js/plugins/dinamic-input.js',
 			'resources/assets/js/plugins/jquery.chart-morris.js',
 			'resources/assets/js/plugins/jq.charts-investment.js',
 			'resources/assets/js/plugins/config-app.js',

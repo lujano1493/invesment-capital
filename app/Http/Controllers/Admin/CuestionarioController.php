@@ -10,6 +10,8 @@ use App\Model\CuestionarioPreguntas;
 use App\Model\CuestionarioPreguntasOpciones;
 use App\Model\AsignacionCuestionario;
 
+use Illuminate\Support\Facades\DB;
+
 trait CuestionarioController
 {
 
@@ -25,7 +27,13 @@ trait CuestionarioController
 
     	if(  $request->isMethod("post")){
     		$data= $request->all();
-    		$data['tipo'] =1 ; //TODO fijo
+        if(isset($data['tipo'])&& isset($data['fecha_limite'])){
+          if($data['tipo'] == 2){
+              list($horas,$min) = preg_split('[:]',$data['fecha_limite']);
+              $data['fecha_limite'] =   "0000-01-01 $horas:$min:00"  ;
+          }
+
+        }
 
     		if( $cuestionario ==null){
     			$cuestionario = Cuestionario::create($data);

@@ -18,7 +18,7 @@ class AsignacionCuestionario extends Pivot
   public $timestamps=false;
 
   protected $dates = [
-      'fecha_finalizado'
+      'fecha_finalizado','fecha_limite'
   ];
 
   public function formFechaFinalizadoAttribute($value){

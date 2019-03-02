@@ -33,6 +33,7 @@ mix.sass('resources/assets/sass/app-admin.scss', 'public/css/app-admin.css')
 			'resources/assets/js/plugins/ajaxForm.js',
 			'resources/assets/js/plugins/document-view.js',
 			'resources/assets/js/plugins/modal-loading.js',
+			'resources/assets/js/plugins/dinamic-input.js',
 			'resources/assets/js/plugins/config-app.js',
 			'resources/assets/js/admin/main.js',
 
