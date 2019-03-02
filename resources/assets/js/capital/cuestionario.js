@@ -42,8 +42,8 @@ $(document).ready(function ($){
 	});
 
 	var tipoEvaluacion = $("[name='tipo']").val();
-	setInterval( 
-			function (){
+
+	function guardarCuestionario(){
 				var id = $("[name='id']").val();
 				var data = $("#cuestionario").serializeForm();
 				$.ajax({
@@ -56,6 +56,7 @@ $(document).ready(function ($){
 							if(diffTime <= 0){
 								btnTest.trigger("click", [true]);
 								stopInterval();
+								clearInterval(intervalGuardar);
 							}
 
 						}
@@ -63,7 +64,7 @@ $(document).ready(function ($){
 			}
 
 
-		, 1000 * (60 *5 ));
+	var intervalGuardar= setInterval( guardarCuestionario , 1000 * (60 *5 ));
 
 		if(tipoEvaluacion !=2){
 			return false;
