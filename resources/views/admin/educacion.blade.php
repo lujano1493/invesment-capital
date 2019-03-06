@@ -47,7 +47,18 @@
                 	<tr class="tmpl-item">
                 			<td>{{ $cuestionario->id }} <input type="hidden" name="id" value = {{ $cuestionario->id }}></td>
                 			<td>{{ $cuestionario->titulo }}</td>
-                			<td>{{ $cuestionario->fecha_limite->format('d-m-Y') }}</td>
+                            @php
+                                $fechaLimite = $cuestionario->fecha_limite;
+
+                                if( $fechaLimite  ){
+                                    $fechaLimite =  $cuestionario->tipo ==2 ? $fechaLimite->format('d-m-Y H:i') : $fechaLimite->format('d-m-Y');
+                                } else{
+                                    $fechaLimite = 'Sin Limite';
+                                }
+
+
+                            @endphp
+                			<td>{{  $fechaLimite }}</td>
                 			<td>{{ $cuestionario->updated_at->format('d-m-Y') }}</td>
                 			<td>
                 				<a class="btn btn-success" href="{{ route('admin.educacion.administrar' , $cuestionario ) }}" title="Editar" > 

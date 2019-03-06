@@ -10,7 +10,7 @@
     $respuestas =$asignacion->respuestas;
     $respuestas= $respuestas->pluck('id','id_opcion')->toArray();
 
-    $diffTime=   $asignacion->fecha_limite->timestamp -\Carbon\Carbon::now()->timestamp;
+    $diffTime=    $asignacion->fecha_limite ?  $asignacion->fecha_limite->timestamp -\Carbon\Carbon::now()->timestamp : 0;
 
 
 @endphp
