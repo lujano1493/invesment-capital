@@ -40,7 +40,7 @@ trait UserInvestmentController{
     $catStatusTrans = StatusTransaction::pluck('name','id')->all();
 
       return view('capital.invesment_index',
-            compact('user','catProfile','catHorizon','catTypeObjective',
+            compact('catProfile','catHorizon','catTypeObjective',
                 'catTypeReprensentant' ,'catBancks','catClasifCountBanck',
                 'catTypeDocument','catOriginTrans','catTypeTrans','catStatusTrans'));
   }
