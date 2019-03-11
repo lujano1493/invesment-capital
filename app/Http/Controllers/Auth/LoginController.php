@@ -56,7 +56,7 @@ class LoginController extends Controller
                 ]);
             }
 
-            if($user->status === User::STATUS_ACTIVE ){
+            if($user->status == User::STATUS_ACTIVE ){
                 throw ValidationException::withMessages([
                     'email' => ['El correo ya habia sido activado'],
                 ]);

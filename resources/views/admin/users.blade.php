@@ -57,8 +57,8 @@
                 			<td>{{ $user->nickname }}</td>
                 			<td>
                                 @php
-                                    $text= $user->status === 0? 'INACTIVO':  ($user->status === -1 ? 'BLOQUEADO': 'ACTIVO') ;
-                                    $clazz= $user->status === 0? ' badge-warning': ($user->status === -1 ? 'badge-danger' : 'badge-success')  ;
+                                    $text= $user->status ==0? 'INACTIVO':  ($user->status ==-1 ? 'BLOQUEADO': 'ACTIVO') ;
+                                    $clazz= $user->status ==0? ' badge-warning': ($user->status ==-1 ? 'badge-danger' : 'badge-success')  ;
                                     $estatus= "<span class='badge {$clazz}'> {$text}</span>";
                                 @endphp
                                 <?php echo $estatus;?>
