@@ -61,7 +61,12 @@ trait CuestionarioController
 
       $query = $request->get("query_search");
 
-      $users = User::search($query)->sortable()->where( "id_role" ,"!=",User::ROLE_ADMIN  ) ->paginate(20);
+      $users = User::search($query)->sortable()->where(
+          [
+              ["id_role", "!=", User::ROLE_ADMIN],
+              ["status", User::STATUS_ACTIVE]
+          ]
+          )->orderBy("id" ,"desc" ) ->paginate(20);
 
       $request->flashOnly(["query_search"]);
 
