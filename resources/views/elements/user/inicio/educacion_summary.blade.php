@@ -30,7 +30,7 @@ $cuestionarios =$user->cuestionarios()->wherePivot("visto", false)->orderBy('id'
                         <tr>
                             <td> {{ $cuestionario->id }} </td>
                             <td>{{ $cuestionario->titulo }}</td>
-                            <td> {{ $cuestionario->fecha_limite->format('d-m-Y') }}</td>
+                            <td> {{ $cuestionario->fecha_limite ? $cuestionario->fecha_limite->format('d-m-Y') : 'Sin Limite' }}</td>
                             <td> <a class="btn btn-primary" href="{{ route('capital.educacion') }}"> Ver Detalles  </a></td>
                         </tr>
                         @endforeach
