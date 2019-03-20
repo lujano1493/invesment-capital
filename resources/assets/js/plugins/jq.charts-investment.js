@@ -1,6 +1,11 @@
 $(document).ready(function(){
 
-	 $.jqplot.config.enablePlugins = true;
+
+
+	  if($.jqplot){
+	  	$.jqplot.config.enablePlugins = true;
+	  }
+	 
 
 
 		$(".chart-investment").each(function (index,el){
