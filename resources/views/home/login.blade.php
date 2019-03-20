@@ -55,7 +55,7 @@
 
 
         <div class="row text-center">
-            {{  Form::bsButton('Ingresar',   ['class' => 'btn btn-primary' , 'type' =>'submit' ] )  }}
+            {{  Form::bsButton('Ingresar',   ['class' => 'btn btn-primary' , 'type' =>'submit'  ,'id' =>'btnIngresar'  ] )  }}
         </div>
        
         

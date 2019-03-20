@@ -41,19 +41,19 @@ class SendFileAssets extends Command
      */
     public function handle()
     {
-        
+
 
         $process = new Process('npm run prod');
      /*   $process->run();
         if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process); 
+            throw new ProcessFailedException($process);
         }*/
 
         $this->sendFile("public/fonts");
         $this->sendFile("public/css");
         $this->sendFile("public/js");
-      
-       
+
+
        $this->info("fin del programa");
     }
 

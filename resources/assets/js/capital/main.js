@@ -127,7 +127,9 @@ particlesJS.load('container-home', 'assets/particlesjs-config.json', function() 
 
 
 $(document).on("keypress", "#password", function(event) {
-    if (event.keyCode == 13) {
+	var email= $("#email").val(),pass=$(this).val();
+    if (event.keyCode == 13 && ( email.length >0 && pass.length>0)) {
+    	$(this).closest('form').submit();
         event.preventDefault();
     }
 });
