@@ -64,7 +64,7 @@ $(document).ready(function ($){
 			}
 
 
-	var intervalGuardar= setInterval( guardarCuestionario , 1000);
+	var intervalGuardar= setInterval( guardarCuestionario , 1000 *60*3);
 
 		if(tipoEvaluacion !=2){
 			return false;

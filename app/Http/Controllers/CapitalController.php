@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 namespace App\Http\Controllers;
 
@@ -115,7 +115,7 @@ class CapitalController extends Controller
       $data= $request->all();
       $this->guardarOpciones($data['opciones'],$asignacion);
 
-      $diffTime=   $asignacion->fecha_limite->timestamp -\Carbon\Carbon::now()->timestamp;
+      $diffTime=   $asignacion->fecha_limite !=null ?  $asignacion->fecha_limite->timestamp - \Carbon\Carbon::now()->timestamp :1  ;
       return $this->alertSuccess( [
           'title' => "se guardo correctamente cuestionario.",
           'results' => compact('diffTime')
