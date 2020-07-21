@@ -41,7 +41,7 @@ class PeticionRetiroRealizadoNotification extends Notification
     public function toMail($notifiable)
     {
       return (new MailMessage)
-          ->from("notification@capital444.com.mx","Notificación de Retiro Realizado")
+          ->from("notification@capital444.com","Notificación de Retiro Realizado")
           ->subject('Retiro Realizado')
           ->greeting("Hola   {$this->data['name']},")
           ->line("Se ha realizado el retiro por $ ".number_format($this->data['monto'],2)  ." MXN ")

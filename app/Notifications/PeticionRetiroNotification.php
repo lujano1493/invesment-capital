@@ -44,7 +44,7 @@ class PeticionRetiroNotification extends Notification
      {
 
          return (new MailMessage)
-             ->from("notification@capital444.com.mx","Notificación de Retiro")
+             ->from("notification@capital444.com","Notificación de Retiro")
              ->subject('Petición de retiro')
              ->greeting("Hola administrador  {$this->data['nickname']},")
              ->line("Se ha realizado una petición de retiro por $ ".number_format($this->data['monto'],2)  ." MXN  del siguiente usuario:")

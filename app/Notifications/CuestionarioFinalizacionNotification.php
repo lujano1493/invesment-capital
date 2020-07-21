@@ -40,7 +40,7 @@ class CuestionarioFinalizacionNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from("notification@capital444.com.mx","Notificación Finalización de Cuestionario")
+                    ->from("notification@capital444.com","Notificación Finalización de Cuestionario")
                     ->subject('Encuestas Finalizada')
                     ->greeting("Hola   {$this->data['nombre']},")
                     ->line( "el usuario: ".$this->data['correo']  ." ha terminado la encuesta." )

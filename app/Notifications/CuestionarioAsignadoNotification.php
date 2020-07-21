@@ -42,7 +42,7 @@ class CuestionarioAsignadoNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from("notification@capital444.com.mx","Notificación Asignacion de Cuestionario")
+                    ->from("notification@capital444.com","Notificación Asignacion de Cuestionario")
                     ->subject('Nueva Encuesta Asignada')
                     ->greeting("Hola   {$this->data['nombre']},")
                     ->line("Se ha asignado el cuestionario:  ". $this->data['nombre_encuesta']   )

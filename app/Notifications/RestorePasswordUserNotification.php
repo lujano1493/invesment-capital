@@ -44,7 +44,7 @@ class RestorePasswordUserNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->from("notification@capital444.com.mx","Notificación Capital 444")
+            ->from("notification@capital444.com","Notificación Capital 444")
             ->subject('Recuperación de Contraseña')
             ->greeting("Hola {$this->data['name']} {$this->data['last_name']},")
             ->line('Hemos recibido una solicitud para el cambio de contraseña')
