@@ -150,19 +150,51 @@
 					
 				</div>
 
+				<div class="col-12 col-sm-4">
+					<div class="form-group">
+						<label> Comisión
+						</label>
+						<div class="input-group mb-3">
+							{{ Form::number('comision'  , old('comision') ,  ['required' => true,'class' => 'form-control'] ) }}
+							
+						</div>
+						
+					</div>
+					
+				</div>
+
+
+		</div>
+
+
+
 			@if($type == 'edit')
 
-			<div class="col-12 col-sm-4">
-				{{ Form::bsInput('updated_at' ,'text' , [ 
-					'label' =>'Ultima Modificación',
-					'value' =>old('updated_at'),
-					'attr' =>[
-						'required' =>true,
-						'disabled' => true
-					]   
-					]) }}
-			</div>
+			<div class="row">
+			
 
+				<div class="col-12 col-sm-6">
+					{{ Form::bsInput('created_at' ,'text' , [ 
+						'label' =>'Creación',
+						'value' =>old('created_at'),
+						'attr' =>[
+							'required' =>true,
+							'disabled' => true
+						]   
+						]) }}
+				</div>
+
+				<div class="col-12 col-sm-6">
+					{{ Form::bsInput('updated_at' ,'text' , [ 
+						'label' =>'Ultima Modificación',
+						'value' =>old('updated_at'),
+						'attr' =>[
+							'required' =>true,
+							'disabled' => true
+						]   
+						]) }}
+				</div>
+
+			</div>
 			@endif
-		</div>
 	

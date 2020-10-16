@@ -19,6 +19,7 @@
    $saldoTotal=0;
    $fondoRentaV=0;
    $fondoDeuda=0;
+   $comision =0;
    \Carbon\Carbon::setLocale("es");
    $fecha= \Carbon\Carbon::now();
 
@@ -29,13 +30,13 @@
       $saldoTotal= $totalAportaciones  +   $minusvalia     ;
       $porcetanjeMinusValia= $balance->change;
       $fecha= $balance->updated_at;
-    
+      $comision =$balance->comision;
       $fondoRentaV = $balance->renta_variable;
       $fondoDeuda = $balance->deuda;
    }
 
- 
- 
+  $hayComision = !empty($comision);
+  $styleCol = $hayComision ? '3' :'4';
    
 @endphp
 
@@ -53,17 +54,23 @@
       </div>
         @include("elements.investment.contract")
        <div class="row">
-      		<div class="col-xs-12  col-sm-4 text-center">
+         @if($hayComision)
+            <div class="col-xs-12  col-sm-3 text-center">
+              <h5> Comisión</h5>
+              <h4>  @money($comision) MXN</h4>
+            </div>
+          @endif
+      		<div class="col-xs-12  col-sm-{{$styleCol}} text-center">
       			<h5> Total de Aportaciones</h5>
       			<h4>  @money($totalAportaciones) MXN</h4>
       		</div>
-      		<div class="col-xs-12 col-sm-4 text-center {{ ($minusvalia <0) ? 'has-error' :'' }}">
+      		<div class="col-xs-12 col-sm-{{$styleCol}} text-center {{ ($minusvalia <0) ? 'has-error' :'' }}">
                <label class="control-label"> {{  ($minusvalia <0) ?  'Minusvalia' :   'Plusvalia' }}</label>
               
       			<h4 class="control-label">  @money($minusvalia) MXN</h4>
       			<h6 class="control-label">  @percentage($porcetanjeMinusValia) </h6>
       		</div>
-      		<div class="col-xs-12 col-sm-4 text-center">
+      		<div class="col-xs-12 col-sm-{{$styleCol}} text-center">
       			<h5> Saldo Total</h5>
       			<h4>  @money($saldoTotal) MXN</h4>
       			<h6>  {{ $fecha->format('d-m-Y')}} </h6>

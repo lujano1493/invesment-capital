@@ -15,7 +15,7 @@ class Balance extends Model
     public $table="balances";
 
     protected $fillable = [
-        'id_contract','payments','withdrawals','change','balance','balance_total','renta_variable','deuda','id_status_balance'
+        'id_contract','payments','withdrawals','change','balance','balance_total','renta_variable','deuda','comision','id_status_balance'
     ];
 
     protected $dates = [
@@ -30,7 +30,8 @@ class Balance extends Model
         'balance' =>'float',
         'balance_total' => 'float',
         'renta_variable' =>'float',
-        'deuda' =>'float'
+        'deuda' =>'float',
+        'comision'=>'float'
     ];
 
 

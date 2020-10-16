@@ -23,6 +23,7 @@ class CreateBalancesTable extends Migration
             $table->decimal("balance_total",13,2);
             $table->decimal("renta_variable",13,2);
             $table->decimal("deuda",13,2);
+            $table->decimal("comision",13,2);
             $table->unsignedInteger('id_status_balance');
             $table->timestamps();
         });
