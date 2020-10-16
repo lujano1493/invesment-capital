@@ -155,7 +155,7 @@
 						<label> Comisión
 						</label>
 						<div class="input-group mb-3">
-							{{ Form::number('comision'  , old('comision') ,  ['required' => true,'class' => 'form-control'] ) }}
+							{{ Form::number('comision'  , old('comision') ,  ['required' => false,'class' => 'form-control'] ) }}
 							
 						</div>
 						
